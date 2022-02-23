@@ -1,7 +1,5 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-
 
 function AccordionAQ() {
   const [expanded, setExpanded] = useState(false);
@@ -12,11 +10,9 @@ function AccordionAQ() {
 
   return (
     <div>
-      <Accordion expanded={expanded === 'block1'} onChange={handleChange('panel1')}>
-                
-            </Accordion> 
-        </div>
-    )
+      <Accordion expanded={expanded === 'block1'} onChange={handleChange('panel1')} />
+    </div>
+  );
 }
 
 export default AccordionAQ;
