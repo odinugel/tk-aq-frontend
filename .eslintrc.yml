@@ -15,5 +15,8 @@ rules: {
   "react/forbid-prop-types": [0, {}],
   "template-curly-spacing": "off",
   "no-use-before-define": ["error", { "variables": false, "functions": false }],
-  "react/require-default-props": [0, {}]
+  "react/require-default-props": [0, {}],
+
+  #Unnecessary since react v17.X.
+  "react/react-in-jsx-scope": "off"
 }
