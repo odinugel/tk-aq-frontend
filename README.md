@@ -1,1 +1,1 @@
-### Husk "npm -i" for å installere modulene!
+### Husk "npm install" for å installere modulene!
