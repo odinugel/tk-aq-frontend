@@ -12,7 +12,7 @@ function AccordionAQ() {
 
   return (
     <div>
-      <Accordion expanded={expanded === 'block1'} onChange={handleChange('panel1')}>
+      <Accordion expanded={expanded === 'block1'} onChange={handleChange('block1')}>
                 
             </Accordion> 
         </div>
