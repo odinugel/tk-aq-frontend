@@ -18,5 +18,6 @@ rules: {
   "react/require-default-props": [0, {}],
 
   #Unnecessary since react v17.X.
-  "react/react-in-jsx-scope": "off"
+  "react/react-in-jsx-scope": "off",
+  "linebreak-style": "off" 
 }
