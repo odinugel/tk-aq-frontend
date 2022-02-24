@@ -9,10 +9,34 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 function AccordionAQ() {
   return (
     <div>
-      <Accordion sx={{ backgroundColor: '#333', color: 'white' }}>
+      <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography>
             Panel 1
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni, repellat!
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography>
+            Panel 2
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni, repellat!
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography>
+            Panel 3
           </Typography>
         </AccordionSummary>
         <AccordionDetails>

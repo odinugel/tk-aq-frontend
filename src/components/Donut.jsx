@@ -1,9 +1,11 @@
 // TODO: finn ut av prop-types
 /* eslint-disable react/prop-types */
-import CircularProgress from '@mui/material/CircularProgress';
-import Typography from '@mui/material/Typography';
-import Stack from '@mui/material/Stack';
-import Box from '@mui/material/Box';
+import {
+  CircularProgress,
+  Typography,
+  Stack,
+  Box,
+} from '@mui/material';
 
 export default function Donut({
   value,
