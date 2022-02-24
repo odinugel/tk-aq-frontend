@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Accordion from '@mui/material/Accordion';
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
 
 function AccordionAQ() {
   const [expanded, setExpanded] = useState(false);
