@@ -16,25 +16,25 @@ export default function Donut({
       justifyContent="center"
       alignItems="center"
     >
-      <CircularProgress
-        variant="determinate"
-        value={value}
-        size={size}
-        color={color}
-        thickness={1.5}
-        sx={{
-          transform: 'rotate(180deg)',
-        }}
-      />
-      <Box>
+      <Box sx={{
+        transform: 'rotate(180deg)',
+      }}
+      >
+        <CircularProgress
+          variant="determinate"
+          value={value}
+          size={size}
+          color={color}
+          thickness={1.5}
+
+        />
+      </Box>
+      <Box sx={{ position: 'absolute' }}>
         <Typography
           variant="h3"
           component="div"
           color="text.secondary"
           align="center"
-          sx={{
-            transform: `translateY(-${size}%)`,
-          }}
         >
           {text}
         </Typography>
