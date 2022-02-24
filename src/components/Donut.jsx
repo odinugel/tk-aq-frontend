@@ -26,7 +26,6 @@ export default function Donut({
           size={size}
           color={color}
           thickness={1.5}
-
         />
       </Box>
       <Box sx={{ position: 'absolute' }}>
