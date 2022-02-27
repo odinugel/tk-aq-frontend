@@ -19,7 +19,7 @@ export default function Donut({
       alignItems="center"
     >
       <Box sx={{
-        transform: 'rotate(180deg)',
+        transform: 'rotate(180deg)', zIndex: '99',
       }}
       >
         <CircularProgress
@@ -39,6 +39,18 @@ export default function Donut({
         >
           {text}
         </Typography>
+      </Box>
+      <Box sx={{
+        transform: 'rotate(180deg)', position: 'absolute',
+      }}
+      >
+        <CircularProgress
+          variant="determinate"
+          value={100}
+          size={size}
+          color="background"
+          thickness={1.5}
+        />
       </Box>
     </Stack>
   );
