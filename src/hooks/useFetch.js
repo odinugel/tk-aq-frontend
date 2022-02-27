@@ -8,9 +8,9 @@ function useFetch(url) {
 
     fetch(url)
       .then((response) => response.json())
-      .then((responseData) => setData(responseData));
+      .then((responseData) => { setData(responseData); });
   }, [url]);
 
-  return { data };
+  return data;
 }
 export default useFetch;
