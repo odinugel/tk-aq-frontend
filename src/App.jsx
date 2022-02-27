@@ -11,8 +11,7 @@ function App() {
   const proxy = 'http://localhost:8080/';
   const dust = useFetch(`${proxy}https://tipqa.trondheim.kommune.no/luftkvalitet-api/v1/sensors/17dh0cf43jg89l/dust?from=1643300067139&to=1645978467139&dataPointSize=day`);
   const gas = useFetch(`${proxy}https://tipqa.trondheim.kommune.no/luftkvalitet-api/v1/sensors/17dh0cf43jg89l/gases?from=1645895547777&to=1645981947777&dataPointSize=hour`);
-  // const { dust } = useFetch(`${proxy}https://tipqa.trondheim.kommune.no/luftkvalitet-api/v1/sensors/17dh0cf43jg89l/dust?from=1643300067139&to=1645978467139&dataPointSize=day`);
-  console.log(gas);
+  const weather = useFetch(`${proxy}https://tipqa.trondheim.kommune.no/luftkvalitet-api/v1/sensors/17dh0cf43jg89l/weather?from=1645896149161&to=1645982549161&dataPointSize=hour`);
   return (
     <ThemeProvider theme={theme}>
       <Stack spacing="1rem" m="1rem">
@@ -21,7 +20,7 @@ function App() {
         </Paper>
         <AccordionAQ />
         <Paper elevation={3} sx={{ padding: '1rem' }}>
-          {(dust && gas) ? <RawData dust={dust} gas={gas} /> : null}
+          {(dust && gas && weather) ? <RawData dust={dust} gas={gas} weather={weather} /> : null}
         </Paper>
       </Stack>
     </ThemeProvider>

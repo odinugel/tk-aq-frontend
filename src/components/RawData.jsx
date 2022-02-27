@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import {
-  exampleWeatherData, exampleSensorList,
+  exampleSensorList,
 } from '../exampleData';
 
-export default function RawData({ dust, gas }) {
+export default function RawData({ dust, gas, weather }) {
   const date = new Date(dust[0].timestamp);
   const sortedSensorList = exampleSensorList.sort((a, b) => a.deviceNo - b.deviceNo);
   return (
@@ -45,15 +45,15 @@ export default function RawData({ dust, gas }) {
       <p>
         Temperature:
         {' '}
-        {exampleWeatherData.data[0].temperature}
+        {weather.data[0].temperature}
         <br />
         Humidity:
         {' '}
-        {exampleWeatherData.data[0].humidity}
+        {weather.data[0].humidity}
         <br />
         Precipitation:
         {' '}
-        {exampleWeatherData.data[0].precipitation}
+        {weather.data[0].precipitation}
         <br />
       </p>
       <h2>Sensor list</h2>
@@ -77,7 +77,7 @@ export default function RawData({ dust, gas }) {
       <h4>Gas data</h4>
       <p>{JSON.stringify(gas)}</p>
       <h4>Weather data</h4>
-      <p>{JSON.stringify(exampleWeatherData)}</p>
+      <p>{JSON.stringify(weather)}</p>
 
     </>
   );
