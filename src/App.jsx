@@ -3,9 +3,11 @@ import { Stack, Divider } from '@mui/material';
 import Donut from './components/Donut';
 import AccordionAQ from './components/Accordion';
 import RawData from './components/RawData';
+// Waiting on CORS-fix
 // import useFetch from './hooks/useFetch';
 
 function App() {
+  // Waiting on CORS-fix
   // const { data } = useFetch('https://jsonplaceholder.typicode.com/todos/1');
   return (
     <Stack divider={<Divider />}>
