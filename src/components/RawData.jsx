@@ -62,11 +62,10 @@ export default function RawData() {
             #
             {sensor.deviceNo}
             {' '}
-            {sensor.deviceID}
-            {' '}
             {sensor.deviceName}
             {' '}
-            {sensor.lastReceivedMsg}
+            ID:
+            {sensor.deviceID}
           </li>
         ))}
 
