@@ -18,7 +18,9 @@ function App() {
           <Donut size={500} color="success" value={14} text="God" />
         </Paper>
         <AccordionAQ />
-        <RawData />
+        <Paper elevation={3} sx={{ padding: '1rem' }}>
+          <RawData />
+        </Paper>
       </Stack>
     </ThemeProvider>
   );
