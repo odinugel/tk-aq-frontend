@@ -1,4 +1,3 @@
-import './App.css';
 import { Stack, Paper } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './theme';
