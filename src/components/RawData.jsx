@@ -13,7 +13,7 @@ export default function RawData({ dust, gas, weather }) {
         {' '}
         {dust[0].deviceID}
         {' '}
-        &quot;fetched&quot;:
+        fetched:
         {' '}
         {date.toUTCString()}
       </h2>

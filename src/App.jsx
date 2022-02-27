@@ -14,7 +14,8 @@ function App() {
   const [dust, setDust] = useState({});
   const [gas, setGas] = useState({});
   const [weather, setWeather] = useState({});
-
+  /* TODO: JSON from AQ-server is sorted oldest to latest,
+  meaning it needs to be reversed in order to display most recent data */
   const fetchData = async () => {
     try {
       const res = await Promise.all([
