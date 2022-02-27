@@ -5,7 +5,6 @@ import theme from './theme';
 import Donut from './components/Donut';
 import AccordionAQ from './components/Accordion';
 import RawData from './components/RawData';
-// import useFetch from './hooks/useFetch';
 import pollutionToPercentage from './utilities/pollutionToPercentage';
 
 function App() {
@@ -25,18 +24,24 @@ function App() {
       ]);
       const data = await Promise.all(res.map((r) => r.json()));
       const pollutants = pollutionToPercentage(data[0], data[1]);
+
       setDust(data[0]);
       setGas(data[1]);
       setWeather(data[2]);
-      setTopPollutant({ name: 'NO2', value: pollutants.NO2 });
-    } catch {
-      throw Error('Promise failed');
+
+      const topPollutantKey = Object.keys(pollutants)
+        .reduce((a, b) => (pollutants[a] > pollutants[b] ? a : b));
+
+      setTopPollutant({
+        name: topPollutantKey,
+        value: pollutants[topPollutantKey],
+      });
+    } catch (e) {
+      throw Error(`Promise failed${ e}`);
     }
   };
 
   useEffect(() => { fetchData(); }, []);
-
-  console.log(topPollutant);
   return (
     <ThemeProvider theme={theme}>
       <Stack spacing="1rem" m="1rem">
