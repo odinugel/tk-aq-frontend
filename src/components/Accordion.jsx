@@ -4,13 +4,13 @@ import {
   AccordionDetails,
   Typography,
 } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandMore from '@mui/icons-material/ExpandMore';
 
 function AccordionAQ() {
   return (
     <div>
       <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <AccordionSummary expandIcon={<ExpandMore />}>
           <Typography>
             Panel 1
           </Typography>
@@ -22,7 +22,7 @@ function AccordionAQ() {
         </AccordionDetails>
       </Accordion>
       <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <AccordionSummary expandIcon={<ExpandMore />}>
           <Typography>
             Panel 2
           </Typography>
@@ -34,7 +34,7 @@ function AccordionAQ() {
         </AccordionDetails>
       </Accordion>
       <Accordion>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <AccordionSummary expandIcon={<ExpandMore />}>
           <Typography>
             Panel 3
           </Typography>
