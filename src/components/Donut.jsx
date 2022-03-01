@@ -12,6 +12,7 @@ export default function Donut({
   size,
   color,
   text,
+  thickness,
 }) {
   return (
     <Stack
@@ -28,7 +29,7 @@ export default function Donut({
           value={value}
           size={size}
           color={color}
-          thickness={1.5}
+          thickness={thickness}
         />
       </Box>
       <Box sx={{ position: 'absolute' }}>
@@ -50,7 +51,7 @@ export default function Donut({
           value={100}
           size={size}
           color="background"
-          thickness={1.5}
+          thickness={thickness}
         />
       </Box>
     </Stack>

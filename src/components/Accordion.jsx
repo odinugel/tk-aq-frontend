@@ -5,15 +5,14 @@ import {
   Typography,
 } from '@mui/material';
 import ExpandMore from '@mui/icons-material/ExpandMore';
+import Donut from './Donut';
 
 function AccordionAQ() {
   return (
     <div>
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMore />}>
-          <Typography>
-            Panel 1
-          </Typography>
+          <Donut size={50} value={25} color="success" />
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
