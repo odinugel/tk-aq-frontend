@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
-import {
-  exampleSensorList,
-} from '../exampleData';
-
-export default function RawData({ dust, gas, weather }) {
+export default function RawData({
+  dust,
+  gas,
+  weather,
+  sensorList,
+}) {
   const date = new Date(dust[0].timestamp);
-  const sortedSensorList = exampleSensorList.sort((a, b) => a.deviceNo - b.deviceNo);
+  const sortedSensorList = sensorList.sort((a, b) => a.deviceNo - b.deviceNo);
   return (
     <>
       <h2>
