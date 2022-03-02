@@ -45,12 +45,30 @@ function AccordionAQ({ pollutants }) {
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMore />}>
           <Typography>
-            Panel 3
+            NO2
           </Typography>
+          <Donut size={50} color="success" value={pollutants.NO2} />
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni, repellat!
+            Her er NO2 veriden:
+            {' '}
+            {pollutants.NO2}
+          </Typography>
+        </AccordionDetails>
+      </Accordion>
+      <Accordion>
+        <AccordionSummary expandIcon={<ExpandMore />}>
+          <Typography>
+            PM2.5
+          </Typography>
+          <Donut size={50} color="success" value={pollutants.PM25} />
+        </AccordionSummary>
+        <AccordionDetails>
+          <Typography>
+            Her er PM25 veriden:
+            {' '}
+            {pollutants.PM25}
           </Typography>
         </AccordionDetails>
       </Accordion>

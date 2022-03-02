@@ -46,15 +46,15 @@ export default function RawData({
       <p>
         Temperature:
         {' '}
-        {weather.data[0].temperature}
+        {weather[0].temperature}
         <br />
         Humidity:
         {' '}
-        {weather.data[0].humidity}
+        {weather[0].humidity}
         <br />
         Precipitation:
         {' '}
-        {weather.data[0].precipitation}
+        {weather[0].precipitation}
         <br />
       </p>
       <h2>Sensor list</h2>

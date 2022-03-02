@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import { Stack, Paper } from '@mui/material';
+import { Stack, Paper, Typography } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import React, { useEffect, useState } from 'react';
 import theme from './theme';
@@ -18,22 +18,27 @@ function App() {
   const [sensorList, setSensorList] = useState({});
   const [pollutants, setPollutants] = useState({});
   const sensor = '17dh0cf43jg89l';
-  /* TODO: JSON from AQ-server is sorted oldest to latest,
-  meaning it needs to be reversed in order to display most recent data */
+  const timeNow = new Date();
+  const twoHoursAgo = new Date();
+  twoHoursAgo.setHours(twoHoursAgo.getHours() - 2);
   const fetchData = async () => {
     try {
       const res = await Promise.all([
-        fetch(`${proxy}https://tipqa.trondheim.kommune.no/luftkvalitet-api/v1/sensors/${sensor}/dust?from=1643300067139&to=1645978467139&dataPointSize=day`),
-        fetch(`${proxy}https://tipqa.trondheim.kommune.no/luftkvalitet-api/v1/sensors/${sensor}/gases?from=1645895547777&to=1645981947777&dataPointSize=hour`),
-        fetch(`${proxy}https://tipqa.trondheim.kommune.no/luftkvalitet-api/v1/sensors/${sensor}/weather?from=1645896149161&to=1645982549161&dataPointSize=hour`),
+        fetch(`${proxy}https://tipqa.trondheim.kommune.no/luftkvalitet-api/v1/sensors/${sensor}/dust?from=${Date.parse(twoHoursAgo)}&to=${Date.parse(timeNow)}&dataPointSize=hour`),
+        fetch(`${proxy}https://tipqa.trondheim.kommune.no/luftkvalitet-api/v1/sensors/${sensor}/gases?from=${Date.parse(twoHoursAgo)}&to=${Date.parse(timeNow)}&dataPointSize=hour`),
+        fetch(`${proxy}https://tipqa.trondheim.kommune.no/luftkvalitet-api/v1/sensors/${sensor}/weather?from=${Date.parse(twoHoursAgo)}&to=${Date.parse(timeNow)}&dataPointSize=hour`),
         fetch(`${proxy}https://tipqa.trondheim.kommune.no/luftkvalitet-api/v1/sensors`),
       ]);
       const data = await Promise.all(res.map((r) => r.json()));
-      const pollutantsPercentage = pollutionToPercentage(data[0], data[1]);
 
-      setDust(data[0]);
-      setGas(data[1]);
-      setWeather(data[2]);
+      const dustReversed = data[0].slice().reverse();
+      const gasReversed = data[1].slice().reverse();
+      const weatherReversed = data[2].data.slice().reverse();
+      const pollutantsPercentage = pollutionToPercentage(dustReversed, gasReversed);
+
+      setDust(dustReversed);
+      setGas(gasReversed);
+      setWeather(weatherReversed);
       setSensorList(data[3]);
       setPollutants(pollutantsPercentage);
 
@@ -55,6 +60,14 @@ function App() {
     <ThemeProvider theme={theme}>
       <Stack spacing="1rem" m="1rem">
         <Paper elevation={5}>
+          <Typography variant="h2">
+            sist oppdatert:
+            {/* {' '}
+            {lastFetched.getHours()}
+            :
+            {lastFetched.getMinutes()}
+            {' '} */}
+          </Typography>
           <Donut size={500} color="success" value={topPollutant.value} text={topPollutant.name} thickness={2} />
         </Paper>
         <AccordionAQ pollutants={pollutants} />
