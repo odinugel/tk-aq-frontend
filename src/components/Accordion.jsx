@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+// TODO: figure out prop-types
 import {
   Accordion,
   AccordionSummary,
@@ -6,35 +8,37 @@ import {
 } from '@mui/material';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import Donut from './Donut';
-import RawData from './RawData';
 
-
-function AccordionAQ() {
+function AccordionAQ({ pollutants }) {
   return (
     <div>
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMore />}>
           <Typography>
-            Panel 1
+            O3
           </Typography>
-          <Donut size={50} value={25} color="success" />
+          <Donut size={50} color="success" value={pollutants.O3} />
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni, repellat!
+            Her er O3 verdien:
+            {' '}
+            {pollutants.O3}
           </Typography>
         </AccordionDetails>
       </Accordion>
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMore />}>
-          <Donut size={50} color="success" value={<RawData value={gas[0].NO2}/>}/>
           <Typography>
-            Panel 2
+            PM10
           </Typography>
+          <Donut size={50} color="success" value={pollutants.PM10} />
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni, repellat!
+            Her er PM10 verdien:
+            {' '}
+            {pollutants.PM10}
           </Typography>
         </AccordionDetails>
       </Accordion>
