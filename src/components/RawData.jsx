@@ -1,18 +1,22 @@
 /* eslint-disable react/prop-types */
 export default function RawData({
-  dust,
-  gas,
-  weather,
-  sensorList,
+  data,
 }) {
-  const date = new Date(dust[0].timestamp);
-  const sortedSensorList = sensorList.sort((a, b) => a.deviceNo - b.deviceNo);
+  const {
+    weather,
+    sensors,
+    realDust,
+    realGas,
+  } = data;
+
+  const date = new Date(realDust[0].timestamp);
+  const sortedsensors = sensors.sort((a, b) => a.deviceNo - b.deviceNo);
   return (
     <>
       <h2>
         Sensor ID:
         {' '}
-        {dust[0].deviceID}
+        {realDust[0].deviceID}
         {' '}
         fetched:
         {' '}
@@ -22,25 +26,25 @@ export default function RawData({
       <p>
         PM10 value:
         {' '}
-        {dust[0].PM10}
+        {realDust[0].PM10}
         <br />
         PM2.5 value:
         {' '}
-        {dust[0]['PM2.5']}
+        {realDust[0]['PM2.5']}
       </p>
       <h3>Gas values</h3>
       <p>
         NO2 value:
         {' '}
-        {gas[0].NO2}
+        {realGas[0].NO2}
         <br />
         O3 value:
         {' '}
-        {gas[0].O3}
+        {realGas[0].O3}
         <br />
         NO value:
         {' '}
-        {gas[0].NO}
+        {realGas[0].NO}
       </p>
       <h3>Weather data</h3>
       <p>
@@ -59,7 +63,7 @@ export default function RawData({
       </p>
       <h2>Sensor list</h2>
       <ul>
-        {sortedSensorList.map((sensor) => (
+        {sortedsensors.map((sensor) => (
           <li key={sensor.deviceID}>
             #
             {sensor.deviceNo}
@@ -74,9 +78,9 @@ export default function RawData({
       </ul>
       <h2>Raw JSON:</h2>
       <h4>Dust data</h4>
-      <p>{JSON.stringify(dust)}</p>
+      <p>{JSON.stringify(realDust)}</p>
       <h4>Gas data</h4>
-      <p>{JSON.stringify(gas)}</p>
+      <p>{JSON.stringify(realGas)}</p>
       <h4>Weather data</h4>
       <p>{JSON.stringify(weather)}</p>
 
