@@ -12,7 +12,7 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setData(fetchData(setData, setLoading));
+    fetchData(setData, setLoading);
   }, []);
 
   return (
@@ -30,7 +30,7 @@ function App() {
             {lastFetched.getMinutes()}
             {' '} */}
             </Typography>
-            <Donut size={500} color="success" value={25} text={data.topPollutant.pollutant} thickness={2} />
+            <Donut size={500} color="success" value={data.topPollutant.value} text={data.topPollutant.pollutant} thickness={2} />
           </Paper>
           <AccordionAQ pollutants={data.pollutantsPercentage} />
           <Paper elevation={3} sx={{ padding: '1rem' }}>
