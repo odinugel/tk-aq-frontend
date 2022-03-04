@@ -10,9 +10,15 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import Donut from './Donut';
 
 function AccordionAQ({ pollutants }) {
+  const pollutantsEntries = Object.entries(pollutants)
+    .sort((prevPollut, currPolut) => currPolut[1].percentage - prevPollut[1].percentage);
+    // pollutantsEntries now looks like this: [[PM10, {...}],[O3, {...}],[NO2, {...}],[PM25, {...}]]
+    // so pollutantsEntries[0][0] is "PM10" and
+    // pollutansEntries[0][1] is an object containing percentage, category and realValue
+    // this is very confusing to read (imo) and will need to be refactored somehow.
   return (
     <div>
-      {Object.entries(pollutants).map(([pollutant, info]) => (
+      {pollutantsEntries.map(([pollutant, info]) => (
         <Accordion key={pollutant}>
           <AccordionSummary expandIcon={<ExpandMore />}>
             <Typography>
