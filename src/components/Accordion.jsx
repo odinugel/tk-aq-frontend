@@ -10,6 +10,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import Donut from './Donut';
 
 function AccordionAQ({ pollutants }) {
+  // sorting pollutants according to percentage value
   const pollutantsEntries = Object.entries(pollutants)
     .sort((prevPollut, currPolut) => currPolut[1].percentage - prevPollut[1].percentage);
     // pollutantsEntries now looks like this: [[PM10, {...}],[O3, {...}],[NO2, {...}],[PM25, {...}]]
