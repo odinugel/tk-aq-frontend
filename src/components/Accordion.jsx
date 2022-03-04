@@ -12,66 +12,25 @@ import Donut from './Donut';
 function AccordionAQ({ pollutants }) {
   return (
     <div>
-      <Accordion>
-        <AccordionSummary expandIcon={<ExpandMore />}>
-          <Typography>
-            O3
-          </Typography>
-          <Donut size={50} color="success" value={pollutants.O3} />
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Her er O3 verdien:
-            {' '}
-            {pollutants.O3}
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion>
-        <AccordionSummary expandIcon={<ExpandMore />}>
-          <Typography>
-            PM10
-          </Typography>
-          <Donut size={50} color="success" value={pollutants.PM10} />
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Her er PM10 verdien:
-            {' '}
-            {pollutants.PM10}
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion>
-        <AccordionSummary expandIcon={<ExpandMore />}>
-          <Typography>
-            NO2
-          </Typography>
-          <Donut size={50} color="success" value={pollutants.NO2} />
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Her er NO2 veriden:
-            {' '}
-            {pollutants.NO2}
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion>
-        <AccordionSummary expandIcon={<ExpandMore />}>
-          <Typography>
-            PM2.5
-          </Typography>
-          <Donut size={50} color="success" value={pollutants.PM25} />
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Her er PM25 veriden:
-            {' '}
-            {pollutants.PM25}
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
+      {Object.entries(pollutants).map(([key, value]) => (
+        <Accordion key={key}>
+          <AccordionSummary expandIcon={<ExpandMore />}>
+            <Typography>
+              {key}
+            </Typography>
+            <Donut size="3rem" color="success" thickness={2} value={value} />
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+              {key}
+              {' '}
+              verdi:
+              {' '}
+              {value}
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+      ))}
     </div>
   );
 }
