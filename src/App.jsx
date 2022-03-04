@@ -26,7 +26,7 @@ function App() {
               sist oppdatert:
               {/* noe sånt som tidNå - data.timestamp */}
             </Typography>
-            <Donut size={500} color="success" value={data.topPollutant.value} text={data.topPollutant.pollutant} thickness={2} />
+            <Donut size={500} color="success" value={data.topPollutant.value} text={data.topPollutant.category} thickness={2} />
           </Paper>
           <AccordionAQ pollutants={data.pollutants} />
           <Paper elevation={3} sx={{ padding: '1rem' }}>
