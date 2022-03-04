@@ -1,0 +1,36 @@
+// Pollutant thresholds from:
+// https://luftkvalitet.miljodirektoratet.no/artikkel/artikler/helserad_og_forurensningsklasser/#Forurensningsklasser
+
+export default function aqCategory(pollutant, pollutantValue) {
+  const aqConstants = {
+    PM10: {
+      good: 60,
+      moderate: 120,
+      poor: 400,
+    },
+    PM25: {
+      good: 30,
+      moderate: 50,
+      poor: 150,
+    },
+    NO2: {
+      good: 100,
+      moderate: 200,
+      poor: 400,
+    },
+    O3: {
+      good: 100,
+      moderate: 180,
+      poor: 240,
+    },
+
+  };
+
+  if (pollutantValue < aqConstants[pollutant].good) { return 'good'; }
+
+  if (pollutantValue < aqConstants[pollutant].moderate) { return 'moderate'; }
+
+  if (pollutantValue < aqConstants[pollutant].poor) { return 'poor'; }
+
+  return 'very poor';
+}

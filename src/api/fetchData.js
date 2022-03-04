@@ -26,12 +26,15 @@ const fetchData = async (setData, setLoading) => {
     const topPollutant = findTopPollutant(pollutants);
 
     setData({
-      pollutantsPercentage: pollutants,
       topPollutant,
+      pollutants,
       weather: weatherReversed,
       sensors: data[3],
-      realDust: dustReversed,
-      realGas: gasReversed,
+      // assuming gas and dust are always in sync, probably not the case.
+      timestamp: dustReversed[0].timestamp,
+      sensorID: sensor,
+      rawGas: dustReversed,
+      rawDust: gasReversed,
     });
     setLoading(false);
   } catch (e) {

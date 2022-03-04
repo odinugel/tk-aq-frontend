@@ -5,18 +5,34 @@ export default function RawData({
   const {
     weather,
     sensors,
-    realDust,
-    realGas,
+    pollutants,
+    timestamp,
+    sensorID,
+    rawGas,
+    rawDust,
   } = data;
 
-  const date = new Date(realDust[0].timestamp);
+  const {
+    PM10,
+    PM25,
+    O3,
+    NO2,
+  } = pollutants;
+
+  const {
+    temperature,
+    humidity,
+    precipitation,
+  } = weather[0];
+
+  const date = new Date(timestamp);
   const sortedsensors = sensors.sort((a, b) => a.deviceNo - b.deviceNo);
   return (
     <>
       <h2>
         Sensor ID:
         {' '}
-        {realDust[0].deviceID}
+        {sensorID}
         {' '}
         fetched:
         {' '}
@@ -26,39 +42,35 @@ export default function RawData({
       <p>
         PM10 value:
         {' '}
-        {realDust[0].PM10}
+        {PM10.realValue}
         <br />
         PM2.5 value:
         {' '}
-        {realDust[0]['PM2.5']}
+        {PM25.realValue}
       </p>
       <h3>Gas values</h3>
       <p>
         NO2 value:
         {' '}
-        {realGas[0].NO2}
+        {NO2.realValue}
         <br />
         O3 value:
         {' '}
-        {realGas[0].O3}
-        <br />
-        NO value:
-        {' '}
-        {realGas[0].NO}
+        {O3.realValue}
       </p>
       <h3>Weather data</h3>
       <p>
         Temperature:
         {' '}
-        {weather[0].temperature}
+        {temperature}
         <br />
         Humidity:
         {' '}
-        {weather[0].humidity}
+        {humidity}
         <br />
         Precipitation:
         {' '}
-        {weather[0].precipitation}
+        {precipitation}
         <br />
       </p>
       <h2>Sensor list</h2>
@@ -78,9 +90,9 @@ export default function RawData({
       </ul>
       <h2>Raw JSON:</h2>
       <h4>Dust data</h4>
-      <p>{JSON.stringify(realDust)}</p>
+      <p>{JSON.stringify(rawDust)}</p>
       <h4>Gas data</h4>
-      <p>{JSON.stringify(realGas)}</p>
+      <p>{JSON.stringify(rawGas)}</p>
       <h4>Weather data</h4>
       <p>{JSON.stringify(weather)}</p>
 

@@ -24,15 +24,11 @@ function App() {
           <Paper elevation={5}>
             <Typography variant="h2">
               sist oppdatert:
-              {/* {' '}
-            {lastFetched.getHours()}
-            :
-            {lastFetched.getMinutes()}
-            {' '} */}
+              {/* noe sånt som tidNå - data.timestamp */}
             </Typography>
             <Donut size={500} color="success" value={data.topPollutant.value} text={data.topPollutant.pollutant} thickness={2} />
           </Paper>
-          <AccordionAQ pollutants={data.pollutantsPercentage} />
+          <AccordionAQ pollutants={data.pollutants} />
           <Paper elevation={3} sx={{ padding: '1rem' }}>
             <RawData data={data} />
           </Paper>

@@ -12,21 +12,27 @@ import Donut from './Donut';
 function AccordionAQ({ pollutants }) {
   return (
     <div>
-      {Object.entries(pollutants).map(([key, value]) => (
-        <Accordion key={key}>
+      {Object.entries(pollutants).map(([pollutant, info]) => (
+        <Accordion key={pollutant}>
           <AccordionSummary expandIcon={<ExpandMore />}>
             <Typography>
-              {key}
+              {pollutant}
             </Typography>
-            <Donut size="3rem" color="success" thickness={2} value={value} />
+            <Donut size="3rem" color="success" thickness={2} value={info.percentage} />
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              {key}
+              {pollutant}
               {' '}
               verdi:
               {' '}
-              {value}
+              {info.realValue}
+              {' '}
+              <br />
+              Kategorisert som:
+              &quot;
+              {info.category}
+              &quot;
             </Typography>
           </AccordionDetails>
         </Accordion>
