@@ -6,13 +6,14 @@ import {
   Stack,
   Box,
 } from '@mui/material';
+import donutColor from '../utils/donutColor';
 
 export default function Donut({
   value,
   size,
-  color,
-  text,
+  category,
   thickness,
+  text,
 }) {
   return (
     <Stack
@@ -28,7 +29,7 @@ export default function Donut({
           variant="determinate"
           value={value}
           size={size}
-          color={color}
+          color={donutColor(category)}
           thickness={thickness}
         />
       </Box>
@@ -39,7 +40,7 @@ export default function Donut({
           color="text.secondary"
           align="center"
         >
-          {text}
+          {text ? category : null}
         </Typography>
       </Box>
       <Box sx={{

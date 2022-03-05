@@ -25,18 +25,18 @@ function AccordionAQ({ pollutants }) {
             <Typography>
               {pollutant}
             </Typography>
-            <Donut size="3rem" color="success" thickness={2} value={info.percentage} />
+            <Donut size="3rem" color="success" thickness={2} category={info.category} value={info.percentage} />
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
               {pollutant}
               {' '}
-              verdi:
+              Value:
               {' '}
               {info.realValue}
               {' '}
               <br />
-              Kategorisert som:
+              Category:
               &quot;
               {info.category}
               &quot;

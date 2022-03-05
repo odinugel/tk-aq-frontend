@@ -14,6 +14,18 @@ const theme = createTheme({
     background: {
       main: '#f2f2f2',
     },
+    donutGood: {
+      main: '#00953b',
+    },
+    donutModerate: {
+      main: '#FDC73C',
+    },
+    donutPoor: {
+      main: '#e41f1a',
+    },
+    donutVeryPoor: {
+      main: '#4719A7',
+    },
   },
 });
 

@@ -22,11 +22,11 @@ function App() {
       ) : (
         <Stack spacing="1rem" m="1rem">
           <Paper elevation={5}>
-            <Typography variant="h2">
-              sist oppdatert:
-              {/* noe sånt som tidNå - data.timestamp */}
+            <Typography variant="h4">
+              Last update:
+              {/* something like timeNow - data.timestamp */}
             </Typography>
-            <Donut size={500} color="success" value={data.topPollutant.value} text={data.topPollutant.category} thickness={2} />
+            <Donut size={500} color="success" text value={data.topPollutant.value} category={data.topPollutant.category} thickness={2} />
           </Paper>
           <AccordionAQ pollutants={data.pollutants} />
           <Paper elevation={3} sx={{ padding: '1rem' }}>
