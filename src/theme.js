@@ -27,6 +27,12 @@ const theme = createTheme({
       main: '#4719A7',
     },
   },
+  typography: {
+    fontFamily: [
+      'Source Sans Pro',
+      'sans-serif',
+    ].join(','),
+  },
 });
 
 export default theme;
