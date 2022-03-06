@@ -3,7 +3,7 @@ export default function RawData({
   data,
 }) {
   const {
-    weather,
+    rawWeather,
     sensors,
     pollutants,
     timestamp,
@@ -23,7 +23,7 @@ export default function RawData({
     temperature,
     humidity,
     precipitation,
-  } = weather[0];
+  } = rawWeather;
 
   const date = new Date(timestamp);
   const sortedsensors = sensors.sort((a, b) => a.deviceNo - b.deviceNo);
@@ -94,7 +94,7 @@ export default function RawData({
       <h4>Gas data</h4>
       <p>{JSON.stringify(rawGas)}</p>
       <h4>Weather data</h4>
-      <p>{JSON.stringify(weather)}</p>
+      <p>{JSON.stringify(rawWeather)}</p>
 
     </>
   );

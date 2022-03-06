@@ -6,6 +6,7 @@ import Donut from './components/Donut';
 import AccordionAQ from './components/Accordion';
 import RawData from './components/RawData';
 import fetchData from './api/fetchData';
+import Weather from './components/Weather';
 
 function App() {
   const [data, setData] = useState({});
@@ -33,6 +34,7 @@ function App() {
               category={data.topPollutant.category}
               thickness={2}
             />
+            <Weather temperature={data.weather.temperature} humidity={data.weather.humidity} />
           </Paper>
           <AccordionAQ pollutants={data.pollutants} />
           <Paper elevation={3} sx={{ padding: '1rem' }}>
