@@ -5,7 +5,7 @@ import OpacityIcon from '@mui/icons-material/Opacity';
 
 export default function Weather({ temperature, humidity }) {
   return (
-    <Stack direction="row" m="1rem" sx={{ justifyContent: 'center' }}>
+    <Stack direction="row" m="1rem" sx={{ justifyContent: 'space-evenly' }}>
       <Stack direction="row" sx={{ alignItems: 'flex-end' }}>
         <ThermostatIcon fontSize="large" />
         <Typography variant="h5">
