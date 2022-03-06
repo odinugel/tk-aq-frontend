@@ -19,7 +19,6 @@ export default function Donut({
     <Stack
       justifyContent="center"
       alignItems="center"
-      m="1rem"
     >
       <Box sx={{
         transform: 'rotate(180deg)', zIndex: '99',
