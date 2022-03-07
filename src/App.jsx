@@ -22,7 +22,7 @@ function App() {
         <h1>Loading</h1>
       ) : (
         <Stack spacing="1rem" m="1rem">
-          <Paper elevation={5}>
+          <Paper>
             <Typography variant="h4">
               Last update:
               {/* something like timeNow - data.timestamp */}
@@ -37,7 +37,7 @@ function App() {
             <Weather temperature={data.weather.temperature} humidity={data.weather.humidity} />
           </Paper>
           <AccordionAQ pollutants={data.pollutants} />
-          <Paper elevation={3} sx={{ padding: '1rem' }}>
+          <Paper sx={{ padding: '1rem' }}>
             <RawData data={data} />
           </Paper>
         </Stack>
