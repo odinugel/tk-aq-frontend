@@ -9,6 +9,7 @@ import AccordionAQ from './components/Accordion';
 import RawData from './components/RawData';
 import fetchData from './api/fetchData';
 import Weather from './components/Weather';
+import findSensorName from './utils/findSensorName';
 
 function App() {
   const [data, setData] = useState({});
@@ -26,7 +27,7 @@ function App() {
         <Stack spacing="1rem" m="1rem">
           <Paper>
             <Stack sx={{ alignItems: 'center' }}>
-              <Typography variant="h4" m="1rem">{data.sensorID}</Typography>
+              <Typography variant="h4" m="1rem">{findSensorName(data.sensorID, data.sensors)}</Typography>
               <Typography variant="h6" mb="1rem">
                 Last update:
                 {' '}
