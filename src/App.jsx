@@ -1,6 +1,8 @@
+/* eslint-disable max-len */
 import { Stack, Paper, Typography } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
+import { formatDistanceStrict } from 'date-fns';
 import theme from './theme';
 import Donut from './components/Donut';
 import AccordionAQ from './components/Accordion';
@@ -23,10 +25,14 @@ function App() {
       ) : (
         <Stack spacing="1rem" m="1rem">
           <Paper>
-            <Typography variant="h4">
-              Last update:
-              {/* something like timeNow - data.timestamp */}
-            </Typography>
+            <Stack sx={{ alignItems: 'center' }}>
+              <Typography variant="h4" m="1rem">{data.sensorID}</Typography>
+              <Typography variant="h6" mb="1rem">
+                Last update:
+                {' '}
+                {formatDistanceStrict(data.timestamp, new Date(), { addSuffix: true })}
+              </Typography>
+            </Stack>
             <Donut
               size={500}
               text // if omitted, no text will be displayed inside circle
