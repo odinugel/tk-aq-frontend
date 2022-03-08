@@ -25,6 +25,7 @@ function AccordionAQ({ pollutants }) {
             <Typography ml="0.5rem">
               {pollutant}
             </Typography>
+            {/* sett inn ikon her.  */}
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
