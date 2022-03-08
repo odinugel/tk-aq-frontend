@@ -1,11 +1,10 @@
-// TODO: finn ut av prop-types
-/* eslint-disable react/prop-types */
 import {
   CircularProgress,
   Typography,
   Stack,
   Box,
 } from '@mui/material';
+import PropTypes from 'prop-types';
 import donutColor from '../utils/donutColor';
 
 export default function Donut({
@@ -57,3 +56,14 @@ export default function Donut({
     </Stack>
   );
 }
+
+Donut.propTypes = {
+  value: PropTypes.number.isRequired,
+  size: PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    PropTypes.number.isRequired,
+  ]),
+  category: PropTypes.string.isRequired,
+  thickness: PropTypes.number.isRequired,
+  text: PropTypes.bool,
+};

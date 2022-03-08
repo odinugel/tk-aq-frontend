@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+import PropTypes from 'prop-types';
 import { Stack, Typography } from '@mui/material';
 import ThermostatIcon from '@mui/icons-material/Thermostat';
 import OpacityIcon from '@mui/icons-material/Opacity';
@@ -23,3 +23,8 @@ export default function Weather({ temperature, humidity }) {
     </Stack>
   );
 }
+
+Weather.propTypes = {
+  temperature: PropTypes.number.isRequired,
+  humidity: PropTypes.number.isRequired,
+};

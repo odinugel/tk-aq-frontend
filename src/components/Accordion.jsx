@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-// TODO: figure out prop-types
 import {
   Accordion,
   AccordionSummary,
@@ -7,6 +5,7 @@ import {
   Typography,
 } from '@mui/material';
 import ExpandMore from '@mui/icons-material/ExpandMore';
+import PropTypes from 'prop-types';
 import Donut from './Donut';
 
 function AccordionAQ({ pollutants }) {
@@ -47,5 +46,9 @@ function AccordionAQ({ pollutants }) {
     </div>
   );
 }
+
+AccordionAQ.propTypes = {
+  pollutants: PropTypes.object.isRequired,
+};
 
 export default AccordionAQ;
