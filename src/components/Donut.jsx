@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import {
   CircularProgress,
   Typography,
@@ -8,12 +9,22 @@ import PropTypes from 'prop-types';
 import donutColor from '../utils/donutColor';
 
 export default function Donut({
-  value,
+  value, // 20
   size,
   category,
   thickness,
   text,
 }) {
+  const [donutValue, setDonuValue] = useState(0);
+  const [donutText, setDonutText] = useState('');
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDonuValue(value);
+      setDonutText(category);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [category, value]);
   return (
     <Stack
       justifyContent="center"
@@ -25,7 +36,7 @@ export default function Donut({
       >
         <CircularProgress
           variant="determinate"
-          value={value}
+          value={donutValue}
           size={size}
           color={donutColor(category)}
           thickness={thickness}
@@ -38,7 +49,7 @@ export default function Donut({
           color="text.secondary"
           align="center"
         >
-          {text ? category : null}
+          {text ? donutText : null}
         </Typography>
       </Box>
       <Box sx={{

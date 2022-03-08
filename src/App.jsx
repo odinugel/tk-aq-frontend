@@ -9,6 +9,7 @@ import RawData from './components/RawData';
 import fetchData from './api/fetchData';
 import Weather from './components/Weather';
 import findSensorName from './utils/findSensorName';
+import Loader from './components/Loader';
 
 function App() {
   const [data, setData] = useState({});
@@ -21,7 +22,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       {loading ? (
-        <h1>Loading</h1>
+        <Loader />
       ) : (
         <Stack spacing="1rem" m="1rem">
           <Paper>
