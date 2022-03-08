@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { Stack, Paper, Typography } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
@@ -27,7 +26,9 @@ function App() {
         <Stack spacing="1rem" m="1rem">
           <Paper>
             <Stack sx={{ alignItems: 'center' }}>
-              <Typography variant="h4" m="1rem">{findSensorName(data.sensorID, data.sensors)}</Typography>
+              <Typography variant="h4" m="1rem">
+                {findSensorName(data.sensorID, data.sensors)}
+              </Typography>
               <Typography variant="h6" mb="1rem">
                 Last update:
                 {' '}
