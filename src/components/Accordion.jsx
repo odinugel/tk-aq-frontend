@@ -21,7 +21,7 @@ function AccordionAQ({ pollutants }) {
       {pollutantsEntries.map(([pollutant, info]) => (
         <Accordion key={pollutant}>
           <AccordionSummary expandIcon={<ExpandMore />} m="1rem" sx={{ '& .MuiAccordionSummary-content': { alignItems: 'baseline' } }}>
-            <Donut size="3rem" color="success" thickness={3.6} category={info.category} value={info.percentage} />
+            <Donut size="7.5vw" color="success" thickness={3.6} category={info.category} value={info.percentage} />
             <Typography ml="0.5rem">
               {pollutant}
             </Typography>
