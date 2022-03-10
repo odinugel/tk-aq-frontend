@@ -3,9 +3,11 @@ import {
   AccordionSummary,
   AccordionDetails,
   Typography,
+  Box,
 } from '@mui/material';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import PropTypes from 'prop-types';
+import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import Donut from './Donut';
 
 function AccordionAQ({ pollutants }) {
@@ -20,12 +22,28 @@ function AccordionAQ({ pollutants }) {
     <div>
       {pollutantsEntries.map(([pollutant, info]) => (
         <Accordion key={pollutant}>
-          <AccordionSummary expandIcon={<ExpandMore />} m="1rem" sx={{ '& .MuiAccordionSummary-content': { alignItems: 'baseline' } }}>
-            <Donut size={50} color="success" thickness={3.6} category={info.category} value={info.percentage} />
-            <Typography ml="0.5rem">
-              {pollutant}
-            </Typography>
-            {/* sett inn ikon her.  */}
+          <AccordionSummary expandIcon={<ExpandMore />} m="1rem" sx={{ '& .MuiAccordionSummary-content': { justifyContent: 'space-between' } }}>
+            <Box sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'baseline',
+            }}
+            >
+              <Donut size={50} color="success" thickness={3.6} category={info.category} value={info.percentage} />
+              <Typography ml="0.5rem">
+                {pollutant}
+              </Typography>
+            </Box>
+            {info.category === 'Poor' ? (
+              <WarningAmberIcon
+                sx={{
+                  alignSelf: 'center',
+                  mr: '1rem',
+                  fill: '#ff5e00',
+                  fontSize: '2rem',
+                }}
+              />
+            ) : null }
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
