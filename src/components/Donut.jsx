@@ -45,7 +45,7 @@ export default function Donut({
           thickness={thickness}
         />
       </Box>
-      <Box sx={{ position: 'absolute' }}>
+      <Box sx={{ position: 'absolute', zIndex: '99' }}>
         <Typography
           variant="h3"
           color="text.secondary"
