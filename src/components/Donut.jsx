@@ -29,15 +29,18 @@ export default function Donut({
     <Stack
       justifyContent="center"
       alignItems="center"
+      sx={{ position: 'relative' }}
     >
-      <Box sx={{
-        transform: 'rotate(180deg)', zIndex: '99',
-      }}
+      <Box
+        sx={{
+          transform: 'rotate(180deg)', zIndex: '99',
+        }}
+        width={size}
       >
         <CircularProgress
           variant="determinate"
           value={donutValue}
-          size={size}
+          size="100%"
           color={donutColor(category)}
           thickness={thickness}
         />
@@ -45,21 +48,22 @@ export default function Donut({
       <Box sx={{ position: 'absolute' }}>
         <Typography
           variant="h3"
-          component="div"
           color="text.secondary"
           align="center"
         >
           {text ? donutText : null}
         </Typography>
       </Box>
-      <Box sx={{
-        transform: 'rotate(180deg)', position: 'absolute',
-      }}
+      <Box
+        sx={{
+          transform: 'rotate(180deg)', position: 'absolute',
+        }}
+        width={size}
       >
         <CircularProgress
           variant="determinate"
           value={100}
-          size={size}
+          size="100%"
           color="background"
           thickness={thickness}
         />

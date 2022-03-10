@@ -37,7 +37,7 @@ function App() {
               </Typography>
             </Stack>
             <Donut
-              size="30vw"
+              size="60%"
               text // if omitted, no text will be displayed inside circle
               value={data.topPollutant.value}
               category={data.topPollutant.category}
