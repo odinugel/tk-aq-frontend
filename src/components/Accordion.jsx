@@ -4,11 +4,13 @@ import {
   AccordionDetails,
   Typography,
   Box,
+  Link,
 } from '@mui/material';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import PropTypes from 'prop-types';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import Donut from './Donut';
+import pollutantDescriptions from '../translations/pollutantDescriptions';
 
 function AccordionAQ({ pollutants }) {
   // sorting pollutants according to percentage value
@@ -18,6 +20,7 @@ function AccordionAQ({ pollutants }) {
     // so pollutantsEntries[0][0] is "PM10" and
     // pollutansEntries[0][1] is an object containing percentage, category and realValue
     // this is very confusing to read (imo) and will need to be refactored somehow.
+
   return (
     <div>
       {pollutantsEntries.map(([pollutant, info]) => (
@@ -46,19 +49,27 @@ function AccordionAQ({ pollutants }) {
             ) : null }
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
-              {pollutant}
+            <Typography sx={{ marginBottom: '1rem' }} paragraph>
               {' '}
-              Value:
+              Last hour:
               {' '}
               {info.realValue}
               {' '}
-              <br />
-              Category:
-              &quot;
-              {info.category}
-              &quot;
+              μg/m3
             </Typography>
+            {
+            pollutantDescriptions[pollutant].text.map((paragraph) => (
+              <Typography mb="1rem">
+                {paragraph}
+              </Typography>
+            ))
+            }
+            <Link
+              href={pollutantDescriptions[pollutant].link.url}
+              sx={{ fontFamily: 'Source Sans Pro' }}
+            >
+              {pollutantDescriptions[pollutant].link.text}
+            </Link>
           </AccordionDetails>
         </Accordion>
       ))}
