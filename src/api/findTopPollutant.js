@@ -5,6 +5,7 @@ export default function findTopPollutant(pollutants) {
   let highestValue = 0;
   let pollutantName = '';
   let category = '';
+
   Object.keys(pollutants).forEach((pollutant) => {
     if (pollutants[pollutant].percentage > highestValue) {
       pollutantName = pollutant;

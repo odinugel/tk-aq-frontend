@@ -25,6 +25,7 @@ export default function Donut({
     }, 1000);
     return () => clearTimeout(timer);
   }, [category, value]);
+
   return (
     <Stack
       justifyContent="center"
