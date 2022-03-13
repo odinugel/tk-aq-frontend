@@ -32,5 +32,5 @@ export default function aqCategory(pollutant, pollutantValue) {
 
   if (pollutantValue < aqConstants[pollutant].poor) { return 'Poor'; }
 
-  return 'very poor';
+  return 'Very Poor';
 }
