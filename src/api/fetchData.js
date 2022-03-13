@@ -12,7 +12,7 @@ const fetchData = async (setData, setLoading, setFetchFailed) => {
     twoHoursAgo.setHours(twoHoursAgo.getHours() - 2);
 
     const response = await Promise.all([
-      fetch(`${proxy}${url}${sensor}/dusst?from=${Date.parse(twoHoursAgo)}&to=${Date.parse(timeNow)}&dataPointSize=hour`),
+      fetch(`${proxy}${url}${sensor}/dust?from=${Date.parse(twoHoursAgo)}&to=${Date.parse(timeNow)}&dataPointSize=hour`),
       fetch(`${proxy}${url}${sensor}/gases?from=${Date.parse(twoHoursAgo)}&to=${Date.parse(timeNow)}&dataPointSize=hour`),
       fetch(`${proxy}${url}${sensor}/weather?from=${Date.parse(twoHoursAgo)}&to=${Date.parse(timeNow)}&dataPointSize=hour`),
       fetch(`${proxy}${url}`),
