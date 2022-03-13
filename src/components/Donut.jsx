@@ -39,7 +39,7 @@ export default function Donut({
       >
         <CircularProgress
           variant="determinate"
-          value={donutValue}
+          value={donutValue > 100 ? 100 : donutValue}
           size="100%"
           color={donutColor(category)}
           thickness={thickness}

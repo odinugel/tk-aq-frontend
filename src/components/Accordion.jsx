@@ -37,7 +37,7 @@ function AccordionAQ({ pollutants }) {
                 {pollutant}
               </Typography>
             </Box>
-            {info.category === ('Poor' || 'Very Poor') ? (
+            {(info.category === 'Poor' || info.category === 'Very Poor') ? (
               <WarningAmberIcon
                 sx={{
                   alignSelf: 'center',
