@@ -25,6 +25,12 @@ export default function Weather({ temperature, humidity }) {
 }
 
 Weather.propTypes = {
-  temperature: PropTypes.number.isRequired,
-  humidity: PropTypes.number.isRequired,
+  temperature: PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    PropTypes.number.isRequired,
+  ]),
+  humidity: PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    PropTypes.number.isRequired,
+  ]),
 };

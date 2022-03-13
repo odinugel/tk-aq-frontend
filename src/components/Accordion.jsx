@@ -58,8 +58,10 @@ function AccordionAQ({ pollutants }) {
               μg/m3
             </Typography>
             {
-            pollutantDescriptions[pollutant].text.map((paragraph) => (
-              <Typography mb="1rem">
+            pollutantDescriptions[pollutant].text.map((paragraph, index) => (
+              // since the ordering will never change, index as key should be ok
+              // eslint-disable-next-line react/no-array-index-key
+              <Typography mb="1rem" key={index}>
                 {paragraph}
               </Typography>
             ))

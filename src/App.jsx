@@ -1,19 +1,20 @@
-import { Stack, Paper } from '@mui/material';
+import { Stack } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
 import theme from './theme';
 import AccordionAQ from './components/Accordion';
-import RawData from './components/RawData';
 import fetchData from './api/fetchData';
 import Loader from './components/Loader';
 import PrimaryDisplay from './components/PrimaryDisplay';
+import FetchError from './components/FetchError';
 
 function App() {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
+  const [fetchFailed, setFetchFailed] = useState(false);
 
   useEffect(() => {
-    fetchData(setData, setLoading);
+    fetchData(setData, setLoading, setFetchFailed);
   }, []);
 
   return (
@@ -21,12 +22,13 @@ function App() {
       {loading ? (
         <Loader />
       ) : (
-        <Stack spacing="1rem" m="1rem">
-          <PrimaryDisplay data={data} />
-          <AccordionAQ pollutants={data.pollutants} />
-          <Paper sx={{ padding: '1rem' }}>
-            <RawData data={data} />
-          </Paper>
+        <Stack spacing="1rem" m="1rem" sx={{ maxWidth: '750px', margin: '1rem auto' }}>
+          {fetchFailed ? <FetchError /> : (
+            <>
+              <PrimaryDisplay data={data} />
+              <AccordionAQ pollutants={data.pollutants} />
+            </>
+          )}
         </Stack>
       )}
     </ThemeProvider>
