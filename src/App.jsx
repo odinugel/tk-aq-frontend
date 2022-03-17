@@ -7,6 +7,7 @@ import fetchData from './api/fetchData';
 import Loader from './components/Loader';
 import PrimaryDisplay from './components/PrimaryDisplay';
 import FetchError from './components/FetchError';
+import Header from './components/Header'
 
 function App() {
   const [data, setData] = useState({});
