@@ -12,7 +12,10 @@ import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import Donut from './Donut';
 import pollutantDescriptions from '../translations/pollutantDescriptions';
 
-function AccordionAQ({ pollutants }) {
+function AccordionAQ({ pollutants, loading }) {
+  if (loading) {
+    return null;
+  }
   // sorting pollutants according to percentage value
   const pollutantsEntries = Object.entries(pollutants)
     .sort((prevPollut, currPolut) => currPolut[1].percentage - prevPollut[1].percentage);
@@ -80,7 +83,8 @@ function AccordionAQ({ pollutants }) {
 }
 
 AccordionAQ.propTypes = {
-  pollutants: PropTypes.object.isRequired,
+  pollutants: PropTypes.object,
+  loading: PropTypes.bool,
 };
 
 export default AccordionAQ;

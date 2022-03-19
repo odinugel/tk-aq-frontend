@@ -5,7 +5,10 @@ import Donut from './Donut';
 import Weather from './Weather';
 import findSensorName from '../utils/findSensorName';
 
-export default function PrimaryDisplay({ data }) {
+export default function PrimaryDisplay({ data, loading }) {
+  if (loading) {
+    return null;
+  }
   return (
     <Paper>
       <Stack sx={{ alignItems: 'center' }}>
@@ -32,4 +35,5 @@ export default function PrimaryDisplay({ data }) {
 
 PrimaryDisplay.propTypes = {
   data: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
 };

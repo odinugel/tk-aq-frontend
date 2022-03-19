@@ -1,4 +1,4 @@
-const fetchSensors = async (setSensors, setLoading, setFetchFailed) => {
+const fetchSensors = async (setSensors, setLoadingSensors, setFetchFailed) => {
   try {
     // fetch is run through proxy due to CORS on TK-servers, must be changed before production
     const url = 'https://tipqa.trondheim.kommune.no/luftkvalitet-api/v1/sensors/';
@@ -8,10 +8,10 @@ const fetchSensors = async (setSensors, setLoading, setFetchFailed) => {
     if (response.ok) {
       const sensors = await response.json();
       setSensors(sensors);
-      setLoading(false);
+      setLoadingSensors(false);
     } else {
       setFetchFailed(true);
-      setLoading(false);
+      setLoadingSensors(false);
     }
   } catch (e) {
     throw Error(`fetchSensors: Promise failed${ e}`);

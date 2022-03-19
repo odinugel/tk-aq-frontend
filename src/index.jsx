@@ -7,15 +7,13 @@ import {
   Route,
 } from 'react-router-dom';
 import App from './App';
-import SensorList from './components/SensorList';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<SensorList />} />
-        <Route path="/:sensorID" element={<App />} />
-        <Route path="*" element={<SensorList />} />
+        <Route path="/:id" element={<App />} />
+        <Route exact path="/" element={<App />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
