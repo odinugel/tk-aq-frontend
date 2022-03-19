@@ -22,7 +22,7 @@ function App() {
       {loading ? (
         <Loader />
       ) : (
-        <Stack spacing="1rem" m="1rem" sx={{ maxWidth: '750px', margin: '1rem auto' }}>
+        <Stack spacing="1rem" sx={{ maxWidth: '750px', margin: '1rem auto' }}>
           {fetchFailed ? <FetchError /> : (
             <>
               <PrimaryDisplay data={data} />
