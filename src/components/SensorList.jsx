@@ -19,6 +19,15 @@ export default function SensorList({
 }) {
   const [show, toggleShow] = useState(open);
   const location = useLocation();
+  const linkStyle = {
+    width: '100%',
+    height: '100%',
+    padding: '1rem',
+    textDecoration: 'none',
+    fontWeight: 'bold',
+    fontSize: '1.5rem',
+    color: 'black',
+  };
 
   return (
     <>
@@ -40,7 +49,7 @@ export default function SensorList({
                 sensor.visible ? (
                   <ListItemButton divider key={sensor.deviceID} sx={{ padding: 0 }} selected={location.pathname === `/${sensor.deviceID}`}>
                     <Link
-                      style={{ width: '100%', height: '100%', padding: '1rem' }}
+                      style={linkStyle}
                       to={`/${sensor.deviceID}`}
                       onClick={() => {
                         setSensorID(sensor.deviceID);
