@@ -14,7 +14,7 @@ import pollutantDescriptions from '../translations/pollutantDescriptions';
 
 function AccordionAQ({ pollutants, loading }) {
   if (loading) {
-    return null;
+    return <h6>Loading accordionAQ</h6>;
   }
   // sorting pollutants according to percentage value
   const pollutantsEntries = Object.entries(pollutants)
@@ -23,7 +23,7 @@ function AccordionAQ({ pollutants, loading }) {
     // so pollutantsEntries[0][0] is "PM10" and
     // pollutansEntries[0][1] is an object containing percentage, category and realValue
     // this is very confusing to read (imo) and will need to be refactored somehow.
-
+  // TODO: increase font-size and center text in summary, make warning icon more attention-grabbing
   return (
     <div>
       {pollutantsEntries.map(([pollutant, info]) => (

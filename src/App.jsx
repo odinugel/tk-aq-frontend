@@ -13,43 +13,52 @@ import SensorList from './components/SensorList';
 function App() {
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
+  const [sensors, setSensors] = useState([]);
   const [loadingSensors, setLoadingSensors] = useState(true);
   const [fetchFailed, setFetchFailed] = useState(false);
-  const [sensors, setSensors] = useState([]);
   const [sensorID, setSensorID] = useState('');
   const params = useParams();
+  console.log('render');
   if (sensorID === '' && params.id) {
     setSensorID(params.id);
-    console.log('found params: ', params);
-    console.log('set sensorID to:', sensorID);
+    console.log(`sensorID is empty, found params: ${params.id} in url, setting sensorID`);
   }
-  console.log('render');
   // if we do not have a url ID
   // -> fetch and display a list of sensors
   // -> clicking on a sensor puts sensorID in URL
   // if we DO have a url ID
+  // -> fetch list of sensors but do not display
   // -> fetch and display sensor data.
+
+  // sensors only need to be fetched on component mount
   useEffect(() => {
-    console.log(sensorID);
-    if (sensorID) {
-      console.log('fetching data');
-      fetchData(sensorID, setData, setLoading, setFetchFailed);
+    console.log('Fetching sensors');
+    fetchSensors(setSensors, setLoadingSensors, setFetchFailed);
+  }, []);
+
+  // fetch data if sensorID changes
+  // dont fetch until sensors have loaded
+  useEffect(() => {
+    if (sensorID && sensors.length !== 0) {
+      console.log(`Fetching data from ${sensorID}`);
+      setLoading(true);
+      fetchData(sensorID, sensors, setData, setLoading, setFetchFailed);
     }
-    if (sensors.length === 0) {
-      console.log('fetching sensors');
-      fetchSensors(setSensors, setLoadingSensors, setFetchFailed);
-    }
-  }, [sensorID, sensors.length]);
+  }, [sensorID, sensors]);
 
   return (
     <ThemeProvider theme={theme}>
       {fetchFailed && <FetchError />}
+      <SensorList
+        sensors={sensors}
+        loading={loadingSensors}
+        setSensorID={setSensorID}
+        open={!params.id}
+      />
       <Stack spacing="1rem" sx={{ maxWidth: '750px', margin: '1rem auto' }}>
         <PrimaryDisplay data={data} loading={loading} />
         <AccordionAQ pollutants={data.pollutants} loading={loading} />
       </Stack>
-      {!loadingSensors ? <SensorList sensors={sensors} setSensorID={setSensorID} />
-        : null}
     </ThemeProvider>
   );
 }

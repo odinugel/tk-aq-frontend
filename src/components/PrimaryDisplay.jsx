@@ -7,7 +7,7 @@ import findSensorName from '../utils/findSensorName';
 
 export default function PrimaryDisplay({ data, loading }) {
   if (loading) {
-    return null;
+    return <h6>Loading PrimaryDisplay</h6>;
   }
   return (
     <Paper>

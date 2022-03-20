@@ -22,7 +22,7 @@ export default function Donut({
     const timer = setTimeout(() => {
       setDonuValue(value);
       setDonutText(category);
-    }, 1000);
+    }, 100);
     return () => clearTimeout(timer);
   }, [category, value]);
 
