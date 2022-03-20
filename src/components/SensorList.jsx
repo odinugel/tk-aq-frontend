@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import {
   Button,
+  Box,
   List,
   ListItemButton,
   Drawer,
@@ -31,12 +32,17 @@ export default function SensorList({
 
   return (
     <>
-      <Button onClick={() => toggleShow(!show)} variant="contained">Sensors</Button>
+      <Box width="100%" display="flex" justifyContent="flex-end">
+        <Button onClick={() => toggleShow(!show)} variant="contained" sx={{ textAlign: 'right' }}>
+          Sensors
+        </Button>
+      </Box>
       <Drawer
         open={show}
         PaperProps={{
           sx: { width: '100%' },
         }}
+        anchor="right"
       >
         {loading ? [...Array(20)].map((val, index) => (
           <ListItemButton key={index} divider>
