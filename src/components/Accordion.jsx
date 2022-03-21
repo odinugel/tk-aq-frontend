@@ -53,12 +53,7 @@ function AccordionAQ({ pollutants, loading }) {
           </AccordionSummary>
           <AccordionDetails>
             <Typography sx={{ marginBottom: '1rem' }} paragraph>
-              {' '}
-              Last hour:
-              {' '}
-              {info.realValue}
-              {' '}
-              μg/m3
+              {`Last hour: ${info.realValue}μg/m3`}
             </Typography>
             {
             pollutantDescriptions[pollutant].text.map((paragraph, index) => (

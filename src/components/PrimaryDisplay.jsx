@@ -15,9 +15,7 @@ export default function PrimaryDisplay({ data, loading }) {
           {data.sensors.find((index) => index.deviceID === data.sensorID).deviceName}
         </Typography>
         <Typography variant="h6" mb="1rem">
-          Last update:
-          {' '}
-          {formatDistanceStrict(data.timestamp, new Date(), { addSuffix: true })}
+          {`Last update: ${formatDistanceStrict(data.timestamp, new Date(), { addSuffix: true })}`}
         </Typography>
       </Stack>
       <Donut
