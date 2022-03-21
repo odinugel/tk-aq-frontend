@@ -3,7 +3,6 @@ import formatDistanceStrict from 'date-fns/formatDistanceStrict';
 import PropTypes from 'prop-types';
 import Donut from './Donut';
 import Weather from './Weather';
-import findSensorName from '../utils/findSensorName';
 
 export default function PrimaryDisplay({ data, loading }) {
   if (loading) {
@@ -13,7 +12,7 @@ export default function PrimaryDisplay({ data, loading }) {
     <Paper>
       <Stack sx={{ alignItems: 'center' }}>
         <Typography variant="h4" m="1rem">
-          {findSensorName(data.sensorID, data.sensors)}
+          {data.sensors.find((index) => index.deviceID === data.sensorID).deviceName}
         </Typography>
         <Typography variant="h6" mb="1rem">
           Last update:
