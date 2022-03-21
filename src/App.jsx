@@ -7,7 +7,7 @@ import fetchData from './api/fetchData';
 import Loader from './components/Loader';
 import PrimaryDisplay from './components/PrimaryDisplay';
 import FetchError from './components/FetchError';
-import Header from './components/Header'
+import Header from './components/Header';
 
 function App() {
   const [data, setData] = useState({});
@@ -26,6 +26,7 @@ function App() {
         <Stack spacing="1rem" m="1rem" sx={{ maxWidth: '750px', margin: '1rem auto' }}>
           {fetchFailed ? <FetchError /> : (
             <>
+              <Header />
               <PrimaryDisplay data={data} />
               <AccordionAQ pollutants={data.pollutants} />
             </>
