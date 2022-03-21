@@ -41,6 +41,7 @@ function App() {
   useEffect(() => {
     if (sensorID && sensors.length !== 0) {
       console.log(`Fetching data from ${sensorID}`);
+      setFetchFailed(false);
       setLoading(true);
       fetchData(sensorID, sensors, setData, setLoading, setFetchFailed);
     }

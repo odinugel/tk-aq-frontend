@@ -33,17 +33,14 @@ export default function SensorList({
   return (
     <>
       <Box width="100%" display="flex" justifyContent="flex-end">
-        <Button onClick={() => toggleShow(!show)} variant="contained" sx={{ textAlign: 'right' }}>
+        <Button onClick={() => toggleShow((currentShow) => !currentShow)} variant="contained">
           Sensors
         </Button>
       </Box>
-      <Drawer
-        open={show}
-        PaperProps={{
-          sx: { width: '100%' },
-        }}
-        anchor="right"
-      >
+      <Drawer open={show} PaperProps={{ sx: { width: '100%' } }} anchor="right">
+        <Button onClick={() => toggleShow((currentShow) => !currentShow)} variant="contained" sx={{ alignSelf: 'flex-end' }}>
+          X
+        </Button>
         {loading ? [...Array(20)].map((val, index) => (
           <ListItemButton key={index} divider>
             <Skeleton width="100%" height={50} />
@@ -51,21 +48,23 @@ export default function SensorList({
         ))
           : (
             <List>
-              {sensors.map((sensor) => (
-                sensor.visible ? (
-                  <ListItemButton divider key={sensor.deviceID} sx={{ padding: 0 }} selected={location.pathname === `/${sensor.deviceID}`}>
-                    <Link
-                      style={linkStyle}
-                      to={`/${sensor.deviceID}`}
-                      onClick={() => {
-                        setSensorID(sensor.deviceID);
-                        toggleShow(!show);
-                      }}
-                    >
-                      {sensor.deviceName}
-                    </Link>
-                  </ListItemButton>
-                ) : null))}
+              {sensors
+                .sort((a, b) => a.deviceName.localeCompare(b.deviceName, 'NO'))
+                .map((sensor) => (
+                  sensor.visible ? (
+                    <ListItemButton divider key={sensor.deviceID} sx={{ padding: 0 }} selected={location.pathname === `/${sensor.deviceID}`}>
+                      <Link
+                        style={linkStyle}
+                        to={`/${sensor.deviceID}`}
+                        onClick={() => {
+                          setSensorID(sensor.deviceID);
+                          toggleShow(!show);
+                        }}
+                      >
+                        {sensor.deviceName}
+                      </Link>
+                    </ListItemButton>
+                  ) : null))}
             </List>
           )}
       </Drawer>
