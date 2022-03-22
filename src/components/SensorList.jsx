@@ -52,7 +52,7 @@ export default function SensorList({
                 .sort((a, b) => a.deviceName.localeCompare(b.deviceName, 'NO'))
                 .map((sensor) => (
                   sensor.visible ? (
-                    <ListItemButton divider key={sensor.deviceID} sx={{ padding: 0 }} selected={location.pathname === `/${sensor.deviceID}`}>
+                    <ListItemButton divider key={sensor.deviceID} sx={{ padding: 0 }} selected={location.pathname === `/${sensor.deviceID}`} disabled={!sensor.isOnline}>
                       <Link
                         style={linkStyle}
                         to={`/${sensor.deviceID}`}

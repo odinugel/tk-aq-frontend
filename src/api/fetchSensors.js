@@ -1,3 +1,5 @@
+import addSensorStatus from './addSensorStatus';
+
 const fetchSensors = async (setSensors, setLoadingSensors, setFetchFailed) => {
   try {
     // fetch is run through proxy due to CORS on TK-servers, must be changed before production
@@ -7,7 +9,7 @@ const fetchSensors = async (setSensors, setLoadingSensors, setFetchFailed) => {
 
     if (response.ok) {
       const sensors = await response.json();
-      setSensors(sensors);
+      setSensors(addSensorStatus(sensors));
       setLoadingSensors(false);
     } else {
       setFetchFailed(true);
