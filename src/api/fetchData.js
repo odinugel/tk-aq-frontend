@@ -23,14 +23,14 @@ const fetchData = async (sensorID, sensors, setData, setLoading, setFetchFailed)
       throw Error('Bad response: Missing dust/gas values');
     }
     // dust, gas and weather data is ordered oldest to newest so we reverse it here.
-    // even though the response was ok, data could still be []
-    const dustReversed = data[0].length !== 0 ? data[0].slice().reverse() : false;
-    const gasReversed = data[1].length !== 0 ? data[1].slice().reverse() : false;
-    const weatherReversed = data[2].length !== 0 ? data[2].data.slice().reverse() : false;
+    const dustReversed = data[0].slice().reverse();
+    const gasReversed = data[1].slice().reverse();
+    const weatherReversed = data[2].data.slice().reverse();
 
     // as long as dust and gas can be displayed,
-    // they should be, weather is optional (ask about this)
-    if (dustReversed && gasReversed) {
+    // they should be, weather is optional
+    // (if there is no data, the response will be an empty array)
+    if (dustReversed.length !== 0 && gasReversed.length !== 0) {
       const pollutants = pollutionToPercentage(dustReversed, gasReversed);
       const topPollutant = findTopPollutant(pollutants);
       setData({
@@ -38,13 +38,13 @@ const fetchData = async (sensorID, sensors, setData, setLoading, setFetchFailed)
         pollutants,
         sensors,
         sensorID,
-        weather: weatherReversed[0] ? weatherReversed[0] : { temperature: ' ', humidity: ' ' },
+        weather: weatherReversed[0] ?? { temperature: ' ', humidity: ' ' },
         // assuming gas and dust are always in sync, probably not the case.
         timestamp: dustReversed[0].timestamp,
       });
       setLoading(false);
     } else {
-      setFetchFailed(true);
+      throw Error('Missing data: Missing dust/gas values');
     }
   } catch (e) {
     setFetchFailed(true);
