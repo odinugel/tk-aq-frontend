@@ -29,25 +29,19 @@ function AccordionAQ({ pollutants, loading }) {
       {pollutantsEntries.map(([pollutant, info]) => (
         <Accordion key={pollutant}>
           <AccordionSummary expandIcon={<ExpandMore />} m="1rem" sx={{ '& .MuiAccordionSummary-content': { justifyContent: 'space-between' } }}>
-            <Box sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'baseline',
-            }}
-            >
+            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'baseline' }}>
               <Donut size={50} color="success" thickness={3.6} category={info.category} value={info.percentage} />
               <Typography ml="0.5rem">
                 {pollutant}
               </Typography>
             </Box>
             {(info.category === 'Poor' || info.category === 'Very Poor') ? (
-              <WarningAmberIcon
-                sx={{
-                  alignSelf: 'center',
-                  mr: '1rem',
-                  fill: '#ff5e00',
-                  fontSize: '2rem',
-                }}
+              <WarningAmberIcon sx={{
+                alignSelf: 'center',
+                mr: '1rem',
+                fill: '#ff5e00',
+                fontSize: '2rem',
+              }}
               />
             ) : null }
           </AccordionSummary>
@@ -64,10 +58,7 @@ function AccordionAQ({ pollutants, loading }) {
               </Typography>
             ))
             }
-            <Link
-              href={pollutantDescriptions[pollutant].link.url}
-              sx={{ fontFamily: 'Source Sans Pro' }}
-            >
+            <Link href={pollutantDescriptions[pollutant].link.url} sx={{ fontFamily: 'Source Sans Pro' }}>
               {pollutantDescriptions[pollutant].link.text}
             </Link>
           </AccordionDetails>
