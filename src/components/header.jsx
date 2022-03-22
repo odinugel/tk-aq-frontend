@@ -14,6 +14,7 @@ export default function Header() {
       placeItems: 'center',
       backgroundColor: '#ffffff',
       borderBottom: '7px solid #005aa7',
+      justifyContent: 'space-around',
 
     }}
     >
@@ -37,7 +38,7 @@ export default function Header() {
         {' '}
         <CardMedia
           component="img"
-          image="https://tipqa.trondheim.kommune.no/luftkvalitet-frontend/static/media/Horisontal%20standard.3918fc07.svg"
+          image="./banner2.png"
           alt="logo"
         />
         <Typography>

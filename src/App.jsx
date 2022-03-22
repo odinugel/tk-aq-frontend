@@ -23,15 +23,18 @@ function App() {
       {loading ? (
         <Loader />
       ) : (
-        <Stack spacing="1rem" m="1rem" sx={{ maxWidth: '750px', margin: '1rem auto' }}>
-          {fetchFailed ? <FetchError /> : (
-            <>
-              <Header />
-              <PrimaryDisplay data={data} />
-              <AccordionAQ pollutants={data.pollutants} />
-            </>
-          )}
-        </Stack>
+        <>
+          <Header />
+          <Stack spacing="1rem" m="1rem" sx={{ maxWidth: '750px', margin: '1rem auto' }}>
+            {fetchFailed ? <FetchError /> : (
+              <>
+                <PrimaryDisplay data={data} />
+                <AccordionAQ pollutants={data.pollutants} />
+              </>
+            )}
+          </Stack>
+
+        </>
       )}
     </ThemeProvider>
   );
