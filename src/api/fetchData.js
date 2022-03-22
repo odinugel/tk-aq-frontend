@@ -9,16 +9,19 @@ const fetchData = async (sensorID, sensors, setData, setLoading, setFetchFailed)
     const timeNow = new Date();
     const twoHoursAgo = new Date();
     twoHoursAgo.setHours(twoHoursAgo.getHours() - 2);
+    const from = `from=${Date.parse(twoHoursAgo)}&to=${Date.parse(timeNow)}&dataPointSize=hour`;
 
     const response = await Promise.all([
-      fetch(`${proxy}${url}${sensorID}/dust?from=${Date.parse(twoHoursAgo)}&to=${Date.parse(timeNow)}&dataPointSize=hour`),
-      fetch(`${proxy}${url}${sensorID}/gases?from=${Date.parse(twoHoursAgo)}&to=${Date.parse(timeNow)}&dataPointSize=hour`),
-      fetch(`${proxy}${url}${sensorID}/weather?from=${Date.parse(twoHoursAgo)}&to=${Date.parse(timeNow)}&dataPointSize=hour`),
+      fetch(`${proxy}${url}${sensorID}/dust?${from}`),
+      fetch(`${proxy}${url}${sensorID}/gasses?${from}`),
+      fetch(`${proxy}${url}${sensorID}/weather?${from}`),
     ]);
     // we return false in case of a bad response
-    // TODO: returning false here does nothing, we never check if data[0] is false
     const data = await Promise.all(response.map((res) => (res.ok ? res.json() : false)));
 
+    if (!data[0] || !data[1]) {
+      throw Error('Bad response: Missing dust/gas values');
+    }
     // dust, gas and weather data is ordered oldest to newest so we reverse it here.
     // even though the response was ok, data could still be []
     const dustReversed = data[0].length !== 0 ? data[0].slice().reverse() : false;
@@ -44,7 +47,8 @@ const fetchData = async (sensorID, sensors, setData, setLoading, setFetchFailed)
       setFetchFailed(true);
     }
   } catch (e) {
-    throw Error(`Promise failed${ e}`);
+    setFetchFailed(true);
+    throw Error(`Fetch failed ${e} `);
   }
 };
 
