@@ -5,33 +5,53 @@ import { Button } from '@mui/material';
 import CardMedia from '@mui/material/CardMedia';
 import Card from '@mui/material/Card';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import LanguageIcon from '@mui/icons-material/Language';
+import LangButton from './LangButton';
 
 export default function Header() {
   return (
     <Card sx={{
-      display: 'grid',
+      display: 'flex',
       placeItems: 'center',
       backgroundColor: '#ffffff',
       borderBottom: '7px solid #005aa7',
 
     }}
     >
-      <Typography variant="h5">
+      <Card sx={{
+        display: 'grid',
+        placeItems: 'center',
+        backgroundColor: '#ffffff',
+      }}
+      >
         <Button variant="outlined" startIcon={<ArrowBackIcon />}>
           {' '}
           Tilbake
         </Button>
+      </Card>
+      <Card sx={{
+        display: 'grid',
+        placeItems: 'center',
+        backgroundColor: '#ffffff',
+      }}
+      >
+        {' '}
         <CardMedia
           component="img"
           image="https://tipqa.trondheim.kommune.no/luftkvalitet-frontend/static/media/Horisontal%20standard.3918fc07.svg"
           alt="logo"
         />
-        TRONDHEIM KOMMUNE
-        <Button variant="outlined" startIcon={<LanguageIcon />}>
-          Språk
-        </Button>
-      </Typography>
+        <Typography>
+          LUFTKVALITETSDATA
+        </Typography>
+      </Card>
+      <Card sx={{
+        display: 'grid',
+        placeItems: 'center',
+        backgroundColor: '#ffffff',
+      }}
+      >
+        <LangButton />
+      </Card>
     </Card>
   );
 }
