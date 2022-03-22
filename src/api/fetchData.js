@@ -13,7 +13,7 @@ const fetchData = async (sensorID, sensors, setData, setLoading, setFetchFailed)
 
     const response = await Promise.all([
       fetch(`${proxy}${url}${sensorID}/dust?${from}`),
-      fetch(`${proxy}${url}${sensorID}/gasses?${from}`),
+      fetch(`${proxy}${url}${sensorID}/gases?${from}`),
       fetch(`${proxy}${url}${sensorID}/weather?${from}`),
     ]);
     // we return false in case of a bad response
