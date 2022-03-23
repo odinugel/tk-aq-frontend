@@ -1,4 +1,4 @@
-import { Stack } from '@mui/material';
+import { Grid, Paper } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -49,17 +49,23 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      {fetchFailed && <FetchError />}
-      <SensorList
-        sensors={sensors}
-        loading={loadingSensors}
-        setSensorID={setSensorID}
-        open={!params.id}
-      />
-      <Stack spacing="1rem" sx={{ maxWidth: '750px', margin: '1rem auto' }}>
-        <PrimaryDisplay data={data} loading={loading} />
-        <AccordionAQ pollutants={data.pollutants} loading={loading} />
-      </Stack>
+      <Paper sx={{ padding: '1rem', height: '100vh', bgcolor: 'background.main' }} square>
+        {fetchFailed && <FetchError />}
+        <SensorList
+          sensors={sensors}
+          loading={loadingSensors}
+          setSensorID={setSensorID}
+          open={!params.id}
+        />
+        <Grid container spacing={4}>
+          <Grid item xs={12} md={6}>
+            <PrimaryDisplay data={data} loading={loading} />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <AccordionAQ pollutants={data.pollutants} loading={loading} />
+          </Grid>
+        </Grid>
+      </Paper>
     </ThemeProvider>
   );
 }
