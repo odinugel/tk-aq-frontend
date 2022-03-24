@@ -12,6 +12,7 @@ export default function Header() {
     <Card sx={{
       display: 'flex',
       placeItems: 'center',
+      justifyContent: 'space-around',
       backgroundColor: '#ffffff',
       borderBottom: '7px solid #005aa7',
 
@@ -28,22 +29,25 @@ export default function Header() {
           Tilbake
         </Button>
       </Card>
-      <Card sx={{
-        display: 'grid',
-        placeItems: 'center',
-        backgroundColor: '#ffffff',
-      }}
-      >
-        {' '}
-        <CardMedia
-          component="img"
-          image="https://tipqa.trondheim.kommune.no/luftkvalitet-frontend/static/media/Horisontal%20standard.3918fc07.svg"
-          alt="logo"
-        />
-        <Typography>
-          LUFTKVALITETSDATA
-        </Typography>
-      </Card>
+      <CardMedia
+        style={{
+          height: '80px',
+          width: '60px',
+          padding: '10px',
+        }}
+        component="img"
+        image="./banner2.png"
+        alt="logo"
+        display="flex"
+        height="10px"
+        width="10px"
+      />
+      {' '}
+      <Typography align="center" variant="h6">
+        TRONDHEIM KOMMUNE
+        <br />
+        LUFTKVALITETSDATA
+      </Typography>
       <Card sx={{
         display: 'grid',
         placeItems: 'center',
