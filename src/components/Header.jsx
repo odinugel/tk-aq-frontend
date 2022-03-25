@@ -5,9 +5,16 @@ import { Button } from '@mui/material';
 import CardMedia from '@mui/material/CardMedia';
 import Card from '@mui/material/Card';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import PropTypes from 'prop-types';
 import LangButton from './LangButton';
+import SensorList from './SensorList';
 
-export default function Header() {
+export default function Header({
+  sensors,
+  loadingSensors,
+  setSensorID,
+  params,
+}) {
   return (
     <Card sx={{
       display: 'flex',
@@ -24,6 +31,12 @@ export default function Header() {
         backgroundColor: '#ffffff',
       }}
       >
+        <SensorList
+          sensors={sensors}
+          loading={loadingSensors}
+          setSensorID={setSensorID}
+          open={!params.id}
+        />
         <Button variant="outlined" startIcon={<ArrowBackIcon />}>
           {' '}
           Tilbake
@@ -59,3 +72,10 @@ export default function Header() {
     </Card>
   );
 }
+
+Header.propTypes = {
+  sensors: PropTypes.arrayOf([PropTypes.object]).isRequired,
+  loadingSensors: PropTypes.bool.isRequired,
+  setSensorID: PropTypes.func.isRequired,
+  params: PropTypes.object.isRequired,
+};
