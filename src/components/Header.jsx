@@ -32,7 +32,7 @@ export default function Header({
           open={!params.id}
         />
         <Stack direction="row" sx={{ placeItems: 'center' }} spacing={2}>
-          <img src="./TrondheimKommuneSkjold.svg" alt="logo" />
+          <img src="./TrondheimKommuneSkjold.svg" alt="logo" width="60px" />
           <Stack>
             <Typography align="center" variant="h5">
               TRONDHEIM KOMMUNE
