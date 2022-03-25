@@ -7,6 +7,7 @@ import AccordionAQ from './components/Accordion';
 import fetchData from './api/fetchData';
 import PrimaryDisplay from './components/PrimaryDisplay';
 import FetchError from './components/FetchError';
+import Header from './components/Header';
 import fetchSensors from './api/fetchSensors';
 import SensorList from './components/SensorList';
 
@@ -49,6 +50,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      <Header />
       {fetchFailed && <FetchError />}
       <SensorList
         sensors={sensors}
