@@ -9,7 +9,6 @@ import PrimaryDisplay from './components/PrimaryDisplay';
 import FetchError from './components/FetchError';
 import Header from './components/Header';
 import fetchSensors from './api/fetchSensors';
-import SensorList from './components/SensorList';
 
 function App() {
   const [data, setData] = useState({});
@@ -50,14 +49,13 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Header />
-      {fetchFailed && <FetchError />}
-      <SensorList
+      <Header
         sensors={sensors}
-        loading={loadingSensors}
+        loadingSensors={loadingSensors}
         setSensorID={setSensorID}
-        open={!params.id}
+        params={params}
       />
+      {fetchFailed && <FetchError />}
       <Stack spacing="1rem" sx={{ maxWidth: '750px', margin: '1rem auto' }}>
         <PrimaryDisplay data={data} loading={loading} />
         <AccordionAQ pollutants={data.pollutants} loading={loading} />
