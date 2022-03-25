@@ -1,9 +1,9 @@
-// eslint-disable-next-line import/no-duplicates
-import { Typography } from '@mui/material';
-// eslint-disable-next-line import/no-duplicates
-import { Button } from '@mui/material';
-import CardMedia from '@mui/material/CardMedia';
-import Card from '@mui/material/Card';
+import {
+  Typography,
+  Button,
+  Card,
+  CardMedia,
+} from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import PropTypes from 'prop-types';
 import LangButton from './LangButton';
