@@ -6,7 +6,6 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CloseIcon from '@mui/icons-material/Close';
 import {
   Button,
-  Box,
   List,
   ListItemButton,
   Drawer,
@@ -26,11 +25,9 @@ export default function SensorList({
 
   return (
     <>
-      <Box width="100%" display="flex" justifyContent="flex-end">
-        <Button onClick={() => toggleShow((currentShow) => !currentShow)} variant="outlined" startIcon={<ArrowBackIcon />}>
-          Sensors
-        </Button>
-      </Box>
+      <Button onClick={() => toggleShow((currentShow) => !currentShow)} variant="outlined" startIcon={<ArrowBackIcon />}>
+        Sensors
+      </Button>
       <Drawer open={show} PaperProps={{ sx: { width: '100%' } }} anchor="left">
         <Button onClick={() => toggleShow((currentShow) => !currentShow)} variant="outlined" sx={{ alignSelf: 'flex-start', margin: '1rem' }} startIcon={<CloseIcon />}>
           Close

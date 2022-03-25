@@ -1,7 +1,7 @@
 import {
   Typography,
-  Card,
-  CardMedia,
+  Stack,
+  Toolbar,
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import LangButton from './LangButton';
@@ -14,21 +14,16 @@ export default function Header({
   params,
 }) {
   return (
-    <Card
-      square
-      sx={{
-        display: 'flex',
-        placeItems: 'center',
-        justifyContent: 'space-around',
-        backgroundColor: '#ffffff',
-        borderBottom: '7px solid #005aa7',
-      }}
-    >
-      <Card sx={{
-        display: 'grid',
-        placeItems: 'center',
-        backgroundColor: '#ffffff',
-      }}
+    <Stack sx={{ display: 'flex', placeItems: 'center', borderBottom: '7px solid #005aa7' }}>
+      <Toolbar
+        sx={{
+          display: 'flex',
+          placeItems: 'center',
+          justifyContent: 'space-around',
+          padding: '1rem',
+          width: '100%',
+          maxWidth: '1200px',
+        }}
       >
         <SensorList
           sensors={sensors}
@@ -36,35 +31,20 @@ export default function Header({
           setSensorID={setSensorID}
           open={!params.id}
         />
-      </Card>
-      <CardMedia
-        style={{
-          height: '80px',
-          width: '60px',
-          padding: '10px',
-        }}
-        component="img"
-        image="./banner2.png"
-        alt="logo"
-        display="flex"
-        height="10px"
-        width="10px"
-      />
-      {' '}
-      <Typography align="center" variant="h6">
-        TRONDHEIM KOMMUNE
-        <br />
-        LUFTKVALITETSDATA
-      </Typography>
-      <Card sx={{
-        display: 'grid',
-        placeItems: 'center',
-        backgroundColor: '#ffffff',
-      }}
-      >
+        <Stack direction="row" sx={{ placeItems: 'center' }} spacing={2}>
+          <img src="./TrondheimKommuneSkjold.svg" alt="logo" />
+          <Stack>
+            <Typography align="center" variant="h5">
+              TRONDHEIM KOMMUNE
+            </Typography>
+            <Typography>
+              LUFTKVALITETSDATA
+            </Typography>
+          </Stack>
+        </Stack>
         <LangButton />
-      </Card>
-    </Card>
+      </Toolbar>
+    </Stack>
   );
 }
 
