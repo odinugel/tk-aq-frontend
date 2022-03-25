@@ -1,10 +1,8 @@
 import {
   Typography,
-  Button,
   Card,
   CardMedia,
 } from '@mui/material';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import PropTypes from 'prop-types';
 import LangButton from './LangButton';
 import SensorList from './SensorList';
@@ -16,14 +14,15 @@ export default function Header({
   params,
 }) {
   return (
-    <Card sx={{
-      display: 'flex',
-      placeItems: 'center',
-      justifyContent: 'space-around',
-      backgroundColor: '#ffffff',
-      borderBottom: '7px solid #005aa7',
-
-    }}
+    <Card
+      square
+      sx={{
+        display: 'flex',
+        placeItems: 'center',
+        justifyContent: 'space-around',
+        backgroundColor: '#ffffff',
+        borderBottom: '7px solid #005aa7',
+      }}
     >
       <Card sx={{
         display: 'grid',
@@ -37,10 +36,6 @@ export default function Header({
           setSensorID={setSensorID}
           open={!params.id}
         />
-        <Button variant="outlined" startIcon={<ArrowBackIcon />}>
-          {' '}
-          Tilbake
-        </Button>
       </Card>
       <CardMedia
         style={{
@@ -74,7 +69,7 @@ export default function Header({
 }
 
 Header.propTypes = {
-  sensors: PropTypes.arrayOf([PropTypes.object]).isRequired,
+  sensors: PropTypes.arrayOf(PropTypes.object).isRequired,
   loadingSensors: PropTypes.bool.isRequired,
   setSensorID: PropTypes.func.isRequired,
   params: PropTypes.object.isRequired,
