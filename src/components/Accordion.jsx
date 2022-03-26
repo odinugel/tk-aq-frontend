@@ -11,10 +11,11 @@ import PropTypes from 'prop-types';
 import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 import Donut from './Donut';
 import pollutantDescriptions from '../translations/pollutantDescriptions';
+import Loader from './Loader';
 
 function AccordionAQ({ pollutants, loading }) {
-  if (loading) {
-    return <h6>Loading accordionAQ</h6>;
+  if (!loading) {
+    return <Loader />;
   }
   // sorting pollutants according to percentage value
   const pollutantsEntries = Object.entries(pollutants)
