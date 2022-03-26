@@ -2,7 +2,9 @@ import {
   Typography,
   Stack,
   Toolbar,
+  useMediaQuery,
 } from '@mui/material';
+
 import PropTypes from 'prop-types';
 import LangButton from './LangButton';
 import SensorList from './SensorList';
@@ -13,6 +15,8 @@ export default function Header({
   setSensorID,
   params,
 }) {
+  const minWidth600px = useMediaQuery('(min-width:600px)');
+
   return (
     <Stack bgcolor="background.secondary" sx={{ display: 'flex', placeItems: 'center', borderBottom: '7px solid #005aa7' }}>
       <Toolbar
@@ -34,6 +38,7 @@ export default function Header({
         />
         <Stack direction="row" sx={{ placeItems: 'center' }} spacing={2}>
           <img src="./TrondheimKommuneSkjold.svg" alt="logo" width="60px" />
+          {minWidth600px && (
           <Stack>
             <Typography align="center" variant="h5">
               TRONDHEIM KOMMUNE
@@ -42,6 +47,7 @@ export default function Header({
               LUFTKVALITETSDATA
             </Typography>
           </Stack>
+          )}
         </Stack>
         <LangButton />
       </Toolbar>
