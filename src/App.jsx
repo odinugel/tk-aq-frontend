@@ -7,8 +7,8 @@ import AccordionAQ from './components/Accordion';
 import fetchData from './api/fetchData';
 import PrimaryDisplay from './components/PrimaryDisplay';
 import FetchError from './components/FetchError';
+import Header from './components/Header';
 import fetchSensors from './api/fetchSensors';
-import SensorList from './components/SensorList';
 
 function App() {
   const [data, setData] = useState({});
@@ -49,13 +49,13 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Paper sx={{ padding: '1rem', height: '100vh', bgcolor: 'background.main' }} square>
-        {fetchFailed && <FetchError />}
-        <SensorList
+      {fetchFailed && <FetchError />}
+      <Paper sx={{ bgcolor: 'background.main', height: '100vh' }} square>
+        <Header
           sensors={sensors}
-          loading={loadingSensors}
+          loadingSensors={loadingSensors}
           setSensorID={setSensorID}
-          open={!params.id}
+          params={params}
         />
         <Grid container spacing={4}>
           <Grid item xs={12} md={6}>

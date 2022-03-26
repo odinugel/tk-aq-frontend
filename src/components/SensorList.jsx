@@ -1,14 +1,16 @@
 /* eslint-disable react/no-array-index-key */
 // Above is for keys for skeleton loaders
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import CloseIcon from '@mui/icons-material/Close';
 import {
   Button,
-  Box,
   List,
   ListItemButton,
   Drawer,
   Skeleton,
+  ListItemText,
 } from '@mui/material';
 import PropTypes from 'prop-types';
 
@@ -20,26 +22,15 @@ export default function SensorList({
 }) {
   const [show, toggleShow] = useState(open);
   const location = useLocation();
-  const linkStyle = {
-    width: '100%',
-    height: '100%',
-    padding: '1rem',
-    textDecoration: 'none',
-    fontWeight: 'bold',
-    fontSize: '1.5rem',
-    color: 'black',
-  };
 
   return (
     <>
-      <Box width="100%" display="flex" justifyContent="flex-end">
-        <Button onClick={() => toggleShow((currentShow) => !currentShow)} variant="contained">
-          Sensors
-        </Button>
-      </Box>
-      <Drawer open={show} PaperProps={{ sx: { width: '100%' } }} anchor="right">
-        <Button onClick={() => toggleShow((currentShow) => !currentShow)} variant="contained" sx={{ alignSelf: 'flex-end' }}>
-          X
+      <Button onClick={() => toggleShow((currentShow) => !currentShow)} variant="outlined" startIcon={<ArrowBackIcon />}>
+        Sensors
+      </Button>
+      <Drawer open={show} PaperProps={{ sx: { width: '100%' } }} anchor="left">
+        <Button onClick={() => toggleShow((currentShow) => !currentShow)} variant="outlined" sx={{ alignSelf: 'flex-start', margin: '1rem' }} startIcon={<CloseIcon />}>
+          Close
         </Button>
         {loading ? [...Array(20)].map((val, index) => (
           <ListItemButton key={index} divider>
@@ -47,22 +38,24 @@ export default function SensorList({
           </ListItemButton>
         ))
           : (
-            <List>
+            <List sx={{ padding: 0 }}>
               {sensors
                 .sort((a, b) => a.deviceName.localeCompare(b.deviceName, 'NO'))
                 .map((sensor) => (
                   sensor.visible ? (
-                    <ListItemButton divider key={sensor.deviceID} sx={{ padding: 0 }} selected={location.pathname === `/${sensor.deviceID}`} disabled={!sensor.isOnline}>
-                      <Link
-                        style={linkStyle}
-                        to={`/${sensor.deviceID}`}
-                        onClick={() => {
-                          setSensorID(sensor.deviceID);
-                          toggleShow(!show);
-                        }}
-                      >
-                        {sensor.deviceName}
-                      </Link>
+                    <ListItemButton
+                      divider
+                      key={sensor.deviceID}
+                      sx={{ padding: 0 }}
+                      selected={location.pathname === `/${sensor.deviceID}`}
+                      disabled={!sensor.isOnline}
+                      href={`/${sensor.deviceID}`}
+                      onClick={() => {
+                        setSensorID(sensor.deviceID);
+                        toggleShow(!show);
+                      }}
+                    >
+                      <ListItemText primaryTypographyProps={{ sx: { fontSize: '1.5rem', fontWeight: 'bold', margin: '1rem' } }} primary={sensor.deviceName} />
                     </ListItemButton>
                   ) : null))}
             </List>
