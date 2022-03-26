@@ -2,6 +2,7 @@ import { Grid, Paper } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import CssBaseline from '@mui/material/CssBaseline';
 import theme from './theme';
 import AccordionAQ from './components/Accordion';
 import fetchData from './api/fetchData';
@@ -49,23 +50,25 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      {fetchFailed && <FetchError />}
-      <Paper sx={{ bgcolor: 'background.main', height: '100vh' }} square>
-        <Header
-          sensors={sensors}
-          loadingSensors={loadingSensors}
-          setSensorID={setSensorID}
-          params={params}
-        />
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={6}>
-            <PrimaryDisplay data={data} loading={loading} />
+      <CssBaseline>
+        {fetchFailed && <FetchError />}
+        <Paper sx={{ bgcolor: 'background.main', minHeight: '100vh' }} square>
+          <Header
+            sensors={sensors}
+            loadingSensors={loadingSensors}
+            setSensorID={setSensorID}
+            params={params}
+          />
+          <Grid container spacing={4} sx={{ padding: '1rem' }}>
+            <Grid item xs={12} md={6}>
+              <PrimaryDisplay data={data} loading={loading} />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <AccordionAQ pollutants={data.pollutants} loading={loading} />
+            </Grid>
           </Grid>
-          <Grid item xs={12} md={6}>
-            <AccordionAQ pollutants={data.pollutants} loading={loading} />
-          </Grid>
-        </Grid>
-      </Paper>
+        </Paper>
+      </CssBaseline>
     </ThemeProvider>
   );
 }

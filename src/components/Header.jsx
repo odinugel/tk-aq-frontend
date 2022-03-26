@@ -14,7 +14,7 @@ export default function Header({
   params,
 }) {
   return (
-    <Stack sx={{ display: 'flex', placeItems: 'center', borderBottom: '7px solid #005aa7' }}>
+    <Stack bgcolor="background.secondary" sx={{ display: 'flex', placeItems: 'center', borderBottom: '7px solid #005aa7' }}>
       <Toolbar
         sx={{
           display: 'flex',

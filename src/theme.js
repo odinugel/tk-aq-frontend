@@ -13,6 +13,7 @@ const theme = createTheme({
     },
     background: {
       main: '#f2f2f2',
+      secondary: '#ffffff',
     },
     donutGood: {
       main: '#00953b',

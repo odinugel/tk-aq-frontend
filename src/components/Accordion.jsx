@@ -25,7 +25,7 @@ function AccordionAQ({ pollutants, loading }) {
     // this is very confusing to read (imo) and will need to be refactored somehow.
   // TODO: increase font-size and center text in summary, make warning icon more attention-grabbing
   return (
-    <div>
+    <Box margin="0 auto" sx={{ maxWidth: '600px' }}>
       {pollutantsEntries.map(([pollutant, info]) => (
         <Accordion key={pollutant}>
           <AccordionSummary expandIcon={<ExpandMore />} m="1rem" sx={{ '& .MuiAccordionSummary-content': { justifyContent: 'space-between' } }}>
@@ -64,7 +64,7 @@ function AccordionAQ({ pollutants, loading }) {
           </AccordionDetails>
         </Accordion>
       ))}
-    </div>
+    </Box>
   );
 }
 
