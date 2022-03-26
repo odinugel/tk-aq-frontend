@@ -20,10 +20,11 @@ export default function Header({
           display: 'flex',
           placeItems: 'center',
           justifyContent: 'space-around',
-          padding: '1rem',
+          margin: '1rem',
           width: '100%',
           maxWidth: '1200px',
         }}
+        disableGutters
       >
         <SensorList
           sensors={sensors}
