@@ -22,22 +22,13 @@ export default function Donut({
     const timer = setTimeout(() => {
       setDonuValue(value);
       setDonutText(category);
-    }, 1000);
+    }, 100);
     return () => clearTimeout(timer);
   }, [category, value]);
 
   return (
-    <Stack
-      justifyContent="center"
-      alignItems="center"
-      sx={{ position: 'relative' }}
-    >
-      <Box
-        sx={{
-          transform: 'rotate(180deg)', zIndex: '99',
-        }}
-        width={size}
-      >
+    <Stack justifyContent="center" alignItems="center" sx={{ position: 'relative' }}>
+      <Box sx={{ transform: 'rotate(180deg)', zIndex: '99' }} width={size}>
         <CircularProgress
           variant="determinate"
           value={donutValue > 100 ? 100 : donutValue}
@@ -47,20 +38,11 @@ export default function Donut({
         />
       </Box>
       <Box sx={{ position: 'absolute', zIndex: '99' }}>
-        <Typography
-          variant="h3"
-          color="text.secondary"
-          align="center"
-        >
+        <Typography variant="h3" color="text.secondary" align="center">
           {text ? donutText : null}
         </Typography>
       </Box>
-      <Box
-        sx={{
-          transform: 'rotate(180deg)', position: 'absolute',
-        }}
-        width={size}
-      >
+      <Box sx={{ transform: 'rotate(180deg)', position: 'absolute' }} width={size}>
         <CircularProgress
           variant="determinate"
           value={100}
