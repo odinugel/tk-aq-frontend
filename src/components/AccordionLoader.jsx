@@ -9,7 +9,7 @@ import {
 
 export default function AccordionLoader() {
   return (
-    <div>
+    <Box margin="0 auto" sx={{ maxWidth: '600px' }}>
       {
     [...Array(4)].map((val, index) => (
       <Accordion key={index}>
@@ -24,6 +24,6 @@ export default function AccordionLoader() {
       </Accordion>
     ))
   }
-    </div>
+    </Box>
   );
 }

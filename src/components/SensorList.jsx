@@ -3,7 +3,6 @@
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import CloseIcon from '@mui/icons-material/Close';
 import {
   Button,
   List,
@@ -28,10 +27,7 @@ export default function SensorList({
       <Button onClick={() => toggleShow((currentShow) => !currentShow)} variant="outlined" startIcon={<ArrowBackIcon />}>
         Sensors
       </Button>
-      <Drawer open={show} PaperProps={{ sx: { width: '100%' } }} anchor="left">
-        <Button onClick={() => toggleShow((currentShow) => !currentShow)} variant="outlined" sx={{ alignSelf: 'flex-start', margin: '1rem' }} startIcon={<CloseIcon />}>
-          Close
-        </Button>
+      <Drawer open={show} PaperProps={{ sx: { width: '100%', paddingTop: '111px' } }} anchor="left">
         {loading ? [...Array(20)].map((val, index) => (
           <ListItemButton key={index} divider>
             <Skeleton width={`${Math.floor((Math.random() * 10) + 10)}%`} height={50} />

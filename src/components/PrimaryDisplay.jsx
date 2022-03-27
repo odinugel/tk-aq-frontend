@@ -10,7 +10,13 @@ export default function PrimaryDisplay({ data, loading }) {
     return <PrimaryDisplayLoader />;
   }
   return (
-    <Paper sx={{ padding: '1rem', margin: '0 auto', maxWidth: '600px' }}>
+    <Paper sx={{
+      padding: '1rem',
+      margin: '0 auto',
+      marginBottom: '1rem',
+      maxWidth: '600px',
+    }}
+    >
       <Stack sx={{ alignItems: 'center' }}>
         <Typography variant="h4">
           {data.sensors.find((index) => index.deviceID === data.sensorID).deviceName}

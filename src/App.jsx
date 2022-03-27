@@ -59,12 +59,21 @@ function App() {
             setSensorID={setSensorID}
             params={params}
           />
-          <Grid container spacing={4} sx={{ padding: '1rem' }}>
+          <Grid
+            container
+            sx={{
+              padding: '1rem',
+              justifyContent: 'center',
+              maxWidth: '1200px',
+              margin: '0 auto',
+            }}
+          >
             <Grid item xs={12} md={6}>
               <PrimaryDisplay data={data} loading={loading} />
+              <AccordionAQ pollutants={data.pollutants} loading={loading} />
             </Grid>
             <Grid item xs={12} md={6}>
-              <AccordionAQ pollutants={data.pollutants} loading={loading} />
+              <h1>grid item 2</h1>
             </Grid>
           </Grid>
         </Paper>

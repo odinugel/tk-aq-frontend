@@ -2,9 +2,9 @@ import {
   Typography,
   Stack,
   Toolbar,
+  AppBar,
   useMediaQuery,
 } from '@mui/material';
-
 import PropTypes from 'prop-types';
 import LangButton from './LangButton';
 import SensorList from './SensorList';
@@ -18,7 +18,16 @@ export default function Header({
   const minWidth600px = useMediaQuery('(min-width:600px)');
 
   return (
-    <Stack bgcolor="background.secondary" sx={{ display: 'flex', placeItems: 'center', borderBottom: '7px solid #005aa7' }}>
+    <AppBar
+      position="sticky"
+      color="secondary"
+      sx={{
+        zIndex: (theme) => theme.zIndex.drawer + 1,
+        display: 'flex',
+        placeItems: 'center',
+        borderBottom: '7px solid #005aa7',
+      }}
+    >
       <Toolbar
         sx={{
           display: 'flex',
@@ -51,7 +60,7 @@ export default function Header({
         </Stack>
         <LangButton />
       </Toolbar>
-    </Stack>
+    </AppBar>
   );
 }
 
