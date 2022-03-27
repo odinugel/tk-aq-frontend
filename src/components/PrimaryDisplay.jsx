@@ -3,11 +3,11 @@ import formatDistanceStrict from 'date-fns/formatDistanceStrict';
 import PropTypes from 'prop-types';
 import Donut from './Donut';
 import Weather from './Weather';
-import Loader from './Loader';
+import PrimaryDisplayLoader from './PrimaryDisplayLoader';
 
 export default function PrimaryDisplay({ data, loading }) {
   if (loading) {
-    return <Loader />;
+    return <PrimaryDisplayLoader />;
   }
   return (
     <Paper>
