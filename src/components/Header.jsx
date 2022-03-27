@@ -6,12 +6,15 @@ import {
 import PropTypes from 'prop-types';
 import LangButton from './LangButton';
 import SensorList from './SensorList';
+import DarkModeSwitch from './DarkModeSwitch';
 
 export default function Header({
   sensors,
   loadingSensors,
   setSensorID,
   params,
+  darkMode,
+  setDarkMode,
 }) {
   return (
     <Stack sx={{ display: 'flex', placeItems: 'center', borderBottom: '7px solid #005aa7' }}>
@@ -19,19 +22,19 @@ export default function Header({
         sx={{
           display: 'flex',
           placeItems: 'center',
-          justifyContent: 'space-around',
+          justifyContent: 'space-between',
           padding: '1rem',
           width: '100%',
           maxWidth: '1200px',
         }}
       >
-        <SensorList
-          sensors={sensors}
-          loading={loadingSensors}
-          setSensorID={setSensorID}
-          open={!params.id}
-        />
         <Stack direction="row" sx={{ placeItems: 'center' }} spacing={2}>
+          <SensorList
+            sensors={sensors}
+            loading={loadingSensors}
+            setSensorID={setSensorID}
+            open={!params.id}
+          />
           <img src="./TrondheimKommuneSkjold.svg" alt="logo" width="60px" />
           <Stack>
             <Typography align="center" variant="h5">
@@ -42,7 +45,10 @@ export default function Header({
             </Typography>
           </Stack>
         </Stack>
-        <LangButton />
+        <Stack direction="row">
+          <LangButton />
+          <DarkModeSwitch darkMode={darkMode} setDarkMode={setDarkMode} />
+        </Stack>
       </Toolbar>
     </Stack>
   );
@@ -53,4 +59,6 @@ Header.propTypes = {
   loadingSensors: PropTypes.bool.isRequired,
   setSensorID: PropTypes.func.isRequired,
   params: PropTypes.object.isRequired,
+  darkMode: PropTypes.bool.isRequired,
+  setDarkMode: PropTypes.func.isRequired,
 };
