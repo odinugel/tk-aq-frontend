@@ -3,10 +3,11 @@ import formatDistanceStrict from 'date-fns/formatDistanceStrict';
 import PropTypes from 'prop-types';
 import Donut from './Donut';
 import Weather from './Weather';
+import PrimaryDisplayLoader from './PrimaryDisplayLoader';
 
 export default function PrimaryDisplay({ data, loading }) {
   if (loading) {
-    return <h6>Loading PrimaryDisplay</h6>;
+    return <PrimaryDisplayLoader />;
   }
   return (
     <Paper sx={{ padding: '1rem', margin: '0 auto', maxWidth: '600px' }}>
