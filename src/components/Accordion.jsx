@@ -14,7 +14,7 @@ import pollutantDescriptions from '../translations/pollutantDescriptions';
 import Loader from './Loader';
 
 function AccordionAQ({ pollutants, loading }) {
-  if (!loading) {
+  if (loading) {
     return <Loader />;
   }
   // sorting pollutants according to percentage value
