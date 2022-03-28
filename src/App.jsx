@@ -10,7 +10,7 @@ import PrimaryDisplay from './components/PrimaryDisplay';
 import FetchError from './components/FetchError';
 import Header from './components/Header';
 import fetchSensors from './api/fetchSensors';
-import SensorList2 from './components/SensorList2';
+// import SensorList2 from './components/SensorList2';
 
 function App() {
   const [data, setData] = useState({});
@@ -69,9 +69,9 @@ function App() {
               margin: '0 auto',
             }}
           >
-            <Grid item xs={12} md={6}>
+            {/*             <Grid item xs={12} md={6}>
               <SensorList2 loading={loadingSensors} sensors={sensors} setSensorID={setSensorID} />
-            </Grid>
+            </Grid> */}
             <Grid item xs={12} md={6}>
               <PrimaryDisplay data={data} loading={loading} />
               <AccordionAQ pollutants={data.pollutants} loading={loading} />
