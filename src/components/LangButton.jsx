@@ -34,8 +34,14 @@ export default function LangButton() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Norwegian</MenuItem>
-        <MenuItem onClick={handleClose}>English</MenuItem>
+        <MenuItem onClick={handleClose}>
+          <img src="https://tipqa.trondheim.kommune.no/luftkvalitet-frontend/static/media/norway.6cf1dc59.svg" alt="no" width="20px" />
+          Norwegian
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <img src="https://tipqa.trondheim.kommune.no/luftkvalitet-frontend/static/media/britain.24c58033.svg" alt="no" width="20px" />
+          English
+        </MenuItem>
       </Menu>
     </div>
   );
