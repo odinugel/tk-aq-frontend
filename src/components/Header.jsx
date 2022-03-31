@@ -7,7 +7,7 @@ import {
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import LangButton from './LangButton';
-import SensorList from './SensorList';
+import SensorDrawer from './SensorDrawer';
 
 export default function Header({
   sensors,
@@ -39,7 +39,7 @@ export default function Header({
         }}
         disableGutters
       >
-        <SensorList
+        <SensorDrawer
           sensors={sensors}
           loading={loadingSensors}
           setSensorID={setSensorID}
