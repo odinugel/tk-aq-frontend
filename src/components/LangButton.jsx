@@ -34,8 +34,14 @@ export default function LangButton() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Norwegian</MenuItem>
-        <MenuItem onClick={handleClose}>English</MenuItem>
+        <MenuItem onClick={handleClose}>
+          <img src="./noflag.svg" alt="logo" width="30px" />
+          Norwegian
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <img src="./britflag.svg" alt="logo" width="30px" />
+          English
+        </MenuItem>
       </Menu>
     </div>
   );
