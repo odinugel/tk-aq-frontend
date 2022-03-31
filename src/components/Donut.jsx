@@ -31,7 +31,7 @@ export default function Donut({
       <Box sx={{ transform: 'rotate(180deg)', zIndex: '99' }} width={size}>
         <CircularProgress
           variant="determinate"
-          value={donutValue > 100 ? 100 : donutValue}
+          value={donutValue > 100 ? 99 : donutValue}
           size="100%"
           color={donutColor(category)}
           thickness={thickness}
