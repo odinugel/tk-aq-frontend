@@ -30,6 +30,10 @@ const theme = createTheme({
     donutVeryPoor: {
       main: '#4719A7',
     },
+    pollutantWarning: {
+      main: '#ffa726',
+      transparent: '#ffa72666',
+    },
   },
   typography: {
     fontFamily: [

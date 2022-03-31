@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from './theme';
-import AccordionAQ from './components/Accordion';
+import AccordionAQ from './components/AccordionAQ';
 import fetchData from './api/fetchData';
 import PrimaryDisplay from './components/PrimaryDisplay';
 import FetchError from './components/FetchError';

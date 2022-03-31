@@ -7,7 +7,7 @@ import {
   Skeleton,
 } from '@mui/material';
 
-export default function AccordionLoader() {
+export default function AccordionLoaderAQ() {
   return (
     <Box margin="0 auto" sx={{ maxWidth: '600px' }}>
       {
