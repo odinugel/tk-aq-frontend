@@ -3,7 +3,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import theme from './theme';
-import AccordionAQ from './components/Accordion';
+import AccordionAQ from './components/AccordionAQ';
 import fetchData from './api/fetchData';
 import PrimaryDisplay from './components/PrimaryDisplay';
 import FetchError from './components/FetchError';
