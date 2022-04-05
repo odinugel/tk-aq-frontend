@@ -57,12 +57,9 @@ function App() {
         setSensorID={setSensorID}
         params={params}
       />
-      <Map
-
-/>
-   
       {fetchFailed && <FetchError />}
       <Stack spacing="1rem" sx={{ maxWidth: '750px', margin: '1rem auto' }}>
+        <Map />
         <PrimaryDisplay data={data} loading={loading} />
         <AccordionAQ pollutants={data.pollutants} loading={loading} />
       </Stack>
