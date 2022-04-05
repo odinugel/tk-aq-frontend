@@ -3,7 +3,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
-import theme from './theme';
+import getTheme from './theme';
 import AccordionAQ from './components/Accordion';
 import fetchData from './api/fetchData';
 import PrimaryDisplay from './components/PrimaryDisplay';
@@ -50,7 +50,7 @@ function App() {
   }, [sensorID, sensors]);
 
   return (
-    <ThemeProvider theme={theme(darkMode)}>
+    <ThemeProvider theme={getTheme(darkMode)}>
       <CssBaseline>
         {fetchFailed && <FetchError />}
         <Paper sx={{ minHeight: '100vh' }} square>
