@@ -9,6 +9,7 @@ import PrimaryDisplay from './components/PrimaryDisplay';
 import FetchError from './components/FetchError';
 import Header from './components/Header';
 import fetchSensors from './api/fetchSensors';
+import Map from './components/Map';
 
 function App() {
   const [data, setData] = useState({});
@@ -49,12 +50,17 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+
       <Header
         sensors={sensors}
         loadingSensors={loadingSensors}
         setSensorID={setSensorID}
         params={params}
       />
+      <Map
+
+/>
+   
       {fetchFailed && <FetchError />}
       <Stack spacing="1rem" sx={{ maxWidth: '750px', margin: '1rem auto' }}>
         <PrimaryDisplay data={data} loading={loading} />
