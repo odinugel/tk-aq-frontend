@@ -4,37 +4,37 @@ import {
   TileLayer,
   Marker,
 } from 'react-leaflet';
-import useSwr from 'swr';
 import './App.css';
+import PropTypes from 'prop-types';
 
-const fetcher = (...args) => fetch(...args).then(response => response.json());
-
-export default function App()
-
-{
-
-  const url = 'https://tipqa.trondheim.kommune.no/luftkvalitet-api/v1/sensors';
-  const { data, error } = useSwr(url, { fetcher });
-  const geo = data && !error ? data.slice(1, 100) : [];
-  // Starter Slice på 1. Denne fjerner test-sensoren
+export default function Map({ sensors, setSensorID }) {
   return (
-    <MapContainer center={[63.429799, 10.393418]} zoom={13} scrollWheelZoom={true}>
+    <MapContainer center={[63.429799, 10.393418]} zoom={13} scrollWheelZoom>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
 
-      {geo.map(geo => (
+      {sensors.map((sensor) => (
         <Marker
-          key={geo.deviceName}
+          key={sensor.deviceName}
           position={[
-            (geo.lat * 180) / Math.PI,
-            (geo.lon * 180) / Math.PI,
+            (sensor.lat * 180) / Math.PI,
+            (sensor.lon * 180) / Math.PI,
 
           ]} // ganger med 180/pi. Er for å få MERIDIAN riktig
-
+          eventHandlers={{
+            click: () => {
+              setSensorID(sensor.deviceID);
+            },
+          }}
         />
       ))}
     </MapContainer>
   );
 }
+
+Map.propTypes = {
+  sensors: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setSensorID: PropTypes.func.isRequired,
+};
