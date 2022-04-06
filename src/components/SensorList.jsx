@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
   List,
   ListItemButton,
@@ -13,6 +13,7 @@ export default function SensorList({
   toggleShow,
 }) {
   const location = useLocation();
+  const navigate = useNavigate();
 
   return (
     <List sx={{ padding: 0 }}>
@@ -29,7 +30,8 @@ export default function SensorList({
               href={`/${sensor.deviceID}`}
               onClick={() => {
                 setSensorID(sensor.deviceID);
-                toggleShow(!show);
+                if (show !== undefined) { toggleShow(!show); }
+                navigate(`/${sensor.deviceID}`);
               }}
             >
               <ListItemText primaryTypographyProps={{ sx: { fontSize: '1.5rem', fontWeight: 'bold', margin: '1rem' } }} primary={sensor.deviceName} />
@@ -42,6 +44,6 @@ export default function SensorList({
 SensorList.propTypes = {
   sensors: PropTypes.arrayOf(PropTypes.object).isRequired,
   setSensorID: PropTypes.func.isRequired,
-  show: PropTypes.bool.isRequired,
-  toggleShow: PropTypes.func.isRequired,
+  show: PropTypes.bool,
+  toggleShow: PropTypes.func,
 };
