@@ -10,7 +10,7 @@ import PrimaryDisplay from './components/PrimaryDisplay';
 import FetchError from './components/FetchError';
 import Header from './components/Header';
 import fetchSensors from './api/fetchSensors';
-import SensorList from './components/SensorList';
+import SensorSelect from './components/SensorSelect';
 
 function App() {
   const [data, setData] = useState({});
@@ -71,7 +71,7 @@ function App() {
             }}
           >
             <Grid item xs={12} md={6}>
-              <SensorList loading={loadingSensors} sensors={sensors} setSensorID={setSensorID} />
+              <SensorSelect loading={loadingSensors} sensors={sensors} setSensorID={setSensorID} />
             </Grid>
             <Grid item xs={12} md={6}>
               <PrimaryDisplay data={data} loading={loading} />
