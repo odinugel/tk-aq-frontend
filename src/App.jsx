@@ -62,7 +62,7 @@ function App() {
           />
           <Grid
             container
-            spacing={5}
+            spacing={0}
             sx={{
               padding: '1rem',
               justifyItems: 'center',
@@ -70,10 +70,14 @@ function App() {
               margin: '0 auto',
             }}
           >
-            <Grid item xs={12} md={6}>
-              <SensorSelect loading={loadingSensors} sensors={sensors} setSensorID={setSensorID} />
+            <Grid item xs={12} lg={6} sx={{ display: { xs: 'none', lg: 'block' } }} m="1rem">
+              <SensorSelect
+                loadingSensors={loadingSensors}
+                sensors={sensors}
+                setSensorID={setSensorID}
+              />
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} lg={6} m="1rem">
               <PrimaryDisplay data={data} loading={loading} />
               <AccordionAQ pollutants={data.pollutants} loading={loading} />
             </Grid>
