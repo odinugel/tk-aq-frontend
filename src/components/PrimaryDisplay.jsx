@@ -26,7 +26,7 @@ export default function PrimaryDisplay({ data, loading }) {
         </Typography>
       </Stack>
       <Donut
-        size="60%"
+        size="75%"
         text // if omitted, no text will be displayed inside circle
         value={data.topPollutant.percentage}
         category={data.topPollutant.category}

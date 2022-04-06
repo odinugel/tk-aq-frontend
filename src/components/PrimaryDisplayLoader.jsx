@@ -23,7 +23,7 @@ export default function PrimaryDisplayLoader() {
           <Skeleton width="30ch" />
         </Typography>
       </Stack>
-      <Box width="60%" margin="0 auto" marginBottom="4.5rem">
+      <Box width="75%" margin="0 auto" marginBottom="4.5rem">
         <Stack
           justifyContent="center"
           alignItems="center"
