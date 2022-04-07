@@ -53,7 +53,7 @@ function App() {
     <ThemeProvider theme={getTheme(darkMode)}>
       <CssBaseline>
         {fetchFailed && <FetchError />}
-        <Paper sx={{ minHeight: '100vh' }} square>
+        <Paper sx={{ bgcolor: 'background.main', minHeight: '100vh' }} square>
           <Header
             sensors={sensors}
             loadingSensors={loadingSensors}

@@ -47,7 +47,7 @@ const darkTheme = createTheme({
       main: '#e41f1a',
     },
     background: {
-      main: '#f2f2f2',
+      main: '#414141',
     },
     donutGood: {
       main: '#00953b',
