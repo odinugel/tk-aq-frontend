@@ -1,5 +1,3 @@
-/* eslint-disable react/no-array-index-key */
-// Above is for keys for skeleton loaders
 import { useState } from 'react';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import {
@@ -7,28 +5,27 @@ import {
   Drawer,
 } from '@mui/material';
 import PropTypes from 'prop-types';
-import SensorList from './SensorList';
+import SensorSelect from './SensorSelect';
 
 export default function SensorDrawer({
   sensors,
+  sensorID,
   setSensorID,
-  open,
-  loading,
+  loadingSensors,
 }) {
-  const [show, toggleShow] = useState(open);
+  const [open, setOpen] = useState(!sensorID);
 
   return (
     <>
-      <Button onClick={() => toggleShow((currentShow) => !currentShow)} variant="outlined" startIcon={<ArrowBackIcon />}>
+      <Button onClick={() => setOpen((currentOpen) => !currentOpen)} variant="outlined" startIcon={<ArrowBackIcon />}>
         Sensors
       </Button>
-      <Drawer open={show} PaperProps={{ sx: { width: '100%', paddingTop: '111px' } }} anchor="left">
-        <SensorList
+      <Drawer open={open} PaperProps={{ sx: { width: '100%', paddingTop: '111px' } }} anchor="left">
+        <SensorSelect
           sensors={sensors}
+          setOpen={setOpen}
           setSensorID={setSensorID}
-          show={show}
-          toggleShow={toggleShow}
-          loading={loading}
+          loadingSensors={loadingSensors}
         />
       </Drawer>
     </>
@@ -38,6 +35,6 @@ export default function SensorDrawer({
 SensorDrawer.propTypes = {
   sensors: PropTypes.arrayOf(PropTypes.object).isRequired,
   setSensorID: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
-  loading: PropTypes.bool.isRequired,
+  sensorID: PropTypes.string.isRequired,
+  loadingSensors: PropTypes.bool.isRequired,
 };

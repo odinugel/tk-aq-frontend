@@ -11,21 +11,20 @@ import PropTypes from 'prop-types';
 export default function SensorList({
   sensors,
   setSensorID,
-  show,
-  toggleShow,
-  loading,
+  setOpen,
+  loadingSensors,
 }) {
   const location = useLocation();
   const navigate = useNavigate();
 
   return (
-    loading ? [...Array(20)].map((val, index) => (
+    loadingSensors ? [...Array(20)].map((val, index) => (
       <ListItemButton key={index} divider>
-        <Skeleton width={`${Math.floor((Math.random() * 10) + 10)}%`} height={50} />
+        <Skeleton width={`${Math.floor((Math.random() * 10) + 10)}vw`} height={50} />
       </ListItemButton>
     ))
       : (
-        <List sx={{ maxHeight: '75vh', overflow: 'scroll', overflowX: 'hidden' }}>
+        <List>
           {sensors
             .sort((a, b) => a.deviceName.localeCompare(b.deviceName, 'NO'))
             .map((sensor) => (
@@ -39,7 +38,7 @@ export default function SensorList({
                   href={`/${sensor.deviceID}`}
                   onClick={() => {
                     setSensorID(sensor.deviceID);
-                    if (show !== undefined) { toggleShow(!show); }
+                    if (typeof setOpen === 'function') { setOpen(false); }
                     navigate(`/${sensor.deviceID}`);
                   }}
                 >
@@ -54,7 +53,6 @@ export default function SensorList({
 SensorList.propTypes = {
   sensors: PropTypes.arrayOf(PropTypes.object).isRequired,
   setSensorID: PropTypes.func.isRequired,
-  show: PropTypes.bool,
-  toggleShow: PropTypes.func,
-  loading: PropTypes.bool.isRequired,
+  loadingSensors: PropTypes.bool.isRequired,
+  setOpen: PropTypes.func,
 };

@@ -12,8 +12,8 @@ import SensorDrawer from './SensorDrawer';
 export default function Header({
   sensors,
   loadingSensors,
+  sensorID,
   setSensorID,
-  params,
 }) {
   const minWidth600px = useMediaQuery('(min-width:600px)');
 
@@ -41,9 +41,9 @@ export default function Header({
       >
         <SensorDrawer
           sensors={sensors}
-          loading={loadingSensors}
+          loadingSensors={loadingSensors}
           setSensorID={setSensorID}
-          open={!params.id}
+          sensorID={sensorID}
         />
         <Stack direction="row" sx={{ placeItems: 'center' }} spacing={2}>
           <img src="./TrondheimKommuneSkjold.svg" alt="logo" width="60px" />
@@ -68,5 +68,5 @@ Header.propTypes = {
   sensors: PropTypes.arrayOf(PropTypes.object).isRequired,
   loadingSensors: PropTypes.bool.isRequired,
   setSensorID: PropTypes.func.isRequired,
-  params: PropTypes.object.isRequired,
+  sensorID: PropTypes.string.isRequired,
 };
