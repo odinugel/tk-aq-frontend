@@ -25,7 +25,7 @@ export default function SensorList({
 
   return (
     <>
-      <Button onClick={() => toggleShow((currentShow) => !currentShow)} variant="text" startIcon={<MenuIcon />} />
+      <Button onClick={() => toggleShow((currentShow) => !currentShow)} variant="text" size="xlarge" startIcon={<MenuIcon />} />
       <Drawer open={show} PaperProps={{ sx: { width: '100%' } }} anchor="left">
         <Button onClick={() => toggleShow((currentShow) => !currentShow)} variant="outlined" sx={{ alignSelf: 'flex-start', margin: '1rem' }} startIcon={<CloseIcon />}>
           Close

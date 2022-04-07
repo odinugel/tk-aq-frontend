@@ -18,6 +18,7 @@ export default function LangButton() {
     <div>
       <Button
         variant="text"
+        size="xlarge"
         startIcon={<LanguageIcon />}
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
