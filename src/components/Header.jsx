@@ -15,7 +15,7 @@ export default function Header({
   sensorID,
   setSensorID,
 }) {
-  const minWidth600px = useMediaQuery('(min-width:600px)');
+  const maxWidth600px = useMediaQuery('(max-width:600px)');
 
   return (
     <AppBar
@@ -31,23 +31,25 @@ export default function Header({
       <Toolbar
         sx={{
           display: 'flex',
-          placeItems: 'center',
-          justifyContent: 'space-around',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
           margin: '1rem',
           width: '100%',
           maxWidth: '1200px',
+          padding: '0 1rem',
         }}
         disableGutters
       >
+        {maxWidth600px && (
         <SensorDrawer
           sensors={sensors}
           loadingSensors={loadingSensors}
           setSensorID={setSensorID}
           sensorID={sensorID}
         />
-        <Stack direction="row" sx={{ placeItems: 'center' }} spacing={2}>
+        )}
+        <Stack direction="row" spacing={2}>
           <img src="./TrondheimKommuneSkjold.svg" alt="logo" width="60px" />
-          {minWidth600px && (
           <Stack>
             <Typography align="center" variant="h5">
               TRONDHEIM KOMMUNE
@@ -56,7 +58,6 @@ export default function Header({
               LUFTKVALITETSDATA
             </Typography>
           </Stack>
-          )}
         </Stack>
         <LangButton />
       </Toolbar>
