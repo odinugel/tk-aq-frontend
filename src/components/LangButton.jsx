@@ -17,15 +17,13 @@ export default function LangButton() {
   return (
     <div>
       <Button
-        variant="outlined"
+        variant="text"
         startIcon={<LanguageIcon />}
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
-      >
-        Language
-      </Button>
+      />
       <Menu
         anchorEl={anchorEl}
         open={open}

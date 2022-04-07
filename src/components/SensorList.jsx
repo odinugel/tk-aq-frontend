@@ -2,7 +2,6 @@
 // Above is for keys for skeleton loaders
 import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CloseIcon from '@mui/icons-material/Close';
 import {
   Button,
@@ -13,6 +12,7 @@ import {
   ListItemText,
 } from '@mui/material';
 import PropTypes from 'prop-types';
+import MenuIcon from '@mui/icons-material/Menu';
 
 export default function SensorList({
   sensors,
@@ -25,9 +25,7 @@ export default function SensorList({
 
   return (
     <>
-      <Button onClick={() => toggleShow((currentShow) => !currentShow)} variant="outlined" startIcon={<ArrowBackIcon />}>
-        Sensors
-      </Button>
+      <Button onClick={() => toggleShow((currentShow) => !currentShow)} variant="text" startIcon={<MenuIcon />} />
       <Drawer open={show} PaperProps={{ sx: { width: '100%' } }} anchor="left">
         <Button onClick={() => toggleShow((currentShow) => !currentShow)} variant="outlined" sx={{ alignSelf: 'flex-start', margin: '1rem' }} startIcon={<CloseIcon />}>
           Close
