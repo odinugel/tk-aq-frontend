@@ -48,7 +48,7 @@ export default function Header({
           sensorID={sensorID}
         />
         )}
-        <Stack direction="row" spacing={2}>
+        <Stack direction="row" sx={{ placeItems: 'center' }} spacing={2}>
           <img src="./TrondheimKommuneSkjold.svg" alt="logo" width="60px" />
           <Stack>
             <Typography align="center" variant="h5">
