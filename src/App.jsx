@@ -1,4 +1,4 @@
-import { Grid, Paper } from '@mui/material';
+import { Stack, Box, Paper } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -23,7 +23,7 @@ function App() {
   console.log('render');
   if (sensorID === '' && params.id) {
     setSensorID(params.id);
-    console.log(`sensorID is empty, found params: ${params.id} in url, setting sensorID`);
+    console.log(`sensorID is empty, found params: ${params.id} in url, set sensorID`);
   }
   // if we do not have a url ID
   // -> fetch and display a list of sensors
@@ -57,31 +57,42 @@ function App() {
           <Header
             sensors={sensors}
             loadingSensors={loadingSensors}
+            sensorID={sensorID}
             setSensorID={setSensorID}
-            params={params}
           />
-          <Grid
-            container
-            spacing={0}
+          <Stack
+            direction="row"
             sx={{
-              padding: '1rem',
-              justifyItems: 'center',
+              justifyContent: 'center',
               maxWidth: '1200px',
               margin: '0 auto',
             }}
           >
-            <Grid item xs={12} lg={6} sx={{ display: { xs: 'none', lg: 'block' } }} m="1rem">
+            <Box sx={{
+              display: { xs: 'none', lg: 'block' },
+              maxHeight: '85vh',
+              overflowY: 'scroll',
+              maxWidth: '600px',
+              width: '100%',
+              margin: '1rem',
+            }}
+            >
               <SensorSelect
                 loadingSensors={loadingSensors}
                 sensors={sensors}
                 setSensorID={setSensorID}
               />
-            </Grid>
-            <Grid item xs={12} lg={6} m="1rem">
+            </Box>
+            <Box sx={{
+              maxWidth: '600px',
+              width: '100%',
+              margin: '1rem',
+            }}
+            >
               <PrimaryDisplay data={data} loading={loading} />
               <AccordionAQ pollutants={data.pollutants} loading={loading} />
-            </Grid>
-          </Grid>
+            </Box>
+          </Stack>
         </Paper>
       </CssBaseline>
     </ThemeProvider>
