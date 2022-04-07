@@ -3,6 +3,8 @@ import { useState } from 'react';
 import {
   Paper, Box, Tab, Tabs,
 } from '@mui/material';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SensorList from './SensorList';
 
 export default function SensorSelect({
@@ -19,15 +21,15 @@ export default function SensorSelect({
 
   return (
     <Box>
-      <Tabs value={tab} onChange={handleChange} aria-label="Velg kart eller liste">
-        <Tab label="Liste" sx={{ width: '50%' }} />
-        <Tab label="Kart" sx={{ width: '50%' }} />
+      <Tabs value={tab} onChange={handleChange} aria-label="Velg kart eller liste" sx={{ width: '100%', '& .MuiTabs-flexContainer': { justifyContent: 'center' } }}>
+        <Tab label="Liste" sx={{ maxWidth: '100%', width: '50%' }} icon={<FormatListBulletedIcon />} />
+        <Tab label="Kart" sx={{ maxWidth: '100%', width: '50%' }} icon={<LocationOnIcon />} />
       </Tabs>
       <Paper>
         {tab === 0
           // eslint-disable-next-line max-len
           ? <SensorList setOpen={setOpen} loadingSensors={loadingSensors} sensors={sensors} setSensorID={setSensorID} />
-          : <h1>Kart</h1>}
+          : <img src="https://www.google.com/maps/d/thumbnail?mid=1L3vyNB_8aM6mS_UA4V3L1L594d4&hl=en" alt="kart" width="100%" />}
       </Paper>
     </Box>
   );
