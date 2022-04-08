@@ -18,7 +18,7 @@ export default function AccordionAQ({ pollutants, loading }) {
     return <AccordionAQLoader />;
   }
   return (
-    <div>
+    <Box margin="0 auto" sx={{ maxWidth: '600px' }}>
       {pollutants.map((pollutant) => (
         <Accordion key={pollutant.name}>
           <AccordionSummary expandIcon={<ExpandMore />} m="1rem" sx={{ '& .MuiAccordionSummary-content': { justifyContent: 'space-between' } }}>
@@ -47,7 +47,7 @@ export default function AccordionAQ({ pollutants, loading }) {
           </AccordionDetails>
         </Accordion>
       ))}
-    </div>
+    </Box>
   );
 }
 

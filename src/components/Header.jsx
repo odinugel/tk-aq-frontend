@@ -2,35 +2,52 @@ import {
   Typography,
   Stack,
   Toolbar,
+  AppBar,
+  useMediaQuery,
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import LangButton from './LangButton';
-import SensorList from './SensorList';
+import SensorDrawer from './SensorDrawer';
 
 export default function Header({
   sensors,
   loadingSensors,
+  sensorID,
   setSensorID,
-  params,
 }) {
+  const maxWidth600px = useMediaQuery('(max-width:600px)');
+
   return (
-    <Stack sx={{ display: 'flex', placeItems: 'center', borderBottom: '7px solid #005aa7' }}>
+    <AppBar
+      position="sticky"
+      color="secondary"
+      sx={{
+        zIndex: (theme) => theme.zIndex.drawer + 1,
+        display: 'flex',
+        placeItems: 'center',
+        borderBottom: '7px solid #005aa7',
+      }}
+    >
       <Toolbar
         sx={{
           display: 'flex',
-          placeItems: 'center',
-          justifyContent: 'space-around',
-          padding: '1rem',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          margin: '1rem',
           width: '100%',
           maxWidth: '1200px',
+          padding: '0 1rem',
         }}
+        disableGutters
       >
-        <SensorList
+        {maxWidth600px && (
+        <SensorDrawer
           sensors={sensors}
-          loading={loadingSensors}
+          loadingSensors={loadingSensors}
           setSensorID={setSensorID}
-          open={!params.id}
+          sensorID={sensorID}
         />
+        )}
         <Stack direction="row" sx={{ placeItems: 'center' }} spacing={2}>
           <img src="./TrondheimKommuneSkjold.svg" alt="logo" width="60px" />
           <Stack>
@@ -44,7 +61,7 @@ export default function Header({
         </Stack>
         <LangButton />
       </Toolbar>
-    </Stack>
+    </AppBar>
   );
 }
 
@@ -52,5 +69,5 @@ Header.propTypes = {
   sensors: PropTypes.arrayOf(PropTypes.object).isRequired,
   loadingSensors: PropTypes.bool.isRequired,
   setSensorID: PropTypes.func.isRequired,
-  params: PropTypes.object.isRequired,
+  sensorID: PropTypes.string.isRequired,
 };
