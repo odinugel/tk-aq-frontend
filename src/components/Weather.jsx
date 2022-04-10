@@ -7,14 +7,14 @@ export default function Weather({ temperature, humidity }) {
   return (
     <Stack direction="row" m="1rem" sx={{ justifyContent: 'space-evenly' }}>
       <Stack direction="row" sx={{ alignItems: 'flex-end' }}>
-        <ThermostatIcon fontSize="large" />
+        <ThermostatIcon sx={{ color: 'contrast.main' }} fontSize="large" />
         <Typography variant="h5">
           {temperature}
           &deg;
         </Typography>
       </Stack>
       <Stack direction="row" sx={{ alignItems: 'flex-end' }}>
-        <OpacityIcon fontSize="large" />
+        <OpacityIcon sx={{ color: 'contrast.main' }} fontSize="large" />
         <Typography variant="h5">
           {humidity}
           %

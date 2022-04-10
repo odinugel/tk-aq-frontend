@@ -40,6 +40,12 @@ const darkTheme = createTheme({
     primary: {
       main: '#005aa7',
     },
+    secondary: {
+      main: '#212121',
+    },
+    contrast: {
+      main: '#FFFFFF',
+    },
     success: {
       main: '#00953b',
     },
@@ -47,7 +53,7 @@ const darkTheme = createTheme({
       main: '#e41f1a',
     },
     background: {
-      main: '#414141',
+      main: '#121212',
     },
     donutGood: {
       main: '#00953b',
@@ -63,6 +69,7 @@ const darkTheme = createTheme({
     },
   },
   typography: {
+    allVariants: { color: '#FFFFFF' },
     fontFamily: [
       'Source Sans Pro',
       'sans-serif',

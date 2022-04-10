@@ -23,6 +23,8 @@ export default function SensorList({
   const [show, toggleShow] = useState(open);
   const location = useLocation();
 
+  /* slenge inn ein liten paper isted for fragments? er lyst på toppen */
+
   return (
     <>
       <Button onClick={() => toggleShow((currentShow) => !currentShow)} variant="outlined" startIcon={<ArrowBackIcon />}>
@@ -38,7 +40,7 @@ export default function SensorList({
           </ListItemButton>
         ))
           : (
-            <List sx={{ padding: 0 }}>
+            <List sx={{ bgcolor: 'secondary.main', padding: 0 }}>
               {sensors
                 .sort((a, b) => a.deviceName.localeCompare(b.deviceName, 'NO'))
                 .map((sensor) => (

@@ -8,7 +8,7 @@ export default function DarkModeSwitch({ darkMode, setDarkMode }) {
   return (
     <Stack direction="row" alignItems="center">
       <Switch checked={darkMode} onChange={() => setDarkMode(!darkMode)} />
-      { darkMode ? <Brightness3Icon /> : <LightModeIcon /> }
+      { darkMode ? <Brightness3Icon sx={{ color: 'contrast.main' }} /> : <LightModeIcon /> }
     </Stack>
   );
 }
