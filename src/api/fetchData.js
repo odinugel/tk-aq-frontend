@@ -33,7 +33,6 @@ const fetchData = async (sensorID, sensors, setData, setLoading, setFetchFailed)
     if (dustReversed.length !== 0 && gasReversed.length !== 0) {
       const pollutants = pollutionToPercentage(dustReversed, gasReversed);
       const sortedPollutants = sortPollutants(pollutants);
-      console.log(sortedPollutants);
       setData({
         sensors,
         sensorID,
