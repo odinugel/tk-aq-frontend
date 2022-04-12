@@ -11,6 +11,7 @@ import {
   Drawer,
   Skeleton,
   ListItemText,
+  Paper,
 } from '@mui/material';
 import PropTypes from 'prop-types';
 
@@ -30,10 +31,12 @@ export default function SensorList({
       <Button onClick={() => toggleShow((currentShow) => !currentShow)} variant="outlined" startIcon={<ArrowBackIcon />}>
         Sensors
       </Button>
-      <Drawer open={show} PaperProps={{ sx: { width: '100%' } }} anchor="left">
-        <Button onClick={() => toggleShow((currentShow) => !currentShow)} variant="outlined" sx={{ alignSelf: 'flex-start', margin: '1rem' }} startIcon={<CloseIcon />}>
-          Close
-        </Button>
+      <Drawer open={show} PaperProps={{ sx: { width: '100%', bgcolor: 'secondary.main' } }} sx={{ bgcolor: 'secondary.main' }} anchor="left">
+        <Paper sx={{ bgcolor: 'secondary.main', width: '100%' }} square>
+          <Button onClick={() => toggleShow((currentShow) => !currentShow)} variant="outlined" sx={{ alignSelf: 'flex-start', margin: '1rem', bgcolor: 'secondary.main' }} startIcon={<CloseIcon />}>
+            Close
+          </Button>
+        </Paper>
         {loading ? [...Array(20)].map((val, index) => (
           <ListItemButton key={index} divider>
             <Skeleton width="100%" height={50} />
