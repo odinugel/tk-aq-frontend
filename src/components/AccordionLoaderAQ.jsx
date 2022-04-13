@@ -7,9 +7,9 @@ import {
   Skeleton,
 } from '@mui/material';
 
-export default function AccordionLoader() {
+export default function AccordionLoaderAQ() {
   return (
-    <div>
+    <Box margin="0 auto" sx={{ maxWidth: '600px' }}>
       {
     [...Array(4)].map((val, index) => (
       <Accordion key={index}>
@@ -24,6 +24,6 @@ export default function AccordionLoader() {
       </Accordion>
     ))
   }
-    </div>
+    </Box>
   );
 }

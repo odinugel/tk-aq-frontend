@@ -1,14 +1,16 @@
-import { Stack } from '@mui/material';
+import { Stack, Box, Paper } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import CssBaseline from '@mui/material/CssBaseline';
 import theme from './theme';
-import AccordionAQ from './components/Accordion';
+import AccordionAQ from './components/AccordionAQ';
 import fetchData from './api/fetchData';
 import PrimaryDisplay from './components/PrimaryDisplay';
 import FetchError from './components/FetchError';
 import Header from './components/Header';
 import fetchSensors from './api/fetchSensors';
+import SensorSelect from './components/SensorSelect';
 
 function App() {
   const [data, setData] = useState({});
@@ -21,7 +23,7 @@ function App() {
   console.log('render');
   if (sensorID === '' && params.id) {
     setSensorID(params.id);
-    console.log(`sensorID is empty, found params: ${params.id} in url, setting sensorID`);
+    console.log(`sensorID is empty, found params: ${params.id} in url, set sensorID`);
   }
   // if we do not have a url ID
   // -> fetch and display a list of sensors
@@ -49,17 +51,50 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Header
-        sensors={sensors}
-        loadingSensors={loadingSensors}
-        setSensorID={setSensorID}
-        params={params}
-      />
-      {fetchFailed && <FetchError />}
-      <Stack spacing="1rem" sx={{ maxWidth: '750px', margin: '1rem auto' }}>
-        <PrimaryDisplay data={data} loading={loading} />
-        <AccordionAQ pollutants={data.pollutants} loading={loading} />
-      </Stack>
+      <CssBaseline>
+        {fetchFailed && <FetchError />}
+        <Paper sx={{ bgcolor: 'background.main', minHeight: '100vh' }} square>
+          <Header
+            sensors={sensors}
+            loadingSensors={loadingSensors}
+            sensorID={sensorID}
+            setSensorID={setSensorID}
+          />
+          <Stack
+            direction="row"
+            sx={{
+              justifyContent: 'center',
+              maxWidth: '1200px',
+              margin: '0 auto',
+            }}
+          >
+            <Box sx={{
+              display: { xs: 'none', lg: 'block' },
+              maxHeight: '85vh',
+              overflowY: 'scroll',
+              maxWidth: '600px',
+              width: '100%',
+              margin: '1rem',
+            }}
+            >
+              <SensorSelect
+                loadingSensors={loadingSensors}
+                sensors={sensors}
+                setSensorID={setSensorID}
+              />
+            </Box>
+            <Box sx={{
+              maxWidth: '600px',
+              width: '100%',
+              margin: '1rem',
+            }}
+            >
+              <PrimaryDisplay data={data} loading={loading} />
+              <AccordionAQ pollutants={data.pollutants} loading={loading} />
+            </Box>
+          </Stack>
+        </Paper>
+      </CssBaseline>
     </ThemeProvider>
   );
 }

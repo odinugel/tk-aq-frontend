@@ -6,18 +6,24 @@ import {
   Box,
 } from '@mui/material';
 
-export default function Loader() {
+export default function PrimaryDisplayLoader() {
   return (
-    <Paper>
+    <Paper sx={{
+      padding: '1rem',
+      margin: '0 auto',
+      maxWidth: '600px',
+      marginBottom: '1rem',
+    }}
+    >
       <Stack sx={{ alignItems: 'center' }}>
-        <Typography variant="h4" m="1rem" width="60%">
+        <Typography variant="h4" width="60%">
           <Skeleton />
         </Typography>
         <Typography variant="h6" mb="1rem">
           <Skeleton width="30ch" />
         </Typography>
       </Stack>
-      <Box width="60%" margin="0 auto" marginBottom="3.5rem">
+      <Box width="75%" margin="0 auto" marginBottom="4.5rem">
         <Stack
           justifyContent="center"
           alignItems="center"

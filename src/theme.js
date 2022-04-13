@@ -5,6 +5,9 @@ const theme = createTheme({
     primary: {
       main: '#005aa7',
     },
+    secondary: {
+      main: '#f2f2f2',
+    },
     success: {
       main: '#00953b',
     },
@@ -13,6 +16,7 @@ const theme = createTheme({
     },
     background: {
       main: '#f2f2f2',
+      secondary: '#ffffff',
     },
     donutGood: {
       main: '#00953b',
@@ -25,6 +29,10 @@ const theme = createTheme({
     },
     donutVeryPoor: {
       main: '#4719A7',
+    },
+    pollutantWarning: {
+      main: '#ffa726',
+      transparent: '#ffa72666',
     },
   },
   typography: {
