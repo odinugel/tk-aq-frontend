@@ -34,11 +34,11 @@ export default function LangButton() {
         }}
       >
         <MenuItem onClick={handleClose}>
-          <img src="https://tipqa.trondheim.kommune.no/luftkvalitet-frontend/static/media/norway.6cf1dc59.svg" alt="no" width="20px" />
+          <img src="https://tipqa.trondheim.kommune.no/luftkvalitet-frontend/static/media/norway.6cf1dc59.svg" alt="no" width="20px" style={{ marginRight: '5px' }} />
           Norwegian
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <img src="https://tipqa.trondheim.kommune.no/luftkvalitet-frontend/static/media/britain.24c58033.svg" alt="no" width="20px" />
+          <img src="https://tipqa.trondheim.kommune.no/luftkvalitet-frontend/static/media/britain.24c58033.svg" alt="no" width="20px" style={{ marginRight: '5px' }} />
           English
         </MenuItem>
       </Menu>
