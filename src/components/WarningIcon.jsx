@@ -5,7 +5,7 @@ export default function WarningIcon() {
     <WarningAmberIcon sx={{
       alignSelf: 'center',
       mr: '1rem',
-      fill: 'error.main',
+      fill: '#e41f1a',
       fontSize: '3rem',
     }}
     />
