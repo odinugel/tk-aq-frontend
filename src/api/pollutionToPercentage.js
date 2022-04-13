@@ -18,26 +18,30 @@ export default function pollutionToPercentage(dust, gas) {
   const { PM10, 'PM2.5': PM25 } = dust[0];
   const { NO2, O3 } = gas[0];
 
-  return {
-    PM10: {
+  return [
+    {
+      name: 'PM10',
       percentage: ((PM10 / PM10_MAX) * 100),
       category: aqCategory('PM10', PM10),
       realValue: PM10,
     },
-    PM25: {
+    {
+      name: 'PM2.5',
       percentage: ((PM25 / PM25_MAX) * 100),
       category: aqCategory('PM25', PM25),
       realValue: PM25,
     },
-    NO2: {
+    {
+      name: 'NO2',
       percentage: ((NO2 / NO2_MAX) * 100),
       category: aqCategory('NO2', NO2),
       realValue: NO2,
     },
-    O3: {
+    {
+      name: 'O3',
       percentage: ((O3 / O3_MAX) * 100),
       category: aqCategory('O3', O3),
       realValue: O3,
     },
-  };
+  ];
 }

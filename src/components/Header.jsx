@@ -2,39 +2,57 @@ import {
   Typography,
   Stack,
   Toolbar,
+  AppBar,
+  useMediaQuery,
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import LangButton from './LangButton';
-import SensorList from './SensorList';
 import DarkModeSwitch from './DarkModeSwitch';
+import SensorDrawer from './SensorDrawer';
 
 export default function Header({
   sensors,
   loadingSensors,
+  sensorID,
   setSensorID,
-  params,
   darkMode,
   setDarkMode,
+
 }) {
+  const maxWidth600px = useMediaQuery('(max-width:600px)');
+
   return (
-    <Stack sx={{ display: 'flex', placeItems: 'center', borderBottom: '7px solid #005aa7' }}>
+    <AppBar
+      position="sticky"
+      color="secondary"
+      sx={{
+        zIndex: (theme) => theme.zIndex.drawer + 1,
+        display: 'flex',
+        placeItems: 'center',
+        borderBottom: '7px solid #005aa7',
+      }}
+    >
       <Toolbar
         sx={{
           display: 'flex',
-          placeItems: 'center',
+          flexDirection: 'row',
           justifyContent: 'space-between',
-          padding: '1rem',
+          margin: '1rem',
           width: '100%',
           maxWidth: '1200px',
+          padding: '0 1rem',
         }}
+        disableGutters
       >
+        {maxWidth600px && (
+        <SensorDrawer
+          sensors={sensors}
+          loadingSensors={loadingSensors}
+          setSensorID={setSensorID}
+          sensorID={sensorID}
+        />
+        )}
         <Stack direction="row" sx={{ placeItems: 'center' }} spacing={2}>
-          <SensorList
-            sensors={sensors}
-            loading={loadingSensors}
-            setSensorID={setSensorID}
-            open={!params.id}
-          />
           <img src="./TrondheimKommuneSkjold.svg" alt="logo" width="60px" />
           <Stack>
             <Typography align="center" variant="h5">
@@ -50,7 +68,7 @@ export default function Header({
           <DarkModeSwitch darkMode={darkMode} setDarkMode={setDarkMode} />
         </Stack>
       </Toolbar>
-    </Stack>
+    </AppBar>
   );
 }
 
@@ -58,7 +76,7 @@ Header.propTypes = {
   sensors: PropTypes.arrayOf(PropTypes.object).isRequired,
   loadingSensors: PropTypes.bool.isRequired,
   setSensorID: PropTypes.func.isRequired,
-  params: PropTypes.object.isRequired,
   darkMode: PropTypes.bool.isRequired,
   setDarkMode: PropTypes.func.isRequired,
+  sensorID: PropTypes.string.isRequired,
 };

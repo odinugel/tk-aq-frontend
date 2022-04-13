@@ -10,9 +10,15 @@ export default function PrimaryDisplay({ data, loading }) {
     return <PrimaryDisplayLoader />;
   }
   return (
-    <Paper sx={{ bgcolor: 'secondary.main' }}>
+    <Paper sx={{
+      padding: '1rem',
+      margin: '0 auto',
+      marginBottom: '1rem',
+      maxWidth: '600px',
+    }}
+    >
       <Stack sx={{ alignItems: 'center' }}>
-        <Typography variant="h4" m="1rem">
+        <Typography variant="h4">
           {data.sensors.find((index) => index.deviceID === data.sensorID).deviceName}
         </Typography>
         <Typography variant="h6" mb="1rem">
@@ -20,9 +26,9 @@ export default function PrimaryDisplay({ data, loading }) {
         </Typography>
       </Stack>
       <Donut
-        size="60%"
+        size="75%"
         text // if omitted, no text will be displayed inside circle
-        value={data.topPollutant.value}
+        value={data.topPollutant.percentage}
         category={data.topPollutant.category}
         thickness={2}
       />

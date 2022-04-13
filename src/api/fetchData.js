@@ -1,5 +1,5 @@
-import findTopPollutant from './findTopPollutant';
 import pollutionToPercentage from './pollutionToPercentage';
+import sortPollutants from './sortPollutants';
 
 const fetchData = async (sensorID, sensors, setData, setLoading, setFetchFailed) => {
   try {
@@ -32,12 +32,12 @@ const fetchData = async (sensorID, sensors, setData, setLoading, setFetchFailed)
     // (if there is no data, the response will be an empty array)
     if (dustReversed.length !== 0 && gasReversed.length !== 0) {
       const pollutants = pollutionToPercentage(dustReversed, gasReversed);
-      const topPollutant = findTopPollutant(pollutants);
+      const sortedPollutants = sortPollutants(pollutants);
       setData({
-        topPollutant,
-        pollutants,
         sensors,
         sensorID,
+        pollutants: sortedPollutants,
+        topPollutant: sortedPollutants[0],
         weather: weatherReversed[0] ?? { temperature: ' ', humidity: ' ' },
         // assuming gas and dust are always in sync, probably not the case.
         timestamp: dustReversed[0].timestamp,
