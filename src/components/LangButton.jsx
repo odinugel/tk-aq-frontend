@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import LanguageIcon from '@mui/icons-material/Language';
@@ -15,16 +15,17 @@ export default function LangButton() {
   };
 
   return (
-    <div>
-      <Button
+    <>
+      <IconButton
         variant="text"
-        size="xlarge"
-        startIcon={<LanguageIcon />}
+        color="primary"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
-      />
+      >
+        <LanguageIcon />
+      </IconButton>
       <Menu
         anchorEl={anchorEl}
         open={open}
@@ -42,6 +43,6 @@ export default function LangButton() {
           English
         </MenuItem>
       </Menu>
-    </div>
+    </>
   );
 }
