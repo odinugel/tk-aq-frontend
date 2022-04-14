@@ -8,12 +8,16 @@ import {
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import ExpandMore from '@mui/icons-material/ExpandMore';
+import { useContext } from 'react';
 import AccordionAQLoader from './AccordionLoaderAQ';
-import pollutantDescriptions from '../translations/pollutantDescriptions';
 import Donut from './Donut';
 import WarningIcon from './WarningIcon';
+import translations from '../translations/translations';
+import { LanguageContext } from '../context/LanguageContext';
 
 export default function AccordionAQ({ pollutants, loading }) {
+  const { language } = useContext(LanguageContext);
+
   if (loading) {
     return <AccordionAQLoader />;
   }
@@ -28,21 +32,21 @@ export default function AccordionAQ({ pollutants, loading }) {
                 {pollutant.name}
               </Typography>
             </Box>
-            {pollutant.category === 'Poor' || pollutant.category === 'Very Poor' ? <WarningIcon /> : null }
+            {pollutant.category === 3 || pollutant.category === 4 ? <WarningIcon /> : null }
           </AccordionSummary>
           <AccordionDetails>
             <Typography sx={{ marginBottom: '1rem' }} paragraph>
               {`Last hour: ${pollutant.realValue}μg/m3`}
             </Typography>
-            {pollutantDescriptions[pollutant.name].text.map((paragraph, index) => (
+            {translations[pollutant.name].text[language].map((paragraph, index) => (
               // since the ordering will never change, index as key should be ok
               // eslint-disable-next-line react/no-array-index-key
               <Typography mb="1rem" key={index}>
                 {paragraph}
               </Typography>
             ))}
-            <Link href={pollutantDescriptions[pollutant.name].link.url} sx={{ fontFamily: 'Source Sans Pro' }}>
-              {pollutantDescriptions[pollutant.name].link.text}
+            <Link href={translations[pollutant.name].link.url} sx={{ fontFamily: 'Source Sans Pro' }}>
+              {translations[pollutant.name].link.text[language]}
             </Link>
           </AccordionDetails>
         </Accordion>
