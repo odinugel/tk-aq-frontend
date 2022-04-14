@@ -109,5 +109,15 @@ const translations = {
     no: 'Alvorlig helserisiko - Sårbare grupper i befolkningen er svært utsatte for helseeffekter. Luftveisirritasjoner og ubehag forekommer hos friske personer.',
     en: 'Serious risk of adverse effects - Sensitive population groups are very susceptible to adverse effects. Respiratory irritation and discomfort occur in healthy individuals.',
   },
+  sensorSelect: {
+    list: {
+      no: 'Liste',
+      en: 'List',
+    },
+    map: {
+      no: 'Kart',
+      en: 'Map',
+    },
+  },
 };
 export default translations;
