@@ -37,11 +37,11 @@ export default function LangButton() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={() => setLanguage(() => 'no')} selected={language === 'no'}>
+        <MenuItem onClick={() => { setLanguage(() => 'no'); handleClose(); }} selected={language === 'no'}>
           <img src="./noflag.svg" alt="logo" width="30px" style={{ marginRight: '5px' }} />
           Norwegian
         </MenuItem>
-        <MenuItem onClick={() => setLanguage(() => 'en')} selected={language === 'en'}>
+        <MenuItem onClick={() => { setLanguage(() => 'en'); handleClose(); }} selected={language === 'en'}>
           <img src="./britflag.svg" alt="logo" width="30px" style={{ marginRight: '5px' }} />
           English
         </MenuItem>
