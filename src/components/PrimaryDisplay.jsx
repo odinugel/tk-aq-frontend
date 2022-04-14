@@ -8,6 +8,7 @@ import Weather from './Weather';
 import PrimaryDisplayLoader from './PrimaryDisplayLoader';
 import ShortInfo from './ShortInfo';
 import { LanguageContext } from '../context/LanguageContext';
+import translations from '../translations/translations';
 
 export default function PrimaryDisplay({ data, loading }) {
   const { language } = useContext(LanguageContext);
@@ -30,7 +31,7 @@ export default function PrimaryDisplay({ data, loading }) {
           {`språk: ${language}`}
         </Typography>
         <Typography variant="h6" mb="1rem">
-          {`Last update: ${formatDistanceStrict(data.timestamp, new Date(), { addSuffix: true, locale: language === 'no' ? nb : enGB })}`}
+          {`${translations.lastUpdate[language]} ${formatDistanceStrict(data.timestamp, new Date(), { addSuffix: true, locale: language === 'no' ? nb : enGB })}`}
         </Typography>
       </Stack>
       <Donut
