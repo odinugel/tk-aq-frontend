@@ -6,6 +6,7 @@ import {
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SensorList from './SensorList';
+import Map from './Map';
 
 export default function SensorSelect({
   loadingSensors,
@@ -29,7 +30,7 @@ export default function SensorSelect({
         {tab === 0
           // eslint-disable-next-line max-len
           ? <SensorList setOpen={setOpen} loadingSensors={loadingSensors} sensors={sensors} setSensorID={setSensorID} />
-          : <img src="https://www.google.com/maps/d/thumbnail?mid=1L3vyNB_8aM6mS_UA4V3L1L594d4&hl=en" alt="kart" width="100%" />}
+          : <Map sensors={sensors} setSensorID={setSensorID} width="50%" height="50%" />}
       </Paper>
     </Box>
   );
