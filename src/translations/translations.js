@@ -15,7 +15,7 @@ const translations = {
     no: 'TRONDHEIM KOMMUNE',
     en: 'TRONDHEIM MUNICIPALITY',
   },
-  aqData: {
+  tkHeaderSubtitle: {
     no: 'LUFTKVALITETSDATA',
     en: 'AIR QUALITY DATA',
   },
