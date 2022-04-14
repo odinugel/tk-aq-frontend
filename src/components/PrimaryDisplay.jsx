@@ -1,12 +1,16 @@
 import { Paper, Typography, Stack } from '@mui/material';
 import formatDistanceStrict from 'date-fns/formatDistanceStrict';
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
+import { nb, enGB } from 'date-fns/locale';
 import Donut from './Donut';
 import Weather from './Weather';
 import PrimaryDisplayLoader from './PrimaryDisplayLoader';
 import ShortInfo from './ShortInfo';
+import { LanguageContext } from '../context/LanguageContext';
 
 export default function PrimaryDisplay({ data, loading }) {
+  const { language } = useContext(LanguageContext);
   if (loading) {
     return <PrimaryDisplayLoader />;
   }
@@ -22,8 +26,11 @@ export default function PrimaryDisplay({ data, loading }) {
         <Typography variant="h4">
           {data.sensors.find((index) => index.deviceID === data.sensorID).deviceName}
         </Typography>
+        <Typography variant="h4">
+          {`språk: ${language}`}
+        </Typography>
         <Typography variant="h6" mb="1rem">
-          {`Last update: ${formatDistanceStrict(data.timestamp, new Date(), { addSuffix: true })}`}
+          {`Last update: ${formatDistanceStrict(data.timestamp, new Date(), { addSuffix: true, locale: language === 'no' ? nb : enGB })}`}
         </Typography>
       </Stack>
       <Donut
