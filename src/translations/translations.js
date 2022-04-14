@@ -24,19 +24,19 @@ const translations = {
     en: 'Last update: ',
   },
   donutCategory: {
-    good: {
+    1: {
       no: 'God',
       en: 'Good',
     },
-    moderate: {
+    2: {
       no: 'Moderat',
       en: 'Moderate',
     },
-    poor: {
+    3: {
       no: 'Dårlig',
       en: 'Poor',
     },
-    veryPoor: {
+    4: {
       no: 'Veldig dårlig',
       en: 'Very poor',
     },

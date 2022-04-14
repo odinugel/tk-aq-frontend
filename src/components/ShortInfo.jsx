@@ -5,9 +5,9 @@ import translations from '../translations/translations';
 export default function ShortInfo({ category }) {
   const { language } = useContext(LanguageContext);
 
-  if (category === 'Good') { return translations.shortInfoGood[language]; }
-  if (category === 'Moderate') { return translations.shortInfoModerate[language]; }
-  if (category === 'Poor') { return translations.shortInfoPoor[language]; }
-  if (category === 'Very Poor') { return translations.shortInfoVeryPoor[language]; }
+  if (category === 1) { return translations.shortInfoGood[language]; }
+  if (category === 2) { return translations.shortInfoModerate[language]; }
+  if (category === 3) { return translations.shortInfoPoor[language]; }
+  if (category === 4) { return translations.shortInfoVeryPoor[language]; }
   return '';
 }
