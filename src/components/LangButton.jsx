@@ -35,11 +35,11 @@ export default function LangButton() {
         }}
       >
         <MenuItem onClick={handleClose}>
-          <img src="./noflag.svg" alt="logo" width="30px" />
+          <img src="./noflag.svg" alt="logo" width="30px" style={{ marginRight: '5px' }} />
           Norwegian
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <img src="./britflag.svg" alt="logo" width="30px" />
+          <img src="./britflag.svg" alt="logo" width="30px" style={{ marginRight: '5px' }} />
           English
         </MenuItem>
       </Menu>
