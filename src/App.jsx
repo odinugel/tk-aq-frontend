@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from './theme';
+import { LanguageProvider } from './context/LanguageContext';
 import AccordionAQ from './components/AccordionAQ';
 import fetchData from './api/fetchData';
 import PrimaryDisplay from './components/PrimaryDisplay';
@@ -20,6 +21,7 @@ function App() {
   const [fetchFailed, setFetchFailed] = useState(false);
   const [sensorID, setSensorID] = useState('');
   const params = useParams();
+
   console.log('render');
   if (sensorID === '' && params.id) {
     setSensorID(params.id);
@@ -50,52 +52,54 @@ function App() {
   }, [sensorID, sensors]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline>
-        {fetchFailed && <FetchError />}
-        <Paper sx={{ bgcolor: 'background.main', minHeight: '100vh' }} square>
-          <Header
-            sensors={sensors}
-            loadingSensors={loadingSensors}
-            sensorID={sensorID}
-            setSensorID={setSensorID}
-          />
-          <Stack
-            direction="row"
-            sx={{
-              justifyContent: 'center',
-              maxWidth: '1200px',
-              margin: '0 auto',
-            }}
-          >
-            <Box sx={{
-              display: { xs: 'none', lg: 'block' },
-              maxHeight: '85vh',
-              overflowY: 'scroll',
-              maxWidth: '600px',
-              width: '100%',
-              margin: '1rem',
-            }}
+    <LanguageProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline>
+          {fetchFailed && <FetchError />}
+          <Paper sx={{ bgcolor: 'background.main', minHeight: '100vh' }} square>
+            <Header
+              sensors={sensors}
+              loadingSensors={loadingSensors}
+              sensorID={sensorID}
+              setSensorID={setSensorID}
+            />
+            <Stack
+              direction="row"
+              sx={{
+                justifyContent: 'center',
+                maxWidth: '1200px',
+                margin: '0 auto',
+              }}
             >
-              <SensorSelect
-                loadingSensors={loadingSensors}
-                sensors={sensors}
-                setSensorID={setSensorID}
-              />
-            </Box>
-            <Box sx={{
-              maxWidth: '600px',
-              width: '100%',
-              margin: '1rem',
-            }}
-            >
-              <PrimaryDisplay data={data} loading={loading} />
-              <AccordionAQ pollutants={data.pollutants} loading={loading} />
-            </Box>
-          </Stack>
-        </Paper>
-      </CssBaseline>
-    </ThemeProvider>
+              <Box sx={{
+                display: { xs: 'none', lg: 'block' },
+                maxHeight: '85vh',
+                overflowY: 'scroll',
+                maxWidth: '600px',
+                width: '100%',
+                margin: '1rem',
+              }}
+              >
+                <SensorSelect
+                  loadingSensors={loadingSensors}
+                  sensors={sensors}
+                  setSensorID={setSensorID}
+                />
+              </Box>
+              <Box sx={{
+                maxWidth: '600px',
+                width: '100%',
+                margin: '1rem',
+              }}
+              >
+                <PrimaryDisplay data={data} loading={loading} />
+                <AccordionAQ pollutants={data.pollutants} loading={loading} />
+              </Box>
+            </Stack>
+          </Paper>
+        </CssBaseline>
+      </ThemeProvider>
+    </LanguageProvider>
   );
 }
 

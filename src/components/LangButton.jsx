@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import LanguageIcon from '@mui/icons-material/Language';
+import { LanguageContext } from '../context/LanguageContext';
 
 export default function LangButton() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -13,6 +14,8 @@ export default function LangButton() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const { language, setLanguage } = useContext(LanguageContext);
 
   return (
     <>
@@ -34,11 +37,11 @@ export default function LangButton() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={() => setLanguage(() => 'no')} selected={language === 'no'}>
           <img src="./noflag.svg" alt="logo" width="30px" style={{ marginRight: '5px' }} />
           Norwegian
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={() => setLanguage(() => 'en')} selected={language === 'en'}>
           <img src="./britflag.svg" alt="logo" width="30px" style={{ marginRight: '5px' }} />
           English
         </MenuItem>
