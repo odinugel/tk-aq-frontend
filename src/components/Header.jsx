@@ -16,6 +16,7 @@ export default function Header({
   setSensorID,
 }) {
   const maxWidth1200px = useMediaQuery('(max-width:1200px)');
+  const minWidth450px = useMediaQuery('(min-width:450px)');
 
   return (
     <AppBar
@@ -50,6 +51,8 @@ export default function Header({
         )}
         <Stack direction="row" sx={{ placeItems: 'center' }} spacing={2}>
           <img src="./TrondheimKommuneSkjold.svg" alt="logo" width="60px" />
+          {minWidth450px
+          && (
           <Stack>
             <Typography align="center" variant="h5">
               TRONDHEIM KOMMUNE
@@ -58,6 +61,7 @@ export default function Header({
               LUFTKVALITETSDATA
             </Typography>
           </Stack>
+          )}
         </Stack>
         <LangButton />
       </Toolbar>
