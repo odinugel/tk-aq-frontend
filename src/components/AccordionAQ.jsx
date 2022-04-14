@@ -36,7 +36,7 @@ export default function AccordionAQ({ pollutants, loading }) {
           </AccordionSummary>
           <AccordionDetails>
             <Typography sx={{ marginBottom: '1rem' }} paragraph>
-              {`Last hour: ${pollutant.realValue}μg/m3`}
+              {`${translations.lastHour[language]} ${pollutant.realValue}μg/m3`}
             </Typography>
             {translations[pollutant.name].text[language].map((paragraph, index) => (
               // since the ordering will never change, index as key should be ok

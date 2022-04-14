@@ -23,6 +23,10 @@ const translations = {
     no: 'Sist oppdatert: ',
     en: 'Last update: ',
   },
+  lastHour: {
+    no: 'Siste time',
+    en: 'Last hour',
+  },
   donutCategory: {
     1: {
       no: 'God',
