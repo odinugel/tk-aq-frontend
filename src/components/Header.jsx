@@ -29,7 +29,8 @@ export default function Header({
         zIndex: (theme) => theme.zIndex.drawer + 1,
         display: 'flex',
         placeItems: 'center',
-        borderBottom: '7px solid #005aa7',
+        borderBottom: '7px solid',
+        borderColor: 'primary.main',
       }}
     >
       <Toolbar

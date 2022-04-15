@@ -48,7 +48,7 @@ const theme = createTheme({
 const darkTheme = createTheme({
   palette: {
     primary: {
-      main: '#005aa7',
+      main: '#0091D2',
     },
     secondary: {
       main: '#212121',
