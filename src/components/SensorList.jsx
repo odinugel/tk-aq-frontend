@@ -8,6 +8,7 @@ import {
   Skeleton,
 } from '@mui/material';
 import PropTypes from 'prop-types';
+import OfflineBoltIcon from '@mui/icons-material/OfflineBolt';
 
 export default function SensorList({
   sensors,
@@ -44,6 +45,7 @@ export default function SensorList({
                   }}
                 >
                   <ListItemText primaryTypographyProps={{ sx: { fontSize: '1.5rem', fontWeight: 'bold', margin: '1rem' } }} primary={sensor.deviceName} />
+                  {!sensor.isOnline && (<OfflineBoltIcon sx={{ marginRight: '1rem' }} />)}
                 </ListItemButton>
               ) : null))}
         </List>
