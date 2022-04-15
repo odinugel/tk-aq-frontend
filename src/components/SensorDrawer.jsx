@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import MenuIcon from '@mui/icons-material/Menu';
 import {
-  Button,
+  IconButton,
   Drawer,
 } from '@mui/material';
 import PropTypes from 'prop-types';
@@ -17,9 +17,9 @@ export default function SensorDrawer({
 
   return (
     <>
-      <Button onClick={() => setOpen((currentOpen) => !currentOpen)} variant="outlined" startIcon={<ArrowBackIcon />}>
-        Sensors
-      </Button>
+      <IconButton onClick={() => setOpen((currentOpen) => !currentOpen)} variant="outlined" color="primary">
+        <MenuIcon />
+      </IconButton>
       <Drawer open={open} PaperProps={{ sx: { width: '100%', paddingTop: '111px' } }} anchor="left">
         <SensorSelect
           sensors={sensors}

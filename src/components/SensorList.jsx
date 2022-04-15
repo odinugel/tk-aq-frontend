@@ -1,4 +1,5 @@
 /* eslint-disable react/no-array-index-key */
+// Above is for keys for skeleton loaders
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   List,

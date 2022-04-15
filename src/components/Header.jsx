@@ -19,7 +19,7 @@ export default function Header({
   setDarkMode,
 
 }) {
-  const maxWidth600px = useMediaQuery('(max-width:600px)');
+  const maxWidth1200px = useMediaQuery('(max-width:1200px)');
 
   return (
     <AppBar
@@ -44,7 +44,7 @@ export default function Header({
         }}
         disableGutters
       >
-        {maxWidth600px && (
+        {maxWidth1200px && (
         <SensorDrawer
           sensors={sensors}
           loadingSensors={loadingSensors}
