@@ -44,7 +44,7 @@ export default function SensorList({
                     navigate(`/${sensor.deviceID}`);
                   }}
                 >
-                  <ListItemText primaryTypographyProps={{ sx: { fontSize: '1.5rem', fontWeight: 'bold', margin: '1rem' } }} primary={sensor.deviceName} />
+                  <ListItemText primaryTypographyProps={{ sx: { fontSize: '1.5rem', margin: '1rem' } }} primary={sensor.deviceName} />
                 </ListItemButton>
               ) : null))}
         </List>

@@ -32,7 +32,9 @@ const theme = createTheme({
     },
     pollutantWarning: {
       main: '#ffa726',
-      transparent: '#ffa72666',
+    },
+    link: {
+      main: '#1A0DAB',
     },
   },
   typography: {
@@ -65,8 +67,8 @@ const darkTheme = createTheme({
       paper: '#212121',
     },
     text: {
-      primary: '#CCCCCC',
-      secondary: '#CCCCCC',
+      primary: '#FFFFFFDE',
+      secondary: '#FFFFFFDE',
     },
     donutGood: {
       main: '#00953b',
@@ -80,9 +82,15 @@ const darkTheme = createTheme({
     donutVeryPoor: {
       main: '#4719A7',
     },
+    pollutantWarning: {
+      main: '#ffa726',
+    },
+    link: {
+      main: '#8AB4F8',
+    },
   },
   typography: {
-    allVariants: { color: '#FFFFFF' },
+    allVariants: { color: '#FFFFFFDE' },
     fontFamily: [
       'Source Sans Pro',
       'sans-serif',
