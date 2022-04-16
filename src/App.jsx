@@ -1,16 +1,22 @@
-import { Stack, Box, Paper } from '@mui/material';
-import { ThemeProvider } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import CssBaseline from '@mui/material/CssBaseline';
+import {
+  Stack,
+  Box,
+  Paper,
+  CssBaseline,
+} from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
 import theme from './theme';
-import AccordionAQ from './components/AccordionAQ';
 import fetchData from './api/fetchData';
-import PrimaryDisplay from './components/PrimaryDisplay';
-import FetchError from './components/FetchError';
-import Header from './components/Header';
 import fetchSensors from './api/fetchSensors';
-import SensorSelect from './components/SensorSelect';
+import {
+  AccordionAQ,
+  PrimaryDisplay,
+  FetchError,
+  Header,
+  SensorSelect,
+} from './components';
 
 function App() {
   const [data, setData] = useState({});
@@ -19,6 +25,20 @@ function App() {
   const [loadingSensors, setLoadingSensors] = useState(true);
   const [fetchFailed, setFetchFailed] = useState(false);
   const [sensorID, setSensorID] = useState('');
+  const [latitude, setLatitude] = useState(63.429799); // Trondheim sentrum
+  const [longitude, setLongitude] = useState(10.393418);
+  const [userHasLocation, setUserHasLocation] = useState(false);
+
+  useEffect(() => {
+    if (!userHasLocation) {
+      navigator.geolocation.getCurrentPosition((positionme) => {
+        setLatitude(positionme.coords.latitude);
+        setLongitude(positionme.coords.longitude);
+        setUserHasLocation(true);
+      }, (error) => { console.log(error); setUserHasLocation(false); });
+    }
+  }, [userHasLocation]);
+
   const params = useParams();
   console.log('render');
   if (sensorID === '' && params.id) {
@@ -59,6 +79,9 @@ function App() {
             loadingSensors={loadingSensors}
             sensorID={sensorID}
             setSensorID={setSensorID}
+            latitude={latitude}
+            longitude={longitude}
+            userHasLocation={userHasLocation}
           />
           <Stack
             direction="row"
@@ -81,6 +104,9 @@ function App() {
                 loadingSensors={loadingSensors}
                 sensors={sensors}
                 setSensorID={setSensorID}
+                latitude={latitude}
+                longitude={longitude}
+                userHasLocation={userHasLocation}
               />
             </Box>
             <Box sx={{

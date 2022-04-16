@@ -13,6 +13,9 @@ export default function SensorSelect({
   sensors,
   setSensorID,
   setOpen,
+  latitude,
+  longitude,
+  userHasLocation,
 }) {
   const [tab, setTab] = useState(0);
 
@@ -29,8 +32,8 @@ export default function SensorSelect({
       <Paper>
         {tab === 0
           // eslint-disable-next-line max-len
-          ? <SensorList setOpen={setOpen} loadingSensors={loadingSensors} sensors={sensors} setSensorID={setSensorID} />
-          : <Map sensors={sensors} setSensorID={setSensorID} width="50%" height="50%" />}
+          ? <SensorList userHasLocation={userHasLocation} latitude={latitude} longitude={longitude} setOpen={setOpen} loadingSensors={loadingSensors} sensors={sensors} setSensorID={setSensorID} />
+          : <Map userHasLocation={userHasLocation} latitude={latitude} longitude={longitude} sensors={sensors} setSensorID={setSensorID} width="50%" height="50%" />}
       </Paper>
     </Box>
   );
@@ -41,4 +44,7 @@ SensorSelect.propTypes = {
   sensors: PropTypes.array.isRequired,
   setSensorID: PropTypes.func.isRequired,
   setOpen: PropTypes.func,
+  latitude: PropTypes.number,
+  longitude: PropTypes.number,
+  userHasLocation: PropTypes.bool,
 };

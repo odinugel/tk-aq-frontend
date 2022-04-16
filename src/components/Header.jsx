@@ -14,6 +14,9 @@ export default function Header({
   loadingSensors,
   sensorID,
   setSensorID,
+  latitude,
+  longitude,
+  userHasLocation,
 }) {
   const maxWidth1200px = useMediaQuery('(max-width:1200px)');
 
@@ -46,6 +49,9 @@ export default function Header({
           loadingSensors={loadingSensors}
           setSensorID={setSensorID}
           sensorID={sensorID}
+          latitude={latitude}
+          longitude={longitude}
+          userHasLocation={userHasLocation}
         />
         )}
         <Stack direction="row" sx={{ placeItems: 'center' }} spacing={2}>
@@ -70,4 +76,7 @@ Header.propTypes = {
   loadingSensors: PropTypes.bool.isRequired,
   setSensorID: PropTypes.func.isRequired,
   sensorID: PropTypes.string.isRequired,
+  latitude: PropTypes.number.isRequired,
+  longitude: PropTypes.number.isRequired,
+  userHasLocation: PropTypes.bool.isRequired,
 };

@@ -1,5 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 // Above is for keys for skeleton loaders
+import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   List,
@@ -8,15 +9,33 @@ import {
   Skeleton,
 } from '@mui/material';
 import PropTypes from 'prop-types';
+import getSensorDistanceFromUser from '../utils/getSensorDistanceFromUser';
+import sortSensorsByDistance from '../utils/sortSensorsByDistance';
+import sortSensorsAlphabetically from '../utils/sortSensorsAlphabetically';
 
 export default function SensorList({
   sensors,
   setSensorID,
   setOpen,
   loadingSensors,
+  latitude,
+  longitude,
+  userHasLocation,
 }) {
   const location = useLocation();
   const navigate = useNavigate();
+  const [sortedSensors, setSortedSensors] = useState([]);
+  useEffect(() => {
+    if (!loadingSensors) {
+      if (userHasLocation) {
+        const byDistance = sortSensorsByDistance(sensors, latitude, longitude);
+        setSortedSensors(byDistance);
+      } else {
+        const alphabetically = sortSensorsAlphabetically(sensors);
+        setSortedSensors(alphabetically);
+      }
+    }
+  }, [loadingSensors, latitude, longitude, sensors, userHasLocation, sortedSensors]);
 
   return (
     loadingSensors ? [...Array(20)].map((val, index) => (
@@ -25,9 +44,8 @@ export default function SensorList({
       </ListItemButton>
     ))
       : (
-        <List>
-          {sensors
-            .sort((a, b) => a.deviceName.localeCompare(b.deviceName, 'NO'))
+        <List sx={{ padding: 0 }}>
+          {sortedSensors
             .map((sensor) => (
               sensor.visible ? (
                 <ListItemButton
@@ -43,7 +61,17 @@ export default function SensorList({
                     navigate(`/${sensor.deviceID}`);
                   }}
                 >
-                  <ListItemText primaryTypographyProps={{ sx: { fontSize: '1.5rem', fontWeight: 'bold', margin: '1rem' } }} primary={sensor.deviceName} />
+                  <ListItemText primaryTypographyProps={{ sx: { fontSize: '1.5rem', margin: '1rem' } }} primary={`${sensor.deviceName}`} />
+                  {userHasLocation && (
+                  <ListItemText
+                    primaryTypographyProps={{
+                      sx: {
+                        fontSize: '1rem', margin: '1rem', textAlign: 'right',
+                      },
+                    }}
+                    primary={getSensorDistanceFromUser(sensor.lat, sensor.lon, latitude, longitude)}
+                  />
+                  )}
                 </ListItemButton>
               ) : null))}
         </List>
@@ -56,4 +84,7 @@ SensorList.propTypes = {
   setSensorID: PropTypes.func.isRequired,
   loadingSensors: PropTypes.bool.isRequired,
   setOpen: PropTypes.func,
+  latitude: PropTypes.number,
+  longitude: PropTypes.number,
+  userHasLocation: PropTypes.bool.isRequired,
 };

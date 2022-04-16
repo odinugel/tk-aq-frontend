@@ -1,26 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-} from 'react-leaflet';
+import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import PropTypes from 'prop-types';
+import L from 'leaflet';
 
-export default function Map({ sensors, setSensorID }) {
-  const [latitude, setLatitude] = useState(0.0);
-  const [longitude, setLongitude] = useState(0.0);
+export default function Map({
+  sensors,
+  setSensorID,
+  latitude,
+  longitude,
+  userHasLocation,
+}) {
+  const LeafletIcon = L.Icon.extend({
+    options: {
+      iconSize: [15, 15],
+    },
+  });
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition((positionme) => {
-      setLatitude(positionme.coords.latitude);
-      setLongitude(positionme.coords.longitude);
-    });
+  const yourPositionIcon = new LeafletIcon({
+    iconUrl: './images/your_location.svg',
   });
 
   return (
     <MapContainer
-      center={[63.429799, 10.393418]}
+      center={[latitude, longitude]}
       zoom={13}
       scrollWheelZoom
       style={{ height: '70vh' }}
@@ -39,12 +40,8 @@ export default function Map({ sensors, setSensorID }) {
           }}
         />
       ))}
-      <Marker position={[latitude, longitude]}>
-        <Popup>
-          Din posisjon
-        </Popup>
+      {userHasLocation && (<Marker icon={yourPositionIcon} position={[latitude, longitude]} />)}
 
-      </Marker>
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -56,4 +53,7 @@ export default function Map({ sensors, setSensorID }) {
 Map.propTypes = {
   sensors: PropTypes.arrayOf(PropTypes.object).isRequired,
   setSensorID: PropTypes.func.isRequired,
+  latitude: PropTypes.number,
+  longitude: PropTypes.number,
+  userHasLocation: PropTypes.bool.isRequired,
 };
