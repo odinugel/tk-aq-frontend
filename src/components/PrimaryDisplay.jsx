@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Donut from './Donut';
 import Weather from './Weather';
 import PrimaryDisplayLoader from './PrimaryDisplayLoader';
+import ShortInfo from './ShortInfo';
 
 export default function PrimaryDisplay({ data, loading }) {
   if (loading) {
@@ -32,6 +33,10 @@ export default function PrimaryDisplay({ data, loading }) {
         category={data.topPollutant.category}
         thickness={2}
       />
+      <br />
+      <Stack sx={{ alignItems: 'center', justifyContent: 'center' }}>
+        <ShortInfo />
+      </Stack>
       <Weather temperature={data.weather.temperature} humidity={data.weather.humidity} />
     </Paper>
   );

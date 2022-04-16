@@ -10,8 +10,8 @@ import PropTypes from 'prop-types';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import AccordionAQLoader from './AccordionLoaderAQ';
 import pollutantDescriptions from '../translations/pollutantDescriptions';
-import WarningIcon from './WarningIcon';
 import Donut from './Donut';
+import WarningIcon from './WarningIcon';
 
 export default function AccordionAQ({ pollutants, loading }) {
   if (loading) {
