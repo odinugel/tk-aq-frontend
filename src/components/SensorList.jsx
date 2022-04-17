@@ -52,7 +52,7 @@ export default function SensorList({
     ))
       : (
         <List sx={{ padding: 0 }}>
-          <ListItemText sx={{ padding: '1rem', borderBottom: '5px solid #f2f2f2' }}>
+          <ListItemText sx={{ padding: '1rem', borderBottom: '5px solid', borderColor: 'background.main' }}>
             <Typography sx={{ fontSize: '1.5rem' }}>
               {translations.sensors[language]}
             </Typography>
@@ -73,7 +73,7 @@ export default function SensorList({
                     navigate(`/${sensor.deviceID}`);
                   }}
                 >
-                  <ListItemText primaryTypographyProps={{ sx: { fontSize: '1.5rem', margin: '1rem' } }} primary={sensor.deviceName} />
+                  <ListItemText primaryTypographyProps={{ sx: { fontSize: '1.25rem', margin: '1rem' } }} primary={sensor.deviceName} />
 
                   {(userHasLocation && sensor.isOnline) && (
                   <ListItemText
