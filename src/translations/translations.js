@@ -3,9 +3,9 @@ const translations = {
     no: 'Lukk',
     en: 'Close',
   },
-  sensorsBtn: {
-    no: 'Sensorer',
-    en: 'Sensors',
+  sensors: {
+    no: 'Sensorer:',
+    en: 'Sensors:',
   },
   langBtn: {
     no: 'Språk',
@@ -24,8 +24,8 @@ const translations = {
     en: 'Last update: ',
   },
   lastHour: {
-    no: 'Siste time',
-    en: 'Last hour',
+    no: 'Siste time:',
+    en: 'Last hour:',
   },
   donutCategory: {
     1: {
@@ -57,6 +57,10 @@ const translations = {
       },
       url: 'https://www.fhi.no/nettpub/luftkvalitet/temakapitler/ozon',
     },
+    name: {
+      no: 'Ozon',
+      en: 'Ozone',
+    },
   },
   NO2: {
     text: {
@@ -69,6 +73,10 @@ const translations = {
         en: 'More information about nitric oxide at FHI.no',
       },
       url: 'https://www.fhi.no/nettpub/luftkvalitet/temakapitler/nitrogendioksid2/',
+    },
+    name: {
+      no: 'Nitrogendioksid',
+      en: 'Nitrogen dioxide',
     },
   },
   PM10: {
@@ -83,6 +91,10 @@ const translations = {
       },
       url: 'https://www.fhi.no/nettpub/luftkvalitet/temakapitler/svevestov/',
     },
+    name: {
+      no: 'Svevestøv',
+      en: 'Particulates',
+    },
   },
   'PM2.5': {
     text: {
@@ -95,6 +107,10 @@ const translations = {
         en: 'More information about particulates at FHI.no',
       },
       url: 'https://www.fhi.no/nettpub/luftkvalitet/temakapitler/svevestov/',
+    },
+    name: {
+      no: 'Svevestøv',
+      en: 'Particulates',
     },
   },
   shortInfoGood: {
