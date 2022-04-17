@@ -19,6 +19,7 @@ export default function Header({
   setSensorID,
 }) {
   const maxWidth1200px = useMediaQuery('(max-width:1200px)');
+  const minWidth400px = useMediaQuery('(min-width:400px)');
   const minWidth450px = useMediaQuery('(min-width:450px)');
   const { language } = useContext(LanguageContext);
 
@@ -54,11 +55,11 @@ export default function Header({
         />
         )}
         <Stack direction="row" sx={{ placeItems: 'center' }} spacing={2}>
-          <img src="./TrondheimKommuneSkjold.svg" alt="logo" width="60px" />
-          {minWidth450px
+          <img src="./TrondheimKommuneSkjold.svg" alt="logo" width="50px" />
+          {minWidth400px
           && (
           <Stack>
-            <Typography align="center" variant="h5">
+            <Typography align="center" variant="h1" sx={{ fontSize: (minWidth450px ? '1.5rem' : '1rem') }}>
               {translations.tkHeader[language]}
             </Typography>
             <Typography>

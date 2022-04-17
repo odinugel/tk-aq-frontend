@@ -1,4 +1,6 @@
-import { Stack, Box, Paper } from '@mui/material';
+import {
+  Stack, Box, Paper, useMediaQuery,
+} from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -20,6 +22,7 @@ function App() {
   const [loadingSensors, setLoadingSensors] = useState(true);
   const [fetchFailed, setFetchFailed] = useState(false);
   const [sensorID, setSensorID] = useState('');
+  const minWidth1200px = useMediaQuery('(min-width:1200px)');
   const params = useParams();
 
   console.log('render');
@@ -71,21 +74,22 @@ function App() {
                 margin: '0 auto',
               }}
             >
-              <Box sx={{
-                display: { xs: 'none', lg: 'block' },
-                maxHeight: '85vh',
-                overflowY: 'scroll',
-                maxWidth: '600px',
-                width: '100%',
-                margin: '1rem',
-              }}
-              >
-                <SensorSelect
-                  loadingSensors={loadingSensors}
-                  sensors={sensors}
-                  setSensorID={setSensorID}
-                />
-              </Box>
+              {minWidth1200px && (
+                <Box sx={{
+                  maxHeight: '85vh',
+                  overflowY: 'scroll',
+                  maxWidth: '600px',
+                  width: '100%',
+                  margin: '1rem',
+                }}
+                >
+                  <SensorSelect
+                    loadingSensors={loadingSensors}
+                    sensors={sensors}
+                    setSensorID={setSensorID}
+                  />
+                </Box>
+              )}
               <Box sx={{
                 maxWidth: '600px',
                 width: '100%',

@@ -25,7 +25,7 @@ export default function PrimaryDisplay({ data, loading }) {
     }}
     >
       <Stack sx={{ alignItems: 'center' }}>
-        <Typography variant="h4">
+        <Typography variant="h4" textAlign="center">
           {data.sensors.find((index) => index.deviceID === data.sensorID).deviceName}
         </Typography>
         <Typography variant="h6" mb="1rem">
