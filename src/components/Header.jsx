@@ -24,7 +24,7 @@ export default function Header({
 }) {
   const maxWidth1200px = useMediaQuery('(max-width:1200px)');
   const minWidth450px = useMediaQuery('(min-width:450px)');
-  const minWidth525px = useMediaQuery('(min-width:525px)');
+  const minWidth600px = useMediaQuery('(min-width:600px)');
   const { language } = useContext(LanguageContext);
 
   return (
@@ -61,11 +61,11 @@ export default function Header({
           />
           )}
           <Stack direction="row" sx={{ placeItems: 'center' }} spacing={1}>
-            <img src="./TrondheimKommuneSkjold.svg" alt="logo" width="50px" />
+            <img src="./TrondheimKommuneSkjold.svg" alt="logo" width={(minWidth600px ? '50px' : '40px')} />
             {minWidth450px
           && (
           <Stack>
-            <Typography variant="h1" sx={{ fontSize: (minWidth525px ? '1.5rem' : '1rem') }}>
+            <Typography variant="h1" sx={{ fontSize: (minWidth600px ? '1.5rem' : '1rem') }}>
               {translations.tkHeader[language]}
             </Typography>
             <Typography>
