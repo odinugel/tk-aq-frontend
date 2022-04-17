@@ -5,7 +5,7 @@ export default function WarningIcon() {
     <WarningAmberIcon sx={{
       alignSelf: 'center',
       mr: '1rem',
-      fill: '#e41f1a',
+      color: 'pollutantWarning.main',
       fontSize: '3rem',
     }}
     />
