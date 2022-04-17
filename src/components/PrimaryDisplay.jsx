@@ -3,7 +3,7 @@ import formatDistanceStrict from 'date-fns/formatDistanceStrict';
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { nb, enGB } from 'date-fns/locale';
-import InfoIcon from '@mui/icons-material/Info';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import Donut from './Donut';
 import Weather from './Weather';
 import PrimaryDisplayLoader from './PrimaryDisplayLoader';
@@ -41,10 +41,10 @@ export default function PrimaryDisplay({ data, loading }) {
       />
       <Weather temperature={data.weather.temperature} humidity={data.weather.humidity} />
       <Stack direction="row" sx={{ marginTop: '2rem' }}>
-        <InfoIcon />
-        <Typography sx={{ margin: '0 2rem' }}>
+        <InfoOutlinedIcon />
+        <Stack sx={{ margin: '0 2rem' }}>
           <ShortInfo category={data.topPollutant.category} />
-        </Typography>
+        </Stack>
       </Stack>
     </Paper>
   );
