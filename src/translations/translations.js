@@ -98,20 +98,20 @@ const translations = {
     },
   },
   shortInfoGood: {
-    no: 'Liten eller ingen risiko for helseeffekter.',
-    en: 'Low or no risk of adverse effects.',
+    no: ['Liten eller ingen risiko for helseeffekter.'],
+    en: ['Low or no risk of adverse effects.'],
   },
   shortInfoModerate: {
-    no: 'Moderat helserisiko - Helseeffekter kan forekomme hos enkelte astmatikere og personer med andre luftveissykdommer eller alvorlige hjertekarsykdommer. Friske personer vil sannsynligvis ikke ha helseeffekter.',
-    en: 'Moderate risk of adverse effects - Adverse effects may occur in some Asthma and other respiratory diseases and serious cardiovascular diseases. Most likely no risk to healthy individuals.',
+    no: ['Moderat helserisiko - Helseeffekter kan forekomme hos enkelte astmatikere og personer med andre luftveissykdommer eller alvorlige hjertekarsykdommer.', 'Friske personer vil sannsynligvis ikke ha helseeffekter.'],
+    en: ['Moderate risk of adverse effects - Adverse effects may occur in some Asthma and other respiratory diseases and serious cardiovascular diseases.', 'Most likely no risk to healthy individuals.'],
   },
   shortInfoPoor: {
-    no: 'Betydelig helserisiko - Helseeffekter forekommer hos astmatikere og personer med andre luftveissykdommer eller hjertekarsykdommer. Luftveisirritasjoner og ubehag kan forekomme hos friske personer.',
-    en: 'Considerable risk of adverse effects - Adverse effects occur in some Asthma and other respiratory diseases and cardiovascular disease. Respiratory irritation and discomfort may occur in healthy individuals.',
+    no: ['Betydelig helserisiko - Helseeffekter forekommer hos astmatikere og personer med andre luftveissykdommer eller hjertekarsykdommer.', 'Luftveisirritasjoner og ubehag kan forekomme hos friske personer.'],
+    en: ['Considerable risk of adverse effects - Adverse effects occur in some Asthma and other respiratory diseases and cardiovascular disease.', 'Respiratory irritation and discomfort may occur in healthy individuals.'],
   },
   shortInfoVeryPoor: {
-    no: 'Alvorlig helserisiko - Sårbare grupper i befolkningen er svært utsatte for helseeffekter. Luftveisirritasjoner og ubehag forekommer hos friske personer.',
-    en: 'Serious risk of adverse effects - Sensitive population groups are very susceptible to adverse effects. Respiratory irritation and discomfort occur in healthy individuals.',
+    no: ['Alvorlig helserisiko - Sårbare grupper i befolkningen er svært utsatte for helseeffekter.', 'Luftveisirritasjoner og ubehag forekommer hos friske personer.'],
+    en: ['Serious risk of adverse effects - Sensitive population groups are very susceptible to adverse effects.', 'Respiratory irritation and discomfort occur in healthy individuals.'],
   },
   sensorSelect: {
     list: {
