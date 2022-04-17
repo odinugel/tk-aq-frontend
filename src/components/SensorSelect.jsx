@@ -37,7 +37,8 @@ export default function SensorSelect({
         {tab === 0
           // eslint-disable-next-line max-len
           ? <SensorList userHasLocation={userHasLocation} latitude={latitude} longitude={longitude} setOpen={setOpen} loadingSensors={loadingSensors} sensors={sensors} setSensorID={setSensorID} />
-          : <Map userHasLocation={userHasLocation} latitude={latitude} longitude={longitude} setOpen={setOpen} sensors={sensors} setSensorID={setSensorID} width="50%" height="50%" />}
+          // eslint-disable-next-line max-len
+          : <Map userHasLocation={userHasLocation} latitude={latitude} longitude={longitude} setOpen={setOpen} sensors={sensors} setSensorID={setSensorID} />}
       </Paper>
     </Box>
   );

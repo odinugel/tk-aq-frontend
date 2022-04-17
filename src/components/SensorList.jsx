@@ -1,16 +1,18 @@
 /* eslint-disable react/no-array-index-key */
 // Above is for keys for skeleton loaders
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
+  Typography,
   List,
   ListItemButton,
   ListItemText,
   Skeleton,
-  Typography,
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import OfflineBoltIcon from '@mui/icons-material/OfflineBolt';
+import { LanguageContext } from '../context/LanguageContext';
+import translations from '../translations/translations';
 import getSensorDistanceFromUser from '../utils/getSensorDistanceFromUser';
 import sortSensorsByDistance from '../utils/sortSensorsByDistance';
 import sortSensorsAlphabetically from '../utils/sortSensorsAlphabetically';
@@ -26,6 +28,7 @@ export default function SensorList({
 }) {
   const location = useLocation();
   const navigate = useNavigate();
+  const { language } = useContext(LanguageContext);
   const [sortedSensors, setSortedSensors] = useState([]);
   useEffect(() => {
     if (!loadingSensors) {
@@ -49,6 +52,11 @@ export default function SensorList({
     ))
       : (
         <List sx={{ padding: 0 }}>
+          <ListItemText sx={{ padding: '1rem', borderBottom: '5px solid', borderColor: 'background.main' }}>
+            <Typography sx={{ fontSize: '1.5rem' }}>
+              {translations.sensors[language]}
+            </Typography>
+          </ListItemText>
           {sortedSensors
             .map((sensor) => (
               sensor.visible ? (
@@ -65,7 +73,7 @@ export default function SensorList({
                     navigate(`/${sensor.deviceID}`);
                   }}
                 >
-                  <ListItemText primaryTypographyProps={{ sx: { fontSize: '1.5rem', margin: '1rem' } }} primary={sensor.deviceName} />
+                  <ListItemText primaryTypographyProps={{ sx: { fontSize: '1.25rem', margin: '1rem' } }} primary={sensor.deviceName} />
 
                   {(userHasLocation && sensor.isOnline) && (
                   <ListItemText

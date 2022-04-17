@@ -1,4 +1,5 @@
 import {
+  Stack,
   Accordion,
   AccordionSummary,
   AccordionDetails,
@@ -27,17 +28,19 @@ export default function AccordionAQ({ pollutants, loading }) {
         <Accordion key={pollutant.name}>
           <AccordionSummary expandIcon={<ExpandMore />} m="1rem" sx={{ '& .MuiAccordionSummary-content': { justifyContent: 'space-between' } }}>
             <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-              <Donut size={50} color="success" thickness={3.6} category={pollutant.category} value={pollutant.percentage} />
-              <Typography variant="h6" ml="0.5rem">
-                {pollutant.name}
-              </Typography>
+              <Donut size={60} color="success" thickness={3.6} category={pollutant.category} value={pollutant.percentage} />
+              <Stack ml="1rem">
+                <Typography sx={{ fontSize: '1.2rem' }}>
+                  {`${pollutant.name} (${translations[pollutant.name].name[language]})`}
+                </Typography>
+                <Typography>
+                  {`${translations.lastHour[language]} ${pollutant.realValue}μg/m³`}
+                </Typography>
+              </Stack>
             </Box>
             {pollutant.category === 3 || pollutant.category === 4 ? <WarningIcon /> : null }
           </AccordionSummary>
           <AccordionDetails>
-            <Typography sx={{ marginBottom: '1rem' }} paragraph>
-              {`${translations.lastHour[language]} ${pollutant.realValue}μg/m3`}
-            </Typography>
             {translations[pollutant.name].text[language].map((paragraph, index) => (
               // since the ordering will never change, index as key should be ok
               // eslint-disable-next-line react/no-array-index-key

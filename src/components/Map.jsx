@@ -25,7 +25,7 @@ export default function Map({
       center={[latitude, longitude]}
       zoom={13}
       scrollWheelZoom
-      style={{ height: '70vh' }}
+      style={{ minHeight: '70vh' }}
     >
       {sensors.map((sensor) => (
         <Marker
