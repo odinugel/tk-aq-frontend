@@ -6,8 +6,11 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
+import { LanguageContext } from '../context/LanguageContext';
 import LangButton from './LangButton';
 import SensorDrawer from './SensorDrawer';
+import translations from '../translations/translations';
 
 export default function Header({
   sensors,
@@ -16,6 +19,8 @@ export default function Header({
   setSensorID,
 }) {
   const maxWidth1200px = useMediaQuery('(max-width:1200px)');
+  const minWidth450px = useMediaQuery('(min-width:450px)');
+  const { language } = useContext(LanguageContext);
 
   return (
     <AppBar
@@ -50,14 +55,17 @@ export default function Header({
         )}
         <Stack direction="row" sx={{ placeItems: 'center' }} spacing={2}>
           <img src="./TrondheimKommuneSkjold.svg" alt="logo" width="60px" />
+          {minWidth450px
+          && (
           <Stack>
             <Typography align="center" variant="h5">
-              TRONDHEIM KOMMUNE
+              {translations.tkHeader[language]}
             </Typography>
             <Typography>
-              LUFTKVALITETSDATA
+              {translations.tkHeaderSubtitle[language]}
             </Typography>
           </Stack>
+          )}
         </Stack>
         <LangButton />
       </Toolbar>

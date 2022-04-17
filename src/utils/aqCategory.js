@@ -26,8 +26,8 @@ export default function aqCategory(pollutant, pollutantValue) {
 
   };
 
-  if (pollutantValue < aqConstants[pollutant].good) { return 'Good'; }
-  if (pollutantValue < aqConstants[pollutant].moderate) { return 'Moderate'; }
-  if (pollutantValue < aqConstants[pollutant].poor) { return 'Poor'; }
-  return 'Very Poor';
+  if (pollutantValue < aqConstants[pollutant].good) { return 1; }
+  if (pollutantValue < aqConstants[pollutant].moderate) { return 2; }
+  if (pollutantValue < aqConstants[pollutant].poor) { return 3; }
+  return 4;
 }

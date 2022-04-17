@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import {
   CircularProgress,
   Typography,
@@ -7,6 +7,8 @@ import {
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import donutColor from '../utils/donutColor';
+import { LanguageContext } from '../context/LanguageContext';
+import translations from '../translations/translations';
 
 export default function Donut({
   value, // 20
@@ -17,14 +19,15 @@ export default function Donut({
 }) {
   const [donutValue, setDonuValue] = useState(0);
   const [donutText, setDonutText] = useState('');
+  const { language } = useContext(LanguageContext);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setDonuValue(value);
-      setDonutText(category);
+      setDonutText(`${translations.donutCategory[category][language]}`);
     }, 100);
     return () => clearTimeout(timer);
-  }, [category, value]);
+  }, [category, value, language]);
 
   return (
     <Stack justifyContent="center" alignItems="center" sx={{ position: 'relative' }}>
@@ -61,7 +64,7 @@ Donut.propTypes = {
     PropTypes.string.isRequired,
     PropTypes.number.isRequired,
   ]),
-  category: PropTypes.string.isRequired,
+  category: PropTypes.number.isRequired,
   thickness: PropTypes.number.isRequired,
   text: PropTypes.bool,
 };
