@@ -9,7 +9,7 @@ export default function Weather({ temperature, humidity }) {
       <Stack direction="row" sx={{ alignItems: 'flex-end' }}>
         <ThermostatIcon fontSize="large" />
         <Typography variant="h5">
-          {temperature}
+          {temperature.toFixed()}
           &deg;
         </Typography>
       </Stack>
