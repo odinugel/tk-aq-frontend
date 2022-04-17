@@ -23,8 +23,8 @@ export default function Header({
 
 }) {
   const maxWidth1200px = useMediaQuery('(max-width:1200px)');
-  const minWidth400px = useMediaQuery('(min-width:400px)');
   const minWidth450px = useMediaQuery('(min-width:450px)');
+  const minWidth525px = useMediaQuery('(min-width:525px)');
   const { language } = useContext(LanguageContext);
 
   return (
@@ -51,20 +51,21 @@ export default function Header({
         }}
         disableGutters
       >
-        {maxWidth1200px && (
-        <SensorDrawer
-          sensors={sensors}
-          loadingSensors={loadingSensors}
-          setSensorID={setSensorID}
-          sensorID={sensorID}
-        />
-        )}
-        <Stack direction="row" sx={{ placeItems: 'center' }} spacing={2}>
-          <img src="./TrondheimKommuneSkjold.svg" alt="logo" style={{ minWidth: '50px', maxWidth: '50px' }} />
-          {minWidth400px
+        <Stack direction="row" sx={{ placeItems: 'center' }} spacing={1}>
+          {maxWidth1200px && (
+          <SensorDrawer
+            sensors={sensors}
+            loadingSensors={loadingSensors}
+            setSensorID={setSensorID}
+            sensorID={sensorID}
+          />
+          )}
+          <Stack direction="row" sx={{ placeItems: 'center' }} spacing={1}>
+            <img src="./TrondheimKommuneSkjold.svg" alt="logo" width="50px" />
+            {minWidth450px
           && (
           <Stack>
-            <Typography variant="h1" sx={{ fontSize: (minWidth450px ? '1.5rem' : '1rem') }}>
+            <Typography variant="h1" sx={{ fontSize: (minWidth525px ? '1.5rem' : '1rem') }}>
               {translations.tkHeader[language]}
             </Typography>
             <Typography>
@@ -72,6 +73,7 @@ export default function Header({
             </Typography>
           </Stack>
           )}
+          </Stack>
         </Stack>
         <Stack direction="row">
           <LangButton />
