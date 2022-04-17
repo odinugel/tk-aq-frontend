@@ -80,7 +80,7 @@ const darkTheme = createTheme({
       main: '#d2302d',
     },
     donutVeryPoor: {
-      main: '#4f3091',
+      main: '#6d53a6',
     },
     pollutantWarning: {
       main: '#d22f2d',
