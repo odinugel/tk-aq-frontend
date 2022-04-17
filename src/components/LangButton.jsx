@@ -1,11 +1,12 @@
-import * as React from 'react';
+import { useState, useContext } from 'react';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import LanguageIcon from '@mui/icons-material/Language';
+import { LanguageContext } from '../context/LanguageContext';
 
 export default function LangButton() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -13,6 +14,8 @@ export default function LangButton() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const { language, setLanguage } = useContext(LanguageContext);
 
   return (
     <>
@@ -34,12 +37,12 @@ export default function LangButton() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>
-          <img src="https://tipqa.trondheim.kommune.no/luftkvalitet-frontend/static/media/norway.6cf1dc59.svg" alt="no" width="20px" style={{ marginRight: '5px' }} />
+        <MenuItem onClick={() => { setLanguage(() => 'no'); handleClose(); }} selected={language === 'no'}>
+          <img src="./noflag.svg" alt="logo" width="30px" style={{ marginRight: '5px' }} />
           Norwegian
         </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <img src="https://tipqa.trondheim.kommune.no/luftkvalitet-frontend/static/media/britain.24c58033.svg" alt="no" width="20px" style={{ marginRight: '5px' }} />
+        <MenuItem onClick={() => { setLanguage(() => 'en'); handleClose(); }} selected={language === 'en'}>
+          <img src="./britflag.svg" alt="logo" width="30px" style={{ marginRight: '5px' }} />
           English
         </MenuItem>
       </Menu>

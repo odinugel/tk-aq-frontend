@@ -44,6 +44,7 @@ const fetchData = async (sensorID, sensors, setData, setLoading, setFetchFailed)
       });
       setLoading(false);
     } else {
+      setFetchFailed(true);
       throw Error('Missing data: Missing dust/gas values');
     }
   } catch (e) {
