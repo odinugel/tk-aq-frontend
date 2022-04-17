@@ -1,17 +1,21 @@
-import { Stack, Box, Paper } from '@mui/material';
+import {
+  Stack, Box, Paper, useMediaQuery,
+} from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
-import theme from './theme';
+import getTheme from './theme';
 import { LanguageProvider } from './context/LanguageContext';
-import AccordionAQ from './components/AccordionAQ';
 import fetchData from './api/fetchData';
-import PrimaryDisplay from './components/PrimaryDisplay';
-import FetchError from './components/FetchError';
-import Header from './components/Header';
 import fetchSensors from './api/fetchSensors';
-import SensorSelect from './components/SensorSelect';
+import {
+  AccordionAQ,
+  PrimaryDisplay,
+  FetchError,
+  Header,
+  SensorSelect,
+} from './components';
 
 function App() {
   const [data, setData] = useState({});
@@ -19,7 +23,23 @@ function App() {
   const [sensors, setSensors] = useState([]);
   const [loadingSensors, setLoadingSensors] = useState(true);
   const [fetchFailed, setFetchFailed] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
   const [sensorID, setSensorID] = useState('');
+  const [latitude, setLatitude] = useState(63.429799); // Trondheim sentrum
+  const [longitude, setLongitude] = useState(10.393418);
+  const [userHasLocation, setUserHasLocation] = useState(false);
+
+  useEffect(() => {
+    if (!userHasLocation) {
+      navigator.geolocation.getCurrentPosition((positionme) => {
+        setLatitude(positionme.coords.latitude);
+        setLongitude(positionme.coords.longitude);
+        setUserHasLocation(true);
+      }, (error) => { console.log(error); setUserHasLocation(false); });
+    }
+  }, [userHasLocation]);
+
+  const minWidth1200px = useMediaQuery('(min-width:1200px)');
   const params = useParams();
 
   console.log('render');
@@ -53,7 +73,7 @@ function App() {
 
   return (
     <LanguageProvider>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={getTheme(darkMode)}>
         <CssBaseline>
           {fetchFailed && <FetchError />}
           <Paper sx={{ bgcolor: 'background.main', minHeight: '100vh' }} square>
@@ -62,6 +82,11 @@ function App() {
               loadingSensors={loadingSensors}
               sensorID={sensorID}
               setSensorID={setSensorID}
+              darkMode={darkMode}
+              setDarkMode={setDarkMode}
+              latitude={latitude}
+              longitude={longitude}
+              userHasLocation={userHasLocation}
             />
             <Stack
               direction="row"
@@ -71,21 +96,25 @@ function App() {
                 margin: '0 auto',
               }}
             >
-              <Box sx={{
-                display: { xs: 'none', lg: 'block' },
-                maxHeight: '85vh',
-                overflowY: 'scroll',
-                maxWidth: '600px',
-                width: '100%',
-                margin: '1rem',
-              }}
-              >
-                <SensorSelect
-                  loadingSensors={loadingSensors}
-                  sensors={sensors}
-                  setSensorID={setSensorID}
-                />
-              </Box>
+              {minWidth1200px && (
+                <Box sx={{
+                  maxHeight: '85vh',
+                  overflowY: 'scroll',
+                  maxWidth: '600px',
+                  width: '100%',
+                  margin: '1rem',
+                }}
+                >
+                  <SensorSelect
+                    loadingSensors={loadingSensors}
+                    sensors={sensors}
+                    setSensorID={setSensorID}
+                    latitude={latitude}
+                    longitude={longitude}
+                    userHasLocation={userHasLocation}
+                  />
+                </Box>
+              )}
               <Box sx={{
                 maxWidth: '600px',
                 width: '100%',

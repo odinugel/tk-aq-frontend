@@ -12,6 +12,9 @@ export default function SensorDrawer({
   sensorID,
   setSensorID,
   loadingSensors,
+  latitude,
+  longitude,
+  userHasLocation,
 }) {
   const [open, setOpen] = useState(!sensorID);
 
@@ -26,6 +29,9 @@ export default function SensorDrawer({
           setOpen={setOpen}
           setSensorID={setSensorID}
           loadingSensors={loadingSensors}
+          latitude={latitude}
+          longitude={longitude}
+          userHasLocation={userHasLocation}
         />
       </Drawer>
     </>
@@ -37,4 +43,7 @@ SensorDrawer.propTypes = {
   setSensorID: PropTypes.func.isRequired,
   sensorID: PropTypes.string.isRequired,
   loadingSensors: PropTypes.bool.isRequired,
+  latitude: PropTypes.number,
+  longitude: PropTypes.number,
+  userHasLocation: PropTypes.bool,
 };

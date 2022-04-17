@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="137.67741mm"
+   height="137.67741mm"
+   viewBox="0 0 137.67741 137.67741"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2-beta (1b65182ce9, 2022-04-05)"
+   sodipodi:docname="your_location.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#111111"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.52724989"
+     inkscape:cx="-283.54677"
+     inkscape:cy="248.45904"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer4" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-36.548401,-72.032265)">
+    <ellipse
+       style="display:inline;fill:#c4c4c4;fill-opacity:1;stroke-width:0.264509"
+       id="path61-1-01"
+       cx="105.3484"
+       cy="140.87097"
+       rx="68.800003"
+       ry="68.838707" />
+    <circle
+       style="display:inline;fill:#ececec;stroke-width:0.253672"
+       id="path61-1-0"
+       cx="105.38711"
+       cy="140.87097"
+       r="66" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Layer 2"
+     style="fill:#e6e6e6"
+     transform="translate(-36.548401,-72.032265)">
+    <circle
+       style="display:inline;fill:#c4c4c4;fill-opacity:1;stroke-width:0.220222"
+       id="path61-1"
+       cx="105.38711"
+       cy="140.87097"
+       r="57.296902" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="Layer 3">
+    <circle
+       style="display:inline;fill:#005aa7;fill-opacity:1;stroke-width:0.215486"
+       id="path61-1-8"
+       cx="105.38711"
+       cy="140.87097"
+       r="56.06451"
+       transform="translate(-36.548401,-72.032265)" />
+  </g>
+</svg>

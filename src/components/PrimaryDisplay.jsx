@@ -3,7 +3,7 @@ import formatDistanceStrict from 'date-fns/formatDistanceStrict';
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { nb, enGB } from 'date-fns/locale';
-import InfoIcon from '@mui/icons-material/Info';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import Donut from './Donut';
 import Weather from './Weather';
 import PrimaryDisplayLoader from './PrimaryDisplayLoader';
@@ -25,7 +25,7 @@ export default function PrimaryDisplay({ data, loading }) {
     }}
     >
       <Stack sx={{ alignItems: 'center' }}>
-        <Typography variant="h4">
+        <Typography variant="h4" textAlign="center">
           {data.sensors.find((index) => index.deviceID === data.sensorID).deviceName}
         </Typography>
         <Typography variant="h6" mb="1rem">
@@ -40,11 +40,11 @@ export default function PrimaryDisplay({ data, loading }) {
         thickness={2}
       />
       <Weather temperature={data.weather.temperature} humidity={data.weather.humidity} />
-      <Stack direction="row" sx={{ margin: '2.5rem 1rem', marginBottom: '1rem' }}>
-        <InfoIcon />
-        <Typography sx={{ margin: '0 2rem' }}>
+      <Stack direction="row" sx={{ marginTop: '2rem' }}>
+        <InfoOutlinedIcon />
+        <Stack sx={{ margin: '0 2rem' }}>
           <ShortInfo category={data.topPollutant.category} />
-        </Typography>
+        </Stack>
       </Stack>
     </Paper>
   );

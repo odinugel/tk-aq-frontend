@@ -4,6 +4,7 @@ import {
   Typography,
   Stack,
   Box,
+  useMediaQuery,
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import donutColor from '../utils/donutColor';
@@ -20,6 +21,7 @@ export default function Donut({
   const [donutValue, setDonuValue] = useState(0);
   const [donutText, setDonutText] = useState('');
   const { language } = useContext(LanguageContext);
+  const maxWidth550px = useMediaQuery('(max-width:550px)');
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -41,7 +43,7 @@ export default function Donut({
         />
       </Box>
       <Box sx={{ position: 'absolute', zIndex: '99' }}>
-        <Typography variant="h3" color="text.secondary" align="center">
+        <Typography variant="h3" color="text.secondary" align="center" sx={{ fontSize: (maxWidth550px ? '2.3rem' : '3rem') }}>
           {text ? donutText : null}
         </Typography>
       </Box>
