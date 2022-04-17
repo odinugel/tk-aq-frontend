@@ -6,8 +6,12 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
+import { LanguageContext } from '../context/LanguageContext';
 import LangButton from './LangButton';
+import DarkModeSwitch from './DarkModeSwitch';
 import SensorDrawer from './SensorDrawer';
+import translations from '../translations/translations';
 
 export default function Header({
   sensors,
@@ -17,8 +21,14 @@ export default function Header({
   latitude,
   longitude,
   userHasLocation,
+  darkMode,
+  setDarkMode,
+
 }) {
   const maxWidth1200px = useMediaQuery('(max-width:1200px)');
+  const minWidth450px = useMediaQuery('(min-width:450px)');
+  const minWidth600px = useMediaQuery('(min-width:600px)');
+  const { language } = useContext(LanguageContext);
 
   return (
     <AppBar
@@ -28,7 +38,8 @@ export default function Header({
         zIndex: (theme) => theme.zIndex.drawer + 1,
         display: 'flex',
         placeItems: 'center',
-        borderBottom: '7px solid #005aa7',
+        borderBottom: '7px solid',
+        borderColor: 'primary.main',
       }}
     >
       <Toolbar
@@ -43,29 +54,37 @@ export default function Header({
         }}
         disableGutters
       >
-        {maxWidth1200px && (
-        <SensorDrawer
-          sensors={sensors}
-          loadingSensors={loadingSensors}
-          setSensorID={setSensorID}
-          sensorID={sensorID}
-          latitude={latitude}
-          longitude={longitude}
-          userHasLocation={userHasLocation}
-        />
-        )}
-        <Stack direction="row" sx={{ placeItems: 'center' }} spacing={2}>
-          <img src="./TrondheimKommuneSkjold.svg" alt="logo" width="60px" />
+        <Stack direction="row" sx={{ placeItems: 'center' }} spacing={1}>
+          {maxWidth1200px && (
+          <SensorDrawer
+            sensors={sensors}
+            loadingSensors={loadingSensors}
+            setSensorID={setSensorID}
+            sensorID={sensorID}
+            latitude={latitude}
+            longitude={longitude}
+            userHasLocation={userHasLocation}
+          />
+          )}
+          <Stack direction="row" sx={{ placeItems: 'center' }} spacing={1}>
+            <img src="./TrondheimKommuneSkjold.svg" alt="logo" width={(minWidth600px ? '50px' : '40px')} />
+            {minWidth450px
+          && (
           <Stack>
-            <Typography align="center" variant="h5">
-              TRONDHEIM KOMMUNE
+            <Typography variant="h1" sx={{ fontSize: (minWidth600px ? '1.5rem' : '1rem') }}>
+              {translations.tkHeader[language]}
             </Typography>
             <Typography>
-              LUFTKVALITETSDATA
+              {translations.tkHeaderSubtitle[language]}
             </Typography>
           </Stack>
+          )}
+          </Stack>
         </Stack>
-        <LangButton />
+        <Stack direction="row">
+          <LangButton />
+          <DarkModeSwitch darkMode={darkMode} setDarkMode={setDarkMode} />
+        </Stack>
       </Toolbar>
     </AppBar>
   );
@@ -75,6 +94,8 @@ Header.propTypes = {
   sensors: PropTypes.arrayOf(PropTypes.object).isRequired,
   loadingSensors: PropTypes.bool.isRequired,
   setSensorID: PropTypes.func.isRequired,
+  darkMode: PropTypes.bool.isRequired,
+  setDarkMode: PropTypes.func.isRequired,
   sensorID: PropTypes.string.isRequired,
   latitude: PropTypes.number.isRequired,
   longitude: PropTypes.number.isRequired,

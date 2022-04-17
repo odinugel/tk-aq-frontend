@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import {
   Paper, Box, Tab, Tabs,
 } from '@mui/material';
@@ -7,6 +7,8 @@ import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SensorList from './SensorList';
 import Map from './Map';
+import { LanguageContext } from '../context/LanguageContext';
+import translations from '../translations/translations';
 
 export default function SensorSelect({
   loadingSensors,
@@ -23,11 +25,13 @@ export default function SensorSelect({
     setTab(newValue);
   };
 
+  const { language } = useContext(LanguageContext);
+
   return (
     <Box>
       <Tabs value={tab} onChange={handleChange} aria-label="Velg kart eller liste" sx={{ width: '100%', '& .MuiTabs-flexContainer': { justifyContent: 'center' } }}>
-        <Tab label="Liste" sx={{ maxWidth: '100%', width: '50%' }} icon={<FormatListBulletedIcon />} />
-        <Tab label="Kart" sx={{ maxWidth: '100%', width: '50%' }} icon={<LocationOnIcon />} />
+        <Tab label={translations.sensorSelect.list[language]} sx={{ maxWidth: '100%', width: '50%' }} icon={<FormatListBulletedIcon />} />
+        <Tab label={translations.sensorSelect.map[language]} sx={{ maxWidth: '100%', width: '50%' }} icon={<LocationOnIcon />} />
       </Tabs>
       <Paper>
         {tab === 0

@@ -1,12 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import {
   CircularProgress,
   Typography,
   Stack,
   Box,
+  useMediaQuery,
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import donutColor from '../utils/donutColor';
+import { LanguageContext } from '../context/LanguageContext';
+import translations from '../translations/translations';
 
 export default function Donut({
   value, // 20
@@ -17,14 +20,16 @@ export default function Donut({
 }) {
   const [donutValue, setDonuValue] = useState(0);
   const [donutText, setDonutText] = useState('');
+  const { language } = useContext(LanguageContext);
+  const maxWidth550px = useMediaQuery('(max-width:550px)');
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setDonuValue(value);
-      setDonutText(category);
+      setDonutText(`${translations.donutCategory[category][language]}`);
     }, 100);
     return () => clearTimeout(timer);
-  }, [category, value]);
+  }, [category, value, language]);
 
   return (
     <Stack justifyContent="center" alignItems="center" sx={{ position: 'relative' }}>
@@ -38,7 +43,7 @@ export default function Donut({
         />
       </Box>
       <Box sx={{ position: 'absolute', zIndex: '99' }}>
-        <Typography variant="h3" color="text.secondary" align="center">
+        <Typography variant="h3" color="text.secondary" align="center" sx={{ fontSize: (maxWidth550px ? '2.3rem' : '3rem') }}>
           {text ? donutText : null}
         </Typography>
       </Box>
@@ -61,7 +66,7 @@ Donut.propTypes = {
     PropTypes.string.isRequired,
     PropTypes.number.isRequired,
   ]),
-  category: PropTypes.string.isRequired,
+  category: PropTypes.number.isRequired,
   thickness: PropTypes.number.isRequired,
   text: PropTypes.bool,
 };

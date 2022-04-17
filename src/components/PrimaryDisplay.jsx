@@ -1,12 +1,18 @@
 import { Paper, Typography, Stack } from '@mui/material';
 import formatDistanceStrict from 'date-fns/formatDistanceStrict';
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
+import { nb, enGB } from 'date-fns/locale';
+import InfoIcon from '@mui/icons-material/Info';
 import Donut from './Donut';
 import Weather from './Weather';
 import PrimaryDisplayLoader from './PrimaryDisplayLoader';
 import ShortInfo from './ShortInfo';
+import { LanguageContext } from '../context/LanguageContext';
+import translations from '../translations/translations';
 
 export default function PrimaryDisplay({ data, loading }) {
+  const { language } = useContext(LanguageContext);
   if (loading) {
     return <PrimaryDisplayLoader />;
   }
@@ -19,11 +25,11 @@ export default function PrimaryDisplay({ data, loading }) {
     }}
     >
       <Stack sx={{ alignItems: 'center' }}>
-        <Typography variant="h4">
+        <Typography variant="h4" textAlign="center">
           {data.sensors.find((index) => index.deviceID === data.sensorID).deviceName}
         </Typography>
         <Typography variant="h6" mb="1rem">
-          {`Last update: ${formatDistanceStrict(data.timestamp, new Date(), { addSuffix: true })}`}
+          {`${translations.lastUpdate[language]} ${formatDistanceStrict(data.timestamp, new Date(), { addSuffix: true, locale: language === 'no' ? nb : enGB })}`}
         </Typography>
       </Stack>
       <Donut
@@ -33,11 +39,13 @@ export default function PrimaryDisplay({ data, loading }) {
         category={data.topPollutant.category}
         thickness={2}
       />
-      <br />
-      <Stack sx={{ alignItems: 'center', justifyContent: 'center' }}>
-        <ShortInfo />
-      </Stack>
       <Weather temperature={data.weather.temperature} humidity={data.weather.humidity} />
+      <Stack direction="row" sx={{ marginTop: '2rem' }}>
+        <InfoIcon />
+        <Typography sx={{ margin: '0 2rem' }}>
+          <ShortInfo category={data.topPollutant.category} />
+        </Typography>
+      </Stack>
     </Paper>
   );
 }

@@ -7,8 +7,10 @@ import {
   ListItemButton,
   ListItemText,
   Skeleton,
+  Typography,
 } from '@mui/material';
 import PropTypes from 'prop-types';
+import OfflineBoltIcon from '@mui/icons-material/OfflineBolt';
 import getSensorDistanceFromUser from '../utils/getSensorDistanceFromUser';
 import sortSensorsByDistance from '../utils/sortSensorsByDistance';
 import sortSensorsAlphabetically from '../utils/sortSensorsAlphabetically';
@@ -37,6 +39,8 @@ export default function SensorList({
     }
   }, [loadingSensors, latitude, longitude, sensors, userHasLocation, sortedSensors]);
 
+  /* slenge inn ein liten paper isted for fragments? er lyst på toppen */
+
   return (
     loadingSensors ? [...Array(20)].map((val, index) => (
       <ListItemButton key={index} divider>
@@ -61,8 +65,9 @@ export default function SensorList({
                     navigate(`/${sensor.deviceID}`);
                   }}
                 >
-                  <ListItemText primaryTypographyProps={{ sx: { fontSize: '1.5rem', margin: '1rem' } }} primary={`${sensor.deviceName}`} />
-                  {userHasLocation && (
+                  <ListItemText primaryTypographyProps={{ sx: { fontSize: '1.5rem', margin: '1rem' } }} primary={sensor.deviceName} />
+
+                  {(userHasLocation && sensor.isOnline) && (
                   <ListItemText
                     primaryTypographyProps={{
                       sx: {
@@ -72,6 +77,14 @@ export default function SensorList({
                     primary={getSensorDistanceFromUser(sensor.lat, sensor.lon, latitude, longitude)}
                   />
                   )}
+
+                  {!sensor.isOnline && (
+                  <>
+                    <OfflineBoltIcon sx={{ marginRight: '0.5rem' }} />
+                    <Typography sx={{ marginRight: '1rem' }}>Offline</Typography>
+                  </>
+                  )}
+
                 </ListItemButton>
               ) : null))}
         </List>
