@@ -8,6 +8,7 @@ export default function Map({
   latitude,
   longitude,
   userHasLocation,
+  setOpen,
 }) {
   const LeafletIcon = L.Icon.extend({
     options: {
@@ -36,6 +37,7 @@ export default function Map({
           eventHandlers={{
             click: () => {
               setSensorID(sensor.deviceID);
+              if (typeof setOpen === 'function') { setOpen(false); }
             },
           }}
         />
@@ -56,4 +58,5 @@ Map.propTypes = {
   latitude: PropTypes.number,
   longitude: PropTypes.number,
   userHasLocation: PropTypes.bool.isRequired,
+  setOpen: PropTypes.func,
 };
