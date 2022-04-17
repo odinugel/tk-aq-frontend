@@ -40,7 +40,7 @@ export default function PrimaryDisplay({ data, loading }) {
         thickness={2}
       />
       <Weather temperature={data.weather.temperature} humidity={data.weather.humidity} />
-      <Stack direction="row" sx={{ marginTop: '2rem' }}>
+      <Stack direction="row" sx={{ margin: '2.5rem 1rem', marginBottom: '1rem' }}>
         <InfoIcon />
         <Typography sx={{ margin: '0 2rem' }}>
           <ShortInfo category={data.topPollutant.category} />
