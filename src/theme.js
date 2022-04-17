@@ -31,7 +31,7 @@ const theme = createTheme({
       main: '#4719A7',
     },
     pollutantWarning: {
-      main: '#ffa726',
+      main: '#e41f1a',
     },
     link: {
       main: '#1A0DAB',
@@ -71,19 +71,19 @@ const darkTheme = createTheme({
       secondary: '#FFFFFFDE',
     },
     donutGood: {
-      main: '#00953b',
+      main: '#0b893d',
     },
     donutModerate: {
-      main: '#FDC73C',
+      main: '#f0c047',
     },
     donutPoor: {
-      main: '#e41f1a',
+      main: '#d2302d',
     },
     donutVeryPoor: {
-      main: '#4719A7',
+      main: '#4f3091',
     },
     pollutantWarning: {
-      main: '#ffa726',
+      main: '#d22f2d',
     },
     link: {
       main: '#8AB4F8',
