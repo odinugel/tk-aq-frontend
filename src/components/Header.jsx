@@ -18,6 +18,9 @@ export default function Header({
   loadingSensors,
   sensorID,
   setSensorID,
+  latitude,
+  longitude,
+  userHasLocation,
   darkMode,
   setDarkMode,
 
@@ -58,6 +61,9 @@ export default function Header({
             loadingSensors={loadingSensors}
             setSensorID={setSensorID}
             sensorID={sensorID}
+            latitude={latitude}
+            longitude={longitude}
+            userHasLocation={userHasLocation}
           />
           )}
           <Stack direction="row" sx={{ placeItems: 'center' }} spacing={1}>
@@ -91,4 +97,7 @@ Header.propTypes = {
   darkMode: PropTypes.bool.isRequired,
   setDarkMode: PropTypes.func.isRequired,
   sensorID: PropTypes.string.isRequired,
+  latitude: PropTypes.number.isRequired,
+  longitude: PropTypes.number.isRequired,
+  userHasLocation: PropTypes.bool.isRequired,
 };

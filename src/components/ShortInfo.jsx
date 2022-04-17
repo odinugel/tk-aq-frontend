@@ -1,3 +1,5 @@
+/* eslint-disable react/no-array-index-key */
+import { Typography } from '@mui/material';
 import { useContext } from 'react';
 import { LanguageContext } from '../context/LanguageContext';
 import translations from '../translations/translations';
@@ -5,9 +7,16 @@ import translations from '../translations/translations';
 export default function ShortInfo({ category }) {
   const { language } = useContext(LanguageContext);
 
-  if (category === 1) { return translations.shortInfoGood[language]; }
-  if (category === 2) { return translations.shortInfoModerate[language]; }
-  if (category === 3) { return translations.shortInfoPoor[language]; }
-  if (category === 4) { return translations.shortInfoVeryPoor[language]; }
-  return '';
+  let categoryName = '';
+  switch (category) {
+    case 1: categoryName = 'shortInfoGood'; break;
+    case 2: categoryName = 'shortInfoModerate'; break;
+    case 3: categoryName = 'shortInfoPoor'; break;
+    case 4: categoryName = 'shortInfoVeryPoor'; break;
+    default:
+  }
+
+  return translations[categoryName][language].map((sentence, index) => (
+    <Typography key={index} sx={{ marginBottom: '0.5rem' }}>{sentence}</Typography>
+  ));
 }
