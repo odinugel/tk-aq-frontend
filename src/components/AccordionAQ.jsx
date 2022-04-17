@@ -45,7 +45,7 @@ export default function AccordionAQ({ pollutants, loading }) {
                 {paragraph}
               </Typography>
             ))}
-            <Link href={translations[pollutant.name].link.url} sx={{ fontFamily: 'Source Sans Pro' }}>
+            <Link href={translations[pollutant.name].link.url} sx={{ fontFamily: 'Source Sans Pro', color: 'link.main' }}>
               {translations[pollutant.name].link.text[language]}
             </Link>
           </AccordionDetails>

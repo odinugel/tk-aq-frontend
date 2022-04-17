@@ -20,6 +20,8 @@ export default function SensorList({
   const location = useLocation();
   const navigate = useNavigate();
 
+  /* slenge inn ein liten paper isted for fragments? er lyst på toppen */
+
   return (
     loadingSensors ? [...Array(20)].map((val, index) => (
       <ListItemButton key={index} divider>

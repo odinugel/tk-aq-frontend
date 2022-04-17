@@ -5,7 +5,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
-import theme from './theme';
+import getTheme from './theme';
 import { LanguageProvider } from './context/LanguageContext';
 import AccordionAQ from './components/AccordionAQ';
 import fetchData from './api/fetchData';
@@ -21,6 +21,7 @@ function App() {
   const [sensors, setSensors] = useState([]);
   const [loadingSensors, setLoadingSensors] = useState(true);
   const [fetchFailed, setFetchFailed] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
   const [sensorID, setSensorID] = useState('');
   const minWidth1200px = useMediaQuery('(min-width:1200px)');
   const params = useParams();
@@ -56,7 +57,7 @@ function App() {
 
   return (
     <LanguageProvider>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={getTheme(darkMode)}>
         <CssBaseline>
           {fetchFailed && <FetchError />}
           <Paper sx={{ bgcolor: 'background.main', minHeight: '100vh' }} square>
@@ -65,6 +66,8 @@ function App() {
               loadingSensors={loadingSensors}
               sensorID={sensorID}
               setSensorID={setSensorID}
+              darkMode={darkMode}
+              setDarkMode={setDarkMode}
             />
             <Stack
               direction="row"
