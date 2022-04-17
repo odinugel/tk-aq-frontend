@@ -60,11 +60,11 @@ export default function Header({
         />
         )}
         <Stack direction="row" sx={{ placeItems: 'center' }} spacing={2}>
-          <img src="./TrondheimKommuneSkjold.svg" alt="logo" width="50px" />
+          <img src="./TrondheimKommuneSkjold.svg" alt="logo" style={{ minWidth: '50px', maxWidth: '50px' }} />
           {minWidth400px
           && (
           <Stack>
-            <Typography align="center" variant="h1" sx={{ fontSize: (minWidth450px ? '1.5rem' : '1rem') }}>
+            <Typography variant="h1" sx={{ fontSize: (minWidth450px ? '1.5rem' : '1rem') }}>
               {translations.tkHeader[language]}
             </Typography>
             <Typography>
