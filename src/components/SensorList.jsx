@@ -44,7 +44,7 @@ export default function SensorList({
   return (
     loadingSensors ? [...Array(20)].map((val, index) => (
       <ListItemButton key={index} divider>
-        <Skeleton width={`${Math.floor((Math.random() * 10) + 10)}vw`} height={50} />
+        <Skeleton width={`${Math.floor((Math.random() * 10) + 35)}%`} height={50} />
       </ListItemButton>
     ))
       : (
