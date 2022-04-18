@@ -16,8 +16,8 @@ const translations = {
     en: 'TRONDHEIM MUNICIPALITY',
   },
   tkHeaderSubtitle: {
-    no: 'LUFTKVALITETSDATA',
-    en: 'AIR QUALITY DATA',
+    no: 'LUFTKVALITET',
+    en: 'AIR QUALITY',
   },
   lastUpdate: {
     no: 'Sist oppdatert: ',
