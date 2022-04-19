@@ -5,19 +5,19 @@ import {
   Drawer,
 } from '@mui/material';
 import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 import SensorSelect from './SensorSelect';
 
 export default function SensorDrawer({
   sensors,
-  sensorID,
   setSensorID,
   loadingSensors,
   latitude,
   longitude,
   userHasLocation,
 }) {
-  const [open, setOpen] = useState(!sensorID);
-
+  const params = useParams();
+  const [open, setOpen] = useState(!params.id);
   return (
     <>
       <IconButton onClick={() => setOpen((currentOpen) => !currentOpen)} variant="outlined" color="primary">
@@ -41,7 +41,6 @@ export default function SensorDrawer({
 SensorDrawer.propTypes = {
   sensors: PropTypes.arrayOf(PropTypes.object).isRequired,
   setSensorID: PropTypes.func.isRequired,
-  sensorID: PropTypes.string.isRequired,
   loadingSensors: PropTypes.bool.isRequired,
   latitude: PropTypes.number,
   longitude: PropTypes.number,
