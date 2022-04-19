@@ -33,7 +33,7 @@ export default function SensorSelect({
         <Tab label={translations.sensorSelect.list[language]} sx={{ maxWidth: '100%', width: '50%' }} icon={<FormatListBulletedIcon />} />
         <Tab label={translations.sensorSelect.map[language]} sx={{ maxWidth: '100%', width: '50%' }} icon={<LocationOnIcon />} />
       </Tabs>
-      <Paper sx={{ overflowY: 'auto', maxHeight: '80vh' }}>
+      <Paper sx={{ overflowY: 'auto', maxHeight: '75vh' }}>
         {tab === 0
           ? (
             <SensorList
