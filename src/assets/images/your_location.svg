@@ -7,37 +7,37 @@
    viewBox="0 0 137.67741 137.67741"
    version="1.1"
    id="svg5"
-   inkscape:version="1.2-beta (1b65182ce9, 2022-04-05)"
-   sodipodi:docname="your_location.svg"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   inkscapeVersion="1.2-beta (1b65182ce9, 2022-04-05)"
+   sodipodiDocname="your_location.svg"
+   xmlnsInkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlnsSodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
+   xmlnsSvg="http://www.w3.org/2000/svg">
+  <sodipodiNamedview
      id="namedview7"
      pagecolor="#ffffff"
      bordercolor="#111111"
      borderopacity="1"
-     inkscape:pageshadow="0"
-     inkscape:pageopacity="0"
-     inkscape:pagecheckerboard="1"
-     inkscape:deskcolor="#d1d1d1"
-     inkscape:document-units="mm"
+     inkscapePageshadow="0"
+     inkscapePageopacity="0"
+     inkscapePagecheckerboard="1"
+     inkscapeDeskcolor="#d1d1d1"
+     inkscapeDocument-units="mm"
      showgrid="false"
-     inkscape:zoom="0.52724989"
-     inkscape:cx="-283.54677"
-     inkscape:cy="248.45904"
-     inkscape:window-width="1920"
-     inkscape:window-height="1017"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="layer4" />
+     inkscapeZoom="0.52724989"
+     inkscapeCx="-283.54677"
+     inkscapeCy="248.45904"
+     inkscapeWindow-width="1920"
+     inkscapeWindow-height="1017"
+     inkscapeWindow-x="-8"
+     inkscapeWindow-y="-8"
+     inkscapeWindow-maximized="1"
+     inkscapeCurrent-layer="layer4" />
   <defs
      id="defs2" />
   <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
+     inkscapeLabel="Layer 1"
+     inkscapeGroupmode="layer"
      id="layer1"
      transform="translate(-36.548401,-72.032265)">
     <ellipse
@@ -55,9 +55,9 @@
        r="66" />
   </g>
   <g
-     inkscape:groupmode="layer"
+     inkscapeGroupmode="layer"
      id="layer2"
-     inkscape:label="Layer 2"
+     inkscapeLabel="Layer 2"
      style="fill:#e6e6e6"
      transform="translate(-36.548401,-72.032265)">
     <circle
@@ -68,9 +68,9 @@
        r="57.296902" />
   </g>
   <g
-     inkscape:groupmode="layer"
+     inkscapeGroupmode="layer"
      id="layer4"
-     inkscape:label="Layer 3">
+     inkscapeLabel="Layer 3">
     <circle
        style="display:inline;fill:#005aa7;fill-opacity:1;stroke-width:0.215486"
        id="path61-1-8"
