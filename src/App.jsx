@@ -23,11 +23,12 @@ function App() {
   const [sensors, setSensors] = useState([]);
   const [loadingSensors, setLoadingSensors] = useState(true);
   const [fetchFailed, setFetchFailed] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
   const [sensorID, setSensorID] = useState('');
   const [latitude, setLatitude] = useState(63.429799); // Trondheim sentrum
   const [longitude, setLongitude] = useState(10.393418);
   const [userHasLocation, setUserHasLocation] = useState(false);
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const [darkMode, setDarkMode] = useState(prefersDarkMode);
   const minWidth1200px = useMediaQuery('(min-width:1200px)');
   const params = useParams();
   console.log('render');
@@ -41,6 +42,13 @@ function App() {
       }, (error) => { console.log(error); setUserHasLocation(false); });
     }
   }, [userHasLocation]);
+
+  // When page loads, the media query for
+  // prefers-color-scheme: dark initially returns false for some reason.
+  // This useEffect listens to see if it changes (which it does if browser prefers dark mode).
+  useEffect(() => {
+    setDarkMode(prefersDarkMode);
+  }, [prefersDarkMode]);
 
   // if sensorID is present in url, but not yet set by user, (e.g. after page refresh)
   // set sensorID to the one in the url
@@ -69,7 +77,7 @@ function App() {
   return (
     <LanguageProvider>
       <ThemeProvider theme={getTheme(darkMode)}>
-        <CssBaseline>
+        <CssBaseline enableColorScheme>
           {fetchFailed && <FetchError />}
           <Paper sx={{ bgcolor: 'background.main', minHeight: '100vh' }} square>
             <Header
