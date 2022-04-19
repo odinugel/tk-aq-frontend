@@ -12,6 +12,7 @@ import LangButton from './LangButton';
 import DarkModeSwitch from './DarkModeSwitch';
 import SensorDrawer from './SensorDrawer';
 import translations from '../translations/translations';
+import Logo from '../assets/images/TrondheimKommuneSkjold.svg';
 
 export default function Header({
   sensors,
@@ -67,7 +68,7 @@ export default function Header({
           />
           )}
           <Stack direction="row" sx={{ placeItems: 'center' }} spacing={1}>
-            <img src="./TrondheimKommuneSkjold.svg" alt="logo" width={(minWidth600px ? '50px' : '40px')} />
+            <img src={Logo} alt="logo" width={(minWidth600px ? '50px' : '40px')} />
             {minWidth450px
           && (
           <Stack>
