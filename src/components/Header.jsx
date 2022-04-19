@@ -24,7 +24,6 @@ export default function Header({
   userHasLocation,
   darkMode,
   setDarkMode,
-
 }) {
   const maxWidth1200px = useMediaQuery('(max-width:1200px)');
   const minWidth450px = useMediaQuery('(min-width:450px)');
