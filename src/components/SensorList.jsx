@@ -1,7 +1,8 @@
+/* eslint-disable max-len */
 /* eslint-disable react/no-array-index-key */
 // Above is for keys for skeleton loaders
-import { useState, useEffect, useContext } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import {
   Typography,
   List,
@@ -11,14 +12,13 @@ import {
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import OfflineBoltIcon from '@mui/icons-material/OfflineBolt';
-import { LanguageContext } from '../context/LanguageContext';
-import translations from '../translations/translations';
 import getSensorDistanceFromUser from '../utils/getSensorDistanceFromUser';
 import sortSensorsByDistance from '../utils/sortSensorsByDistance';
 import sortSensorsAlphabetically from '../utils/sortSensorsAlphabetically';
 
 export default function SensorList({
   sensors,
+  sensorID,
   setSensorID,
   setOpen,
   loadingSensors,
@@ -28,21 +28,25 @@ export default function SensorList({
 }) {
   const location = useLocation();
   const navigate = useNavigate();
-  const { language } = useContext(LanguageContext);
+  const params = useParams();
   const [sortedSensors, setSortedSensors] = useState([]);
+
   useEffect(() => {
     if (!loadingSensors) {
       if (userHasLocation) {
         const byDistance = sortSensorsByDistance(sensors, latitude, longitude);
+        console.log('sorting sensors by distance');
         setSortedSensors(byDistance);
+        // set sensorID to closest by default
+        if (!params.id) { console.log('setting sensorID to closest'); setSensorID(byDistance[0].deviceID); }
       } else {
         const alphabetically = sortSensorsAlphabetically(sensors);
         setSortedSensors(alphabetically);
+        // set sensorID to Trondheim torg by default
+        if (!params.id) { console.log('setting sensorID to Trondheim torg'); setSensorID('2f3a11687f7a2j'); }
       }
     }
-  }, [loadingSensors, latitude, longitude, sensors, userHasLocation, sortedSensors]);
-
-  /* slenge inn ein liten paper isted for fragments? er lyst på toppen */
+  }, [latitude, loadingSensors, longitude, params.id, sensors, setSensorID, userHasLocation]);
 
   return (
     loadingSensors ? [...Array(20)].map((val, index) => (
@@ -52,11 +56,6 @@ export default function SensorList({
     ))
       : (
         <List sx={{ padding: 0 }}>
-          <ListItemText sx={{ padding: '1rem', borderBottom: '5px solid', borderColor: 'background.main' }}>
-            <Typography sx={{ fontSize: '1.5rem' }}>
-              {translations.sensors[language]}
-            </Typography>
-          </ListItemText>
           {sortedSensors
             .map((sensor) => (
               sensor.visible ? (
@@ -64,7 +63,7 @@ export default function SensorList({
                   divider
                   key={sensor.deviceID}
                   sx={{ padding: 0 }}
-                  selected={location.pathname === `/${sensor.deviceID}`}
+                  selected={(location.pathname === `/${sensor.deviceID}`) || (sensor.deviceID === sensorID)}
                   disabled={!sensor.isOnline}
                   href={`/${sensor.deviceID}`}
                   onClick={() => {
@@ -103,6 +102,7 @@ export default function SensorList({
 SensorList.propTypes = {
   sensors: PropTypes.arrayOf(PropTypes.object).isRequired,
   setSensorID: PropTypes.func.isRequired,
+  sensorID: PropTypes.string.isRequired,
   loadingSensors: PropTypes.bool.isRequired,
   setOpen: PropTypes.func,
   latitude: PropTypes.number,

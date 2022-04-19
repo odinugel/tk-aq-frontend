@@ -28,6 +28,9 @@ function App() {
   const [latitude, setLatitude] = useState(63.429799); // Trondheim sentrum
   const [longitude, setLongitude] = useState(10.393418);
   const [userHasLocation, setUserHasLocation] = useState(false);
+  const minWidth1200px = useMediaQuery('(min-width:1200px)');
+  const params = useParams();
+  console.log('render');
 
   useEffect(() => {
     if (!userHasLocation) {
@@ -39,22 +42,14 @@ function App() {
     }
   }, [userHasLocation]);
 
-  const minWidth1200px = useMediaQuery('(min-width:1200px)');
-  const params = useParams();
-
-  console.log('render');
+  // if sensorID is present in url, but not yet set by user, (e.g. after page refresh)
+  // set sensorID to the one in the url
   if (sensorID === '' && params.id) {
     setSensorID(params.id);
-    console.log(`sensorID is empty, found params: ${params.id} in url, set sensorID`);
+    console.log(`sensorID not set, found params: ${params.id} in url, set sensorID`);
   }
-  // if we do not have a url ID
-  // -> fetch and display a list of sensors
-  // -> clicking on a sensor puts sensorID in URL
-  // if we DO have a url ID
-  // -> fetch list of sensors but do not display
-  // -> fetch and display sensor data.
 
-  // sensors only need to be fetched on component mount
+  // sensors only need to be fetched once (on page load)
   useEffect(() => {
     console.log('Fetching sensors');
     fetchSensors(setSensors, setLoadingSensors, setFetchFailed);
@@ -98,8 +93,6 @@ function App() {
             >
               {minWidth1200px && (
                 <Box sx={{
-                  maxHeight: '85vh',
-                  overflowY: 'scroll',
                   maxWidth: '600px',
                   width: '100%',
                   margin: '1rem',
@@ -108,6 +101,7 @@ function App() {
                   <SensorSelect
                     loadingSensors={loadingSensors}
                     sensors={sensors}
+                    sensorID={sensorID}
                     setSensorID={setSensorID}
                     latitude={latitude}
                     longitude={longitude}
