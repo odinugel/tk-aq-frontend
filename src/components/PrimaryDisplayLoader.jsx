@@ -46,6 +46,21 @@ export default function PrimaryDisplayLoader() {
           />
         </Stack>
       </Box>
+      {/* TODO: This needs to be redone, skeletons should wrap typography, circle is not round */}
+      <Stack direction="row" width="100%" sx={{ margin: '0.5rem', marginTop: '2rem' }}>
+        <Skeleton variant="circular" width={24} />
+        <Stack width="100%" sx={{ margin: '0 1rem' }}>
+          <Typography width="100%">
+            <Skeleton />
+          </Typography>
+          <Typography width="100%">
+            <Skeleton />
+          </Typography>
+          <Typography width="100%">
+            <Skeleton />
+          </Typography>
+        </Stack>
+      </Stack>
     </Paper>
 
   );
