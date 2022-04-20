@@ -10,9 +10,13 @@ import PrimaryDisplayLoader from './PrimaryDisplayLoader';
 import ShortInfo from './ShortInfo';
 import { LanguageContext } from '../context/LanguageContext';
 import translations from '../translations/translations';
+import FetchError from './FetchError';
 
-export default function PrimaryDisplay({ data, loading }) {
+export default function PrimaryDisplay({ data, loading, fetchFailed }) {
   const { language } = useContext(LanguageContext);
+  if (fetchFailed) {
+    return (<FetchError />);
+  }
   if (loading) {
     return <PrimaryDisplayLoader />;
   }
@@ -54,4 +58,5 @@ export default function PrimaryDisplay({ data, loading }) {
 PrimaryDisplay.propTypes = {
   data: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
+  fetchFailed: PropTypes.bool.isRequired,
 };

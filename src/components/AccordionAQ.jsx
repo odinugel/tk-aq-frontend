@@ -16,12 +16,17 @@ import WarningIcon from './WarningIcon';
 import translations from '../translations/translations';
 import { LanguageContext } from '../context/LanguageContext';
 
-export default function AccordionAQ({ pollutants, loading }) {
+export default function AccordionAQ({ pollutants, loading, fetchFailed }) {
   const { language } = useContext(LanguageContext);
+
+  if (fetchFailed) {
+    return null;
+  }
 
   if (loading) {
     return <AccordionAQLoader />;
   }
+
   return (
     <Box margin="0 auto" sx={{ maxWidth: '600px' }}>
       {pollutants.map((pollutant) => (
@@ -61,4 +66,5 @@ export default function AccordionAQ({ pollutants, loading }) {
 AccordionAQ.propTypes = {
   pollutants: PropTypes.arrayOf(PropTypes.object),
   loading: PropTypes.bool.isRequired,
+  fetchFailed: PropTypes.bool.isRequired,
 };

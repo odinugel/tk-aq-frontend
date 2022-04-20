@@ -12,7 +12,6 @@ import fetchSensors from './api/fetchSensors';
 import {
   AccordionAQ,
   PrimaryDisplay,
-  FetchError,
   Header,
   SensorSelect,
 } from './components';
@@ -78,7 +77,6 @@ function App() {
     <LanguageProvider>
       <ThemeProvider theme={getTheme(darkMode)}>
         <CssBaseline enableColorScheme>
-          {fetchFailed && <FetchError />}
           <Paper sx={{ bgcolor: 'background.main', minHeight: '100vh' }} square>
             <Header
               sensors={sensors}
@@ -123,8 +121,12 @@ function App() {
                 margin: '1rem',
               }}
               >
-                <PrimaryDisplay data={data} loading={loading} />
-                <AccordionAQ pollutants={data.pollutants} loading={loading} />
+                <PrimaryDisplay data={data} loading={loading} fetchFailed={fetchFailed} />
+                <AccordionAQ
+                  pollutants={data.pollutants}
+                  loading={loading}
+                  fetchFailed={fetchFailed}
+                />
               </Box>
             </Stack>
           </Paper>
