@@ -31,7 +31,7 @@ export default function AccordionAQ({ pollutants, loading, fetchFailed }) {
     <Box margin="0 auto" sx={{ maxWidth: '600px' }}>
       {pollutants.map((pollutant) => (
         <Accordion key={pollutant.name}>
-          <AccordionSummary expandIcon={<ExpandMore />} m="1rem" sx={{ '& .MuiAccordionSummary-content': { justifyContent: 'space-between' } }}>
+          <AccordionSummary expandIcon={<ExpandMore />} m="1rem" sx={{ '& .MuiAccordionSummary-content': { justifyContent: 'space-between', margin: '6px 0px 12px 0px' } }}>
             <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
               <Donut size={60} color="success" thickness={3.6} category={pollutant.category} value={pollutant.percentage} />
               <Stack ml="1rem">
