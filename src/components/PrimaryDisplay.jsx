@@ -45,7 +45,7 @@ export default function PrimaryDisplay({ data, loading, fetchFailed }) {
       />
       {data.weather
       && <Weather temperature={data.weather.temperature} humidity={data.weather.humidity} />}
-      <Stack direction="row" sx={{ margin: '0.5rem', marginTop: '2rem' }}>
+      <Stack direction="row" sx={{ margin: '2rem 0.5rem 0 0.5rem' }}>
         <InfoOutlinedIcon />
         <Stack sx={{ marginLeft: '1rem' }}>
           <ShortInfo category={data.topPollutant.category} />

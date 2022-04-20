@@ -17,6 +17,6 @@ export default function ShortInfo({ category }) {
   }
 
   return translations[categoryName][language].map((sentence, index) => (
-    <Typography key={index}>{sentence}</Typography>
+    <Typography sx={{ marginBottom: '1rem' }} key={index}>{sentence}</Typography>
   ));
 }

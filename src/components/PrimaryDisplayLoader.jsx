@@ -5,6 +5,7 @@ import {
   Stack,
   Box,
 } from '@mui/material';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 export default function PrimaryDisplayLoader() {
   return (
@@ -47,18 +48,14 @@ export default function PrimaryDisplayLoader() {
         </Stack>
       </Box>
       {/* TODO: This needs to be redone, skeletons should wrap typography, circle is not round */}
-      <Stack direction="row" width="100%" sx={{ margin: '0.5rem', marginTop: '2rem' }}>
-        <Skeleton variant="circular" width={24} />
+      <Stack direction="row" width="90%" sx={{ margin: '0.5rem', marginTop: '2rem' }}>
+        <Skeleton variant="circular" width={24} height={24}>
+          <InfoOutlinedIcon />
+        </Skeleton>
         <Stack width="100%" sx={{ margin: '0 1rem' }}>
-          <Typography width="100%">
-            <Skeleton />
-          </Typography>
-          <Typography width="100%">
-            <Skeleton />
-          </Typography>
-          <Typography width="100%">
-            <Skeleton />
-          </Typography>
+          <Skeleton width="100%" />
+          <Skeleton width="100%" />
+          <Skeleton width="100%" />
         </Stack>
       </Stack>
     </Paper>
