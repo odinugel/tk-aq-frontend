@@ -131,8 +131,8 @@ const translations = {
   },
   sensorSelect: {
     list: {
-      no: 'Liste',
-      en: 'List',
+      no: 'Lokasjoner',
+      en: 'Locations',
     },
     map: {
       no: 'Kart',
@@ -140,8 +140,8 @@ const translations = {
     },
   },
   fetchError: {
-    no: 'Kunne ikke hente data fra server. Vennligst velg et annet sted.',
-    en: 'Could not fetch data from server. Please choose another location.',
+    no: ['Ingen måling tilgjengelig.', 'Vennligst velg en annen lokasjon.'],
+    en: ['No data available.', 'Please select another location.'],
   },
 };
 export default translations;

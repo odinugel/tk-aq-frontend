@@ -1,10 +1,11 @@
-import { Typography, Paper } from '@mui/material';
+/* eslint-disable react/no-array-index-key */
+import { Typography, Box, Paper } from '@mui/material';
 import { useContext } from 'react';
 import translations from '../translations/translations';
-import languageContext from '../context/LanguageContext';
+import { LanguageContext } from '../context/LanguageContext';
 
 export default function FetchError() {
-  const language = useContext(languageContext);
+  const { language } = useContext(LanguageContext);
   return (
     <Paper sx={{
       display: 'grid',
@@ -12,9 +13,13 @@ export default function FetchError() {
       minHeight: '50vh',
     }}
     >
-      <Typography variant="h5" sx={{ padding: '4rem' }}>
-        {translations.fetchError[language]}
-      </Typography>
+      <Box>
+        {translations.fetchError[language].map((line, index) => (
+          <Typography key={index} variant="h5" sx={{ textAlign: 'center' }}>
+            {line}
+          </Typography>
+        ))}
+      </Box>
     </Paper>
   );
 }
