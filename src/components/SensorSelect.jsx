@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useContext, useState } from 'react';
 import {
-  Paper, Box, Tab, Tabs,
+  Paper, Tab, Tabs,
 } from '@mui/material';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -28,8 +28,15 @@ export default function SensorSelect({
   };
 
   return (
-    <Box>
-      <Tabs value={tab} onChange={handleChange} aria-label="Velg kart eller liste" sx={{ width: '100%', '& .MuiTabs-flexContainer': { justifyContent: 'center' } }}>
+    <Paper sx={{ border: '1px solid', borderColor: 'background.paper' }}>
+      <Tabs
+        value={tab}
+        onChange={handleChange}
+        aria-label="Velg kart eller liste"
+        sx={{
+          width: '100%', '& .MuiTabs-flexContainer': { justifyContent: 'center' }, marginBottom: '0rem', backgroundColor: 'background.paper',
+        }}
+      >
         <Tab label={translations.sensorSelect.list[language]} sx={{ maxWidth: '100%', width: '50%' }} icon={<FormatListBulletedIcon />} />
         <Tab label={translations.sensorSelect.map[language]} sx={{ maxWidth: '100%', width: '50%' }} icon={<LocationOnIcon />} />
       </Tabs>
@@ -58,7 +65,7 @@ export default function SensorSelect({
             />
           )}
       </Paper>
-    </Box>
+    </Paper>
   );
 }
 
