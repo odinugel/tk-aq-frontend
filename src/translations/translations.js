@@ -139,5 +139,9 @@ const translations = {
       en: 'Map',
     },
   },
+  fetchError: {
+    no: 'Kunne ikke hente data fra server. Vennligst velg et annet sted.',
+    en: 'Could not fetch data from server. Please choose another location.',
+  },
 };
 export default translations;
