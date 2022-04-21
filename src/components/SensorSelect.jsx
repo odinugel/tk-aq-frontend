@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useContext, useState } from 'react';
 import {
-  Paper, Box, Tab, Tabs,
+  Paper, Tab, Tabs,
 } from '@mui/material';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -13,43 +13,78 @@ import translations from '../translations/translations';
 export default function SensorSelect({
   loadingSensors,
   sensors,
+  sensorID,
   setSensorID,
   setOpen,
   latitude,
   longitude,
   userHasLocation,
+  header,
 }) {
   const [tab, setTab] = useState(0);
+  const [maximumHeight, setMaximumHeight] = useState('75vh');
+  const { language } = useContext(LanguageContext);
+
+  useState(() => {
+    if (header) {
+      setMaximumHeight(`${document.clientHeight - header.current.getBoundingClientRect().height}px`);
+    }
+  }, [header]);
 
   const handleChange = (event, newValue) => {
     setTab(newValue);
   };
 
-  const { language } = useContext(LanguageContext);
-
   return (
-    <Box>
-      <Tabs value={tab} onChange={handleChange} aria-label="Velg kart eller liste" sx={{ width: '100%', '& .MuiTabs-flexContainer': { justifyContent: 'center' } }}>
+    <Paper sx={{ border: '1px solid', borderColor: 'background.paper' }}>
+      <Tabs
+        value={tab}
+        onChange={handleChange}
+        aria-label="Velg kart eller liste"
+        sx={{
+          width: '100%', '& .MuiTabs-flexContainer': { justifyContent: 'center' }, marginBottom: '0rem', backgroundColor: 'background.paper',
+        }}
+      >
         <Tab label={translations.sensorSelect.list[language]} sx={{ maxWidth: '100%', width: '50%' }} icon={<FormatListBulletedIcon />} />
         <Tab label={translations.sensorSelect.map[language]} sx={{ maxWidth: '100%', width: '50%' }} icon={<LocationOnIcon />} />
       </Tabs>
-      <Paper>
+      <Paper sx={{ overflowY: 'auto', maxHeight: maximumHeight }}>
         {tab === 0
-          // eslint-disable-next-line max-len
-          ? <SensorList userHasLocation={userHasLocation} latitude={latitude} longitude={longitude} setOpen={setOpen} loadingSensors={loadingSensors} sensors={sensors} setSensorID={setSensorID} />
-          // eslint-disable-next-line max-len
-          : <Map userHasLocation={userHasLocation} latitude={latitude} longitude={longitude} setOpen={setOpen} sensors={sensors} setSensorID={setSensorID} />}
+          ? (
+            <SensorList
+              userHasLocation={userHasLocation}
+              latitude={latitude}
+              longitude={longitude}
+              setOpen={setOpen}
+              loadingSensors={loadingSensors}
+              sensors={sensors}
+              sensorID={sensorID}
+              setSensorID={setSensorID}
+            />
+          )
+          : (
+            <Map
+              userHasLocation={userHasLocation}
+              latitude={latitude}
+              longitude={longitude}
+              setOpen={setOpen}
+              sensors={sensors}
+              setSensorID={setSensorID}
+            />
+          )}
       </Paper>
-    </Box>
+    </Paper>
   );
 }
 
 SensorSelect.propTypes = {
   loadingSensors: PropTypes.bool.isRequired,
   sensors: PropTypes.array.isRequired,
+  sensorID: PropTypes.string.isRequired,
   setSensorID: PropTypes.func.isRequired,
   setOpen: PropTypes.func,
   latitude: PropTypes.number,
   longitude: PropTypes.number,
   userHasLocation: PropTypes.bool,
+  header: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
 };

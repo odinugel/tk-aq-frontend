@@ -131,13 +131,17 @@ const translations = {
   },
   sensorSelect: {
     list: {
-      no: 'Liste',
-      en: 'List',
+      no: 'Lokasjoner',
+      en: 'Locations',
     },
     map: {
       no: 'Kart',
       en: 'Map',
     },
+  },
+  fetchError: {
+    no: ['Ingen måling tilgjengelig.', 'Vennligst velg en annen lokasjon.'],
+    en: ['No data available.', 'Please select another location.'],
   },
 };
 export default translations;

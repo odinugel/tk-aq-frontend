@@ -4,6 +4,8 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import LanguageIcon from '@mui/icons-material/Language';
 import { LanguageContext } from '../context/LanguageContext';
+import noflag from '../assets/images/noflag.svg';
+import britflag from '../assets/images/britflag.svg';
 
 export default function LangButton() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -38,11 +40,11 @@ export default function LangButton() {
         }}
       >
         <MenuItem onClick={() => { setLanguage(() => 'no'); handleClose(); }} selected={language === 'no'}>
-          <img src="./noflag.svg" alt="logo" width="30px" style={{ marginRight: '5px' }} />
+          <img src={noflag} alt="Norsk" width="30px" style={{ marginRight: '5px' }} />
           Norwegian
         </MenuItem>
         <MenuItem onClick={() => { setLanguage(() => 'en'); handleClose(); }} selected={language === 'en'}>
-          <img src="./britflag.svg" alt="logo" width="30px" style={{ marginRight: '5px' }} />
+          <img src={britflag} alt="English" width="30px" style={{ marginRight: '5px' }} />
           English
         </MenuItem>
       </Menu>

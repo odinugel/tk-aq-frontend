@@ -13,12 +13,17 @@ export default function AccordionLoaderAQ() {
       {
     [...Array(4)].map((val, index) => (
       <Accordion key={index}>
-        <AccordionSummary>
-          <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'baseline' }}>
-            <Skeleton variant="circular" width={50} height={50} />
-            <Typography>
-              <Skeleton width="3ch" />
-            </Typography>
+        <AccordionSummary sx={{ '& .MuiAccordionSummary-content': { justifyContent: 'space-between', margin: '6px 0px 12px 0px', padding: '0.5rem 0' } }}>
+          <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+            <Skeleton variant="circular" width={60} height={60} />
+            <Box sx={{ display: 'flex', flexDirection: 'column', marginLeft: '1rem' }}>
+              <Typography sx={{ fontSize: '1.2rem' }}>
+                <Skeleton width="20ch" />
+              </Typography>
+              <Typography>
+                <Skeleton width="15ch" />
+              </Typography>
+            </Box>
           </Box>
         </AccordionSummary>
       </Accordion>

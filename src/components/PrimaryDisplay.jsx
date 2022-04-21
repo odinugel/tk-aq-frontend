@@ -10,9 +10,13 @@ import PrimaryDisplayLoader from './PrimaryDisplayLoader';
 import ShortInfo from './ShortInfo';
 import { LanguageContext } from '../context/LanguageContext';
 import translations from '../translations/translations';
+import FetchError from './FetchError';
 
-export default function PrimaryDisplay({ data, loading }) {
+export default function PrimaryDisplay({ data, loading, fetchFailed }) {
   const { language } = useContext(LanguageContext);
+  if (fetchFailed) {
+    return (<FetchError />);
+  }
   if (loading) {
     return <PrimaryDisplayLoader />;
   }
@@ -39,10 +43,11 @@ export default function PrimaryDisplay({ data, loading }) {
         category={data.topPollutant.category}
         thickness={2}
       />
-      <Weather temperature={data.weather.temperature} humidity={data.weather.humidity} />
-      <Stack direction="row" sx={{ marginTop: '2rem' }}>
+      {data.weather
+      && <Weather temperature={data.weather.temperature} humidity={data.weather.humidity} />}
+      <Stack direction="row" sx={{ margin: '2rem 0.5rem 0 0.5rem' }}>
         <InfoOutlinedIcon />
-        <Stack sx={{ margin: '0 2rem' }}>
+        <Stack sx={{ marginLeft: '1rem' }}>
           <ShortInfo category={data.topPollutant.category} />
         </Stack>
       </Stack>
@@ -53,4 +58,5 @@ export default function PrimaryDisplay({ data, loading }) {
 PrimaryDisplay.propTypes = {
   data: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
+  fetchFailed: PropTypes.bool.isRequired,
 };
