@@ -6,7 +6,7 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import PropTypes from 'prop-types';
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import { LanguageContext } from '../context/LanguageContext';
 import LangButton from './LangButton';
 import DarkModeSwitch from './DarkModeSwitch';
@@ -29,11 +29,13 @@ export default function Header({
   const minWidth450px = useMediaQuery('(min-width:450px)');
   const minWidth600px = useMediaQuery('(min-width:600px)');
   const { language } = useContext(LanguageContext);
+  const header = useRef(null); // get the header element to calculate height/padding of sensordrawer
 
   return (
     <AppBar
       position="sticky"
       color="secondary"
+      ref={header}
       sx={{
         zIndex: (theme) => theme.zIndex.drawer + 1,
         display: 'flex',
@@ -64,6 +66,7 @@ export default function Header({
             latitude={latitude}
             longitude={longitude}
             userHasLocation={userHasLocation}
+            header={header}
           />
           )}
           <Stack direction="row" sx={{ placeItems: 'center' }} spacing={1}>

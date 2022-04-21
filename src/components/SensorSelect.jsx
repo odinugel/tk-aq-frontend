@@ -19,9 +19,17 @@ export default function SensorSelect({
   latitude,
   longitude,
   userHasLocation,
+  header,
 }) {
   const [tab, setTab] = useState(0);
+  const [maximumHeight, setMaximumHeight] = useState('75vh');
   const { language } = useContext(LanguageContext);
+
+  useState(() => {
+    if (header) {
+      setMaximumHeight(`${document.clientHeight - header.current.getBoundingClientRect().height}px`);
+    }
+  }, [header]);
 
   const handleChange = (event, newValue) => {
     setTab(newValue);
@@ -40,7 +48,7 @@ export default function SensorSelect({
         <Tab label={translations.sensorSelect.list[language]} sx={{ maxWidth: '100%', width: '50%' }} icon={<FormatListBulletedIcon />} />
         <Tab label={translations.sensorSelect.map[language]} sx={{ maxWidth: '100%', width: '50%' }} icon={<LocationOnIcon />} />
       </Tabs>
-      <Paper sx={{ overflowY: 'auto', maxHeight: '75vh' }}>
+      <Paper sx={{ overflowY: 'auto', maxHeight: maximumHeight }}>
         {tab === 0
           ? (
             <SensorList
@@ -78,4 +86,5 @@ SensorSelect.propTypes = {
   latitude: PropTypes.number,
   longitude: PropTypes.number,
   userHasLocation: PropTypes.bool,
+  header: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
 };
