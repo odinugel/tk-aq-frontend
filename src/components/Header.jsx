@@ -8,11 +8,10 @@ import {
 import PropTypes from 'prop-types';
 import { useContext, useRef } from 'react';
 import { LanguageContext } from '../context/LanguageContext';
-import LangButton from './LangButton';
-import DarkModeSwitch from './DarkModeSwitch';
 import SensorDrawer from './SensorDrawer';
 import translations from '../translations/translations';
 import Logo from '../assets/images/TrondheimKommuneSkjold.svg';
+import SettingsDrawer from './SettingsDrawer';
 
 export default function Header({
   sensors,
@@ -85,8 +84,7 @@ export default function Header({
           </Stack>
         </Stack>
         <Stack direction="row">
-          <LangButton />
-          <DarkModeSwitch darkMode={darkMode} setDarkMode={setDarkMode} />
+          <SettingsDrawer darkMode={darkMode} setDarkMode={setDarkMode} />
         </Stack>
       </Toolbar>
     </AppBar>
