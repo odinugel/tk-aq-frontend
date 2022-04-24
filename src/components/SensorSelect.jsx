@@ -16,54 +16,58 @@ export default function SensorSelect({
   sensorID,
   setSensorID,
   setOpen,
+  latitude,
+  longitude,
+  userHasLocation,
   header,
 }) {
-  const [latitude, setLatitude] = useState(63.429799); // Trondheim sentrum
-  const [longitude, setLongitude] = useState(10.393418);
-  const [userHasLocation, setUserHasLocation] = useState(false);
   const [tab, setTab] = useState(0);
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const [maximumHeight, setMaximumHeight] = useState('75vh');
   const { language } = useContext(LanguageContext);
-
-  // This useEffect is called every time sensorDrawer is opened,
-  // (which is bad)
-  // but setting userHasLocation to false does not trigger a rerender
-  // and the browser automatically blocks the request anyway
+  const tabHeight = 72; // to set maxheight for sensorlist and map
   useEffect(() => {
-    if (!userHasLocation) {
-      navigator.geolocation.getCurrentPosition((positionme) => {
-        setLatitude(positionme.coords.latitude);
-        setLongitude(positionme.coords.longitude);
-        setUserHasLocation(true);
-      }, (error) => { console.log(error); setUserHasLocation(false); });
-    }
-  }, [userHasLocation]);
+    window.addEventListener('resize', () => {
+      console.log('resize');
+      setWindowHeight(window.innerHeight);
+    });
+    return () => {
+      window.removeEventListener('resize', () => {
+        setWindowHeight(window.innerHeight);
+      });
+    };
+  });
 
   useEffect(() => {
     if (header) {
-      console.log('hello from useEffect');
-      setMaximumHeight(`${document.clientHeight - header.current.getBoundingClientRect().height}px`);
+      console.log(`${header.current.getBoundingClientRect().height}px`);
+      setMaximumHeight(`${windowHeight - header.current.getBoundingClientRect().height - tabHeight}px`);
     }
-  }, [header]);
+  }, [header, windowHeight]);
 
   const handleChange = (event, newValue) => {
     setTab(newValue);
   };
 
   return (
-    <Paper sx={{ border: '1px solid', borderColor: 'background.paper' }}>
+    <Paper sx={{
+      border: '1px solid',
+      borderColor: 'background.paper',
+      overflow: 'hidden',
+    }}
+    >
       <Tabs
         value={tab}
         onChange={handleChange}
         aria-label="Velg kart eller liste"
         sx={{
-          width: '100%', '& .MuiTabs-flexContainer': { justifyContent: 'center' }, marginBottom: '0rem', backgroundColor: 'background.paper',
+          width: '100%', '& .MuiTabs-flexContainer': { justifyContent: 'center' }, marginBottom: '0rem', backgroundColor: 'background.paper', maxHeight: `${tabHeight}px`,
         }}
       >
         <Tab label={translations.sensorSelect.list[language]} sx={{ maxWidth: '100%', width: '50%' }} icon={<FormatListBulletedIcon />} />
         <Tab label={translations.sensorSelect.map[language]} sx={{ maxWidth: '100%', width: '50%' }} icon={<LocationOnIcon />} />
       </Tabs>
-      <Paper sx={{ overflowY: 'auto', maxHeight: maximumHeight }}>
+      <Paper sx={{ overflowY: 'auto', height: maximumHeight }}>
         {tab === 0
           ? (
             <SensorList
@@ -98,5 +102,8 @@ SensorSelect.propTypes = {
   sensorID: PropTypes.string.isRequired,
   setSensorID: PropTypes.func.isRequired,
   setOpen: PropTypes.func,
+  latitude: PropTypes.number,
+  longitude: PropTypes.number,
+  userHasLocation: PropTypes.bool,
   header: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
 };

@@ -39,7 +39,7 @@ export default function Map({
       center={[latitude, longitude]}
       zoom={13}
       scrollWheelZoom
-      style={{ minHeight: '70vh' }}
+      style={{ height: '100%' }}
     >
       {sensors.map((sensor) => (
         sensor.visible && (
