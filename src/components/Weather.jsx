@@ -1,36 +1,46 @@
 import PropTypes from 'prop-types';
-import { Stack, Typography } from '@mui/material';
+import { useState, useEffect } from 'react';
+import { Stack, Typography, Fade } from '@mui/material';
 import ThermostatIcon from '@mui/icons-material/Thermostat';
 import OpacityIcon from '@mui/icons-material/Opacity';
+import fetchWeather from '../api/fetchWeather';
 
-export default function Weather({ temperature, humidity }) {
+export default function Weather({ sensorID }) {
+  const [loading, setLoading] = useState(true);
+  const [weather, setWeather] = useState(null);
+
+  useEffect(() => {
+    setLoading(true);
+    fetchWeather(sensorID, setWeather, setLoading);
+  }, [sensorID]);
+
   return (
+
     <Stack direction="row" m="1rem" sx={{ justifyContent: 'space-evenly' }}>
       <Stack direction="row" sx={{ alignItems: 'flex-end' }}>
         <ThermostatIcon fontSize="large" />
-        <Typography variant="h5">
-          {temperature.toFixed()}
-          &deg;
-        </Typography>
+        {!loading && (
+          <Fade in>
+            <Typography variant="h5">
+              {`${weather.temperature.toFixed()}°`}
+            </Typography>
+          </Fade>
+        )}
       </Stack>
       <Stack direction="row" sx={{ alignItems: 'flex-end' }}>
         <OpacityIcon fontSize="large" />
-        <Typography variant="h5">
-          {humidity}
-          %
-        </Typography>
+        {!loading && (
+          <Fade in>
+            <Typography variant="h5">
+              {`${weather.humidity}%`}
+            </Typography>
+          </Fade>
+        )}
       </Stack>
     </Stack>
   );
 }
 
 Weather.propTypes = {
-  temperature: PropTypes.oneOfType([
-    PropTypes.string.isRequired,
-    PropTypes.number.isRequired,
-  ]),
-  humidity: PropTypes.oneOfType([
-    PropTypes.string.isRequired,
-    PropTypes.number.isRequired,
-  ]),
+  sensorID: PropTypes.string.isRequired,
 };
