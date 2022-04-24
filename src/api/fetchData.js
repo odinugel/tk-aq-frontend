@@ -8,7 +8,7 @@ const fetchData = async (sensorID, sensors, setData, setLoading, setFetchFailed)
     const proxy = 'http://localhost:8080/';
     const timeNow = new Date();
     const twoHoursAgo = new Date();
-    twoHoursAgo.setHours(twoHoursAgo.getHours() - 2);
+    twoHoursAgo.setHours(twoHoursAgo.getHours() - 200);
     const from = `from=${Date.parse(twoHoursAgo)}&to=${Date.parse(timeNow)}&dataPointSize=hour`;
 
     const response = await Promise.all([
