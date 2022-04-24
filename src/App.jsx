@@ -69,7 +69,7 @@ function App() {
       console.log(`Fetching data from ${sensorID}`);
       setFetchFailed(false);
       setLoading(true);
-      fetchData(sensorID, sensors, setData, setLoading, setFetchFailed);
+      fetchData(sensorID, setData, setLoading, setFetchFailed);
     }
   }, [sensorID, sensors]);
 
@@ -121,7 +121,12 @@ function App() {
                 margin: '1rem',
               }}
               >
-                <PrimaryDisplay data={data} loading={loading} fetchFailed={fetchFailed} />
+                <PrimaryDisplay
+                  data={data}
+                  sensors={sensors}
+                  loading={loading}
+                  fetchFailed={fetchFailed}
+                />
                 <AccordionAQ
                   pollutants={data.pollutants}
                   loading={loading}

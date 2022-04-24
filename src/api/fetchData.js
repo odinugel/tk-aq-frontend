@@ -1,7 +1,7 @@
 import pollutionToPercentage from './pollutionToPercentage';
 import sortPollutants from './sortPollutants';
 
-const fetchData = async (sensorID, sensors, setData, setLoading, setFetchFailed) => {
+const fetchData = async (sensorID, setData, setLoading, setFetchFailed) => {
   try {
     // fetch is run through proxy due to CORS on TK-servers, must be changed before production
     const url = 'https://tipqa.trondheim.kommune.no/luftkvalitet-api/v1/sensors/';
@@ -36,7 +36,6 @@ const fetchData = async (sensorID, sensors, setData, setLoading, setFetchFailed)
     const pollutants = pollutionToPercentage(dustReversed, gasReversed);
     const sortedPollutants = sortPollutants(pollutants);
     setData({
-      sensors,
       sensorID,
       pollutants: sortedPollutants,
       topPollutant: sortedPollutants[0],

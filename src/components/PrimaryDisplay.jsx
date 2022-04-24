@@ -12,7 +12,12 @@ import { LanguageContext } from '../context/LanguageContext';
 import translations from '../translations/translations';
 import FetchError from './FetchError';
 
-export default function PrimaryDisplay({ data, loading, fetchFailed }) {
+export default function PrimaryDisplay({
+  data,
+  sensors,
+  loading,
+  fetchFailed,
+}) {
   const { language } = useContext(LanguageContext);
   if (fetchFailed) {
     return (<FetchError />);
@@ -30,7 +35,7 @@ export default function PrimaryDisplay({ data, loading, fetchFailed }) {
     >
       <Stack sx={{ alignItems: 'center' }}>
         <Typography variant="h4" textAlign="center">
-          {data.sensors.find((index) => index.deviceID === data.sensorID).deviceName}
+          {sensors.find((sensor) => sensor.deviceID === data.sensorID).deviceName}
         </Typography>
         <Typography variant="h6" mb="1rem">
           {`${translations.lastUpdate[language]} ${formatDistanceStrict(data.timestamp, new Date(), { addSuffix: true, locale: language === 'no' ? nb : enGB })}`}
@@ -59,4 +64,5 @@ PrimaryDisplay.propTypes = {
   data: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
   fetchFailed: PropTypes.bool.isRequired,
+  sensors: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
