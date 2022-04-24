@@ -23,24 +23,11 @@ function App() {
   const [loadingSensors, setLoadingSensors] = useState(true);
   const [fetchFailed, setFetchFailed] = useState(false);
   const [sensorID, setSensorID] = useState('');
-  const [latitude, setLatitude] = useState(63.429799); // Trondheim sentrum
-  const [longitude, setLongitude] = useState(10.393418);
-  const [userHasLocation, setUserHasLocation] = useState(false);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const [darkMode, setDarkMode] = useState(prefersDarkMode);
   const minWidth1200px = useMediaQuery('(min-width:1200px)');
   const params = useParams();
   console.log('render');
-
-  useEffect(() => {
-    if (!userHasLocation) {
-      navigator.geolocation.getCurrentPosition((positionme) => {
-        setLatitude(positionme.coords.latitude);
-        setLongitude(positionme.coords.longitude);
-        setUserHasLocation(true);
-      }, (error) => { console.log(error); setUserHasLocation(false); });
-    }
-  }, [userHasLocation]);
 
   // When page loads, the media query for
   // prefers-color-scheme: dark initially returns false for some reason.
@@ -85,9 +72,6 @@ function App() {
               setSensorID={setSensorID}
               darkMode={darkMode}
               setDarkMode={setDarkMode}
-              latitude={latitude}
-              longitude={longitude}
-              userHasLocation={userHasLocation}
             />
             <Stack
               direction="row"
@@ -109,9 +93,6 @@ function App() {
                     sensors={sensors}
                     sensorID={sensorID}
                     setSensorID={setSensorID}
-                    latitude={latitude}
-                    longitude={longitude}
-                    userHasLocation={userHasLocation}
                   />
                 </Box>
               )}

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import {
   Paper, Tab, Tabs,
 } from '@mui/material';
@@ -16,17 +16,32 @@ export default function SensorSelect({
   sensorID,
   setSensorID,
   setOpen,
-  latitude,
-  longitude,
-  userHasLocation,
   header,
 }) {
+  const [latitude, setLatitude] = useState(63.429799); // Trondheim sentrum
+  const [longitude, setLongitude] = useState(10.393418);
+  const [userHasLocation, setUserHasLocation] = useState(false);
   const [tab, setTab] = useState(0);
   const [maximumHeight, setMaximumHeight] = useState('75vh');
   const { language } = useContext(LanguageContext);
 
-  useState(() => {
+  // This useEffect is called every time sensorDrawer is opened,
+  // (which is bad)
+  // but setting userHasLocation to false does not trigger a rerender
+  // and the browser automatically blocks the request anyway
+  useEffect(() => {
+    if (!userHasLocation) {
+      navigator.geolocation.getCurrentPosition((positionme) => {
+        setLatitude(positionme.coords.latitude);
+        setLongitude(positionme.coords.longitude);
+        setUserHasLocation(true);
+      }, (error) => { console.log(error); setUserHasLocation(false); });
+    }
+  }, [userHasLocation]);
+
+  useEffect(() => {
     if (header) {
+      console.log('hello from useEffect');
       setMaximumHeight(`${document.clientHeight - header.current.getBoundingClientRect().height}px`);
     }
   }, [header]);
@@ -83,8 +98,5 @@ SensorSelect.propTypes = {
   sensorID: PropTypes.string.isRequired,
   setSensorID: PropTypes.func.isRequired,
   setOpen: PropTypes.func,
-  latitude: PropTypes.number,
-  longitude: PropTypes.number,
-  userHasLocation: PropTypes.bool,
   header: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
 };
