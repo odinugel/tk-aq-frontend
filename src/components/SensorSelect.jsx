@@ -24,10 +24,11 @@ export default function SensorSelect({
   const [tab, setTab] = useState(0);
   const [maximumHeight, setMaximumHeight] = useState('75vh');
   const { language } = useContext(LanguageContext);
-
+  const tabHeight = 72; // to set maxheight for sensorlist and map
   useState(() => {
     if (header) {
-      setMaximumHeight(`${document.clientHeight - header.current.getBoundingClientRect().height}px`);
+      console.log(`${header.current.getBoundingClientRect().height}px`);
+      setMaximumHeight(`${window.innerHeight - header.current.getBoundingClientRect().height - tabHeight}px`);
     }
   }, [header]);
 
@@ -36,19 +37,24 @@ export default function SensorSelect({
   };
 
   return (
-    <Paper sx={{ border: '1px solid', borderColor: 'background.paper' }}>
+    <Paper sx={{
+      border: '1px solid',
+      borderColor: 'background.paper',
+      overflow: 'hidden',
+    }}
+    >
       <Tabs
         value={tab}
         onChange={handleChange}
         aria-label="Velg kart eller liste"
         sx={{
-          width: '100%', '& .MuiTabs-flexContainer': { justifyContent: 'center' }, marginBottom: '0rem', backgroundColor: 'background.paper',
+          width: '100%', '& .MuiTabs-flexContainer': { justifyContent: 'center' }, marginBottom: '0rem', backgroundColor: 'background.paper', maxHeight: `${tabHeight}px`,
         }}
       >
         <Tab label={translations.sensorSelect.list[language]} sx={{ maxWidth: '100%', width: '50%' }} icon={<FormatListBulletedIcon />} />
         <Tab label={translations.sensorSelect.map[language]} sx={{ maxWidth: '100%', width: '50%' }} icon={<LocationOnIcon />} />
       </Tabs>
-      <Paper sx={{ overflowY: 'auto', maxHeight: maximumHeight }}>
+      <Paper sx={{ overflowY: 'auto', height: maximumHeight }}>
         {tab === 0
           ? (
             <SensorList

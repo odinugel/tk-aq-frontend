@@ -143,5 +143,25 @@ const translations = {
     no: ['Ingen måling tilgjengelig.', 'Vennligst velg en annen lokasjon.'],
     en: ['No data available.', 'Please select another location.'],
   },
+  settings: {
+    no: 'Innstillinger',
+    en: 'Settings',
+  },
+  language: {
+    no: 'Språk',
+    en: 'Language',
+  },
+  themeMode: {
+    no: 'Fargemodus',
+    en: 'Mode',
+  },
+  themeModeLight: {
+    no: 'Lys',
+    en: 'Light',
+  },
+  themeModeDark: {
+    no: 'Mørk',
+    en: 'Dark',
+  },
 };
 export default translations;

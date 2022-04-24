@@ -3,7 +3,7 @@ import AccordionLoaderAQ from './AccordionLoaderAQ';
 import Donut from './Donut';
 import FetchError from './FetchError';
 import Header from './Header';
-import LangButton from './LangButton';
+import LanguageSelect from './LanguageSelect';
 import Map from './Map';
 import PrimaryDisplay from './PrimaryDisplay';
 import PrimaryDisplayLoader from './PrimaryDisplayLoader';
@@ -20,7 +20,7 @@ export {
   Donut,
   FetchError,
   Header,
-  LangButton,
+  LanguageSelect,
   Map,
   PrimaryDisplay,
   PrimaryDisplayLoader,
