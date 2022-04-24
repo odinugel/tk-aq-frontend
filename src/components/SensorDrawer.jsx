@@ -32,7 +32,7 @@ export default function SensorDrawer({
       <IconButton onClick={() => setOpen((currentOpen) => !currentOpen)} variant="outlined" color="primary">
         <MenuIcon />
       </IconButton>
-      <Drawer open={open} PaperProps={{ sx: { width: '100%', paddingTop: `${drawerPadding}px` } }} anchor="left">
+      <Drawer open={open} onClose={() => setOpen((currentOpen) => !currentOpen)} PaperProps={{ sx: { width: '100%', paddingTop: `${drawerPadding}px` } }} anchor="left">
         <SensorSelect
           sensors={sensors}
           setOpen={setOpen}
