@@ -9,6 +9,7 @@ import SensorList from './SensorList';
 import Map from './Map';
 import { LanguageContext } from '../context/LanguageContext';
 import translations from '../translations/translations';
+import debounce from '../utils/debounce';
 
 export default function SensorSelect({
   loadingSensors,
@@ -16,27 +17,39 @@ export default function SensorSelect({
   sensorID,
   setSensorID,
   setOpen,
-  latitude,
-  longitude,
-  userHasLocation,
   header,
 }) {
+  const [latitude, setLatitude] = useState(63.429799); // Trondheim sentrum
+  const [longitude, setLongitude] = useState(10.393418);
+  const [userHasLocation, setUserHasLocation] = useState(false);
   const [tab, setTab] = useState(0);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const [maximumHeight, setMaximumHeight] = useState('75vh');
   const { language } = useContext(LanguageContext);
   const tabHeight = 72; // to set maxheight for sensorlist and map
+
+  // TODO: Fix this, debounce is not working
   useEffect(() => {
     window.addEventListener('resize', () => {
-      console.log('resize');
-      setWindowHeight(window.innerHeight);
+      debounce(setWindowHeight(window.innerHeight), 500);
+      debounce(console.log('resize'), 10000);
     });
     return () => {
       window.removeEventListener('resize', () => {
-        setWindowHeight(window.innerHeight);
+        debounce(setWindowHeight(window.innerHeight), 500);
       });
     };
   });
+
+  useEffect(() => {
+    if (!userHasLocation) {
+      navigator.geolocation.getCurrentPosition((positionme) => {
+        setLatitude(positionme.coords.latitude);
+        setLongitude(positionme.coords.longitude);
+        setUserHasLocation(true);
+      }, (error) => { console.log(error); setUserHasLocation(false); });
+    }
+  }, [userHasLocation]);
 
   useEffect(() => {
     if (header) {
@@ -102,8 +115,5 @@ SensorSelect.propTypes = {
   sensorID: PropTypes.string.isRequired,
   setSensorID: PropTypes.func.isRequired,
   setOpen: PropTypes.func,
-  latitude: PropTypes.number,
-  longitude: PropTypes.number,
-  userHasLocation: PropTypes.bool,
   header: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
 };

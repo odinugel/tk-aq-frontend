@@ -13,9 +13,6 @@ export default function SensorDrawer({
   sensors,
   setSensorID,
   loadingSensors,
-  latitude,
-  longitude,
-  userHasLocation,
   header,
 }) {
   const params = useParams();
@@ -38,9 +35,6 @@ export default function SensorDrawer({
           setOpen={setOpen}
           setSensorID={setSensorID}
           loadingSensors={loadingSensors}
-          latitude={latitude}
-          longitude={longitude}
-          userHasLocation={userHasLocation}
           header={header}
         />
       </Drawer>
@@ -52,9 +46,6 @@ SensorDrawer.propTypes = {
   sensors: PropTypes.arrayOf(PropTypes.object).isRequired,
   setSensorID: PropTypes.func.isRequired,
   loadingSensors: PropTypes.bool.isRequired,
-  latitude: PropTypes.number,
-  longitude: PropTypes.number,
-  userHasLocation: PropTypes.bool,
   // eslint-disable-next-line max-len
   header: PropTypes.shape({ current: PropTypes.shape({ getBoundingClientRect: PropTypes.func.isRequired }) }).isRequired,
 };
