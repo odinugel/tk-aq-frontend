@@ -37,7 +37,7 @@ export default function SensorSelect({
   }, []);
 
   useEffect(() => {
-    if (!userHasLocation) {
+    if (navigator.geolocation && !userHasLocation) {
       navigator.geolocation.getCurrentPosition((positionme) => {
         setLatitude(positionme.coords.latitude);
         setLongitude(positionme.coords.longitude);
@@ -106,7 +106,7 @@ export default function SensorSelect({
 SensorSelect.propTypes = {
   loadingSensors: PropTypes.bool.isRequired,
   sensors: PropTypes.array.isRequired,
-  sensorID: PropTypes.string.isRequired,
+  sensorID: PropTypes.string, // undefined on page load
   setSensorID: PropTypes.func.isRequired,
   setOpen: PropTypes.func,
   header: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
