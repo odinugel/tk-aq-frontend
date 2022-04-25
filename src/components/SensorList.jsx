@@ -102,7 +102,7 @@ export default function SensorList({
 SensorList.propTypes = {
   sensors: PropTypes.arrayOf(PropTypes.object).isRequired,
   setSensorID: PropTypes.func.isRequired,
-  sensorID: PropTypes.string.isRequired,
+  sensorID: PropTypes.string, // undefined on page load
   loadingSensors: PropTypes.bool.isRequired,
   setOpen: PropTypes.func,
   latitude: PropTypes.number,
