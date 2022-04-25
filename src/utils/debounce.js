@@ -1,11 +1,10 @@
-/* eslint-disable prefer-spread */
-const debounce = (callback, wait) => {
-  let timeoutId = null;
+const debounce = (func, wait) => {
+  let timeout;
+
   return (...args) => {
-    window.clearTimeout(timeoutId);
-    timeoutId = window.setTimeout(() => {
-      callback.apply(null, args);
-    }, wait);
+    if (timeout) clearTimeout(timeout);
+
+    timeout = setTimeout(() => func(...args), wait);
   };
 };
 

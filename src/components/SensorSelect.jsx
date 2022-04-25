@@ -28,18 +28,13 @@ export default function SensorSelect({
   const { language } = useContext(LanguageContext);
   const tabHeight = 72; // to set maxheight for sensorlist and map
 
-  // TODO: Fix this, debounce is not working
   useEffect(() => {
-    window.addEventListener('resize', () => {
-      debounce(setWindowHeight(window.innerHeight), 500);
-      debounce(console.log('resize'), 10000);
-    });
-    return () => {
-      window.removeEventListener('resize', () => {
-        debounce(setWindowHeight(window.innerHeight), 500);
-      });
-    };
-  });
+    const handleResize = debounce(() => {
+      setWindowHeight(window.innerHeight);
+    }, 100);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     if (!userHasLocation) {
@@ -53,7 +48,6 @@ export default function SensorSelect({
 
   useEffect(() => {
     if (header) {
-      console.log(`${header.current.getBoundingClientRect().height}px`);
       setMaximumHeight(`${windowHeight - header.current.getBoundingClientRect().height - tabHeight}px`);
     }
   }, [header, windowHeight]);
