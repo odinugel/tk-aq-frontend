@@ -6,7 +6,7 @@ export default function addSensorStatus(sensors) {
       new Date(),
       new Date(sensor.lastReceivedMsg),
     );
-    const isOnline = (result < 200);
+    const isOnline = (result < 2);
     return { ...sensor, isOnline };
   });
   return sensorsWithStatus;
