@@ -16,6 +16,7 @@ import SettingsDrawer from './SettingsDrawer';
 export default function Header({
   sensors,
   loadingSensors,
+  fetchSensorsFailed,
   sensorID,
   setSensorID,
   darkMode,
@@ -60,6 +61,7 @@ export default function Header({
             setSensorID={setSensorID}
             sensorID={sensorID}
             header={header}
+            fetchSensorsFailed={fetchSensorsFailed}
           />
           )}
           <Stack direction="row" sx={{ placeItems: 'center' }} spacing={1}>
@@ -89,6 +91,7 @@ Header.propTypes = {
   sensors: PropTypes.arrayOf(PropTypes.object).isRequired,
   loadingSensors: PropTypes.bool.isRequired,
   setSensorID: PropTypes.func.isRequired,
+  fetchSensorsFailed: PropTypes.bool.isRequired,
   darkMode: PropTypes.bool.isRequired,
   setDarkMode: PropTypes.func.isRequired,
   sensorID: PropTypes.string.isRequired,

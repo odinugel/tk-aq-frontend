@@ -22,6 +22,7 @@ function App() {
   const [sensors, setSensors] = useState([]);
   const [loadingSensors, setLoadingSensors] = useState(true);
   const [fetchFailed, setFetchFailed] = useState(false);
+  const [fetchSensorsFailed, setFetchSensorsFailed] = useState(false);
   const [sensorID, setSensorID] = useState('');
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const [darkMode, setDarkMode] = useState(prefersDarkMode);
@@ -46,7 +47,7 @@ function App() {
   // sensors only need to be fetched once (on page load)
   useEffect(() => {
     console.log('Fetching sensors');
-    fetchSensors(setSensors, setLoadingSensors, setFetchFailed);
+    fetchSensors(setSensors, setLoadingSensors, setFetchSensorsFailed);
   }, []);
 
   // fetch data if sensorID changes
@@ -72,6 +73,7 @@ function App() {
               setSensorID={setSensorID}
               darkMode={darkMode}
               setDarkMode={setDarkMode}
+              fetchSensorsFailed={fetchSensorsFailed}
             />
             <Stack
               direction="row"
@@ -93,27 +95,25 @@ function App() {
                     sensors={sensors}
                     sensorID={sensorID}
                     setSensorID={setSensorID}
+                    fetchSensorsFailed={fetchSensorsFailed}
                   />
                 </Box>
               )}
-              <Box sx={{
-                maxWidth: '600px',
-                width: '100%',
-                margin: '1rem',
-              }}
-              >
-                <PrimaryDisplay
-                  data={data}
-                  sensors={sensors}
-                  loading={loading}
-                  fetchFailed={fetchFailed}
-                />
-                <AccordionAQ
-                  pollutants={data.pollutants}
-                  loading={loading}
-                  fetchFailed={fetchFailed}
-                />
-              </Box>
+              {!fetchSensorsFailed && (
+                <Box sx={{ maxWidth: '600px', width: '100%', margin: '1rem' }}>
+                  <PrimaryDisplay
+                    data={data}
+                    sensors={sensors}
+                    loading={loading}
+                    fetchFailed={fetchFailed}
+                  />
+                  <AccordionAQ
+                    pollutants={data.pollutants}
+                    loading={loading}
+                    fetchFailed={fetchFailed}
+                  />
+                </Box>
+              )}
             </Stack>
           </Paper>
         </CssBaseline>

@@ -13,6 +13,7 @@ export default function SensorDrawer({
   sensors,
   setSensorID,
   loadingSensors,
+  fetchSensorsFailed,
   header,
 }) {
   const params = useParams();
@@ -36,6 +37,7 @@ export default function SensorDrawer({
           setSensorID={setSensorID}
           loadingSensors={loadingSensors}
           header={header}
+          fetchSensorsFailed={fetchSensorsFailed}
         />
       </Drawer>
     </>
@@ -46,6 +48,7 @@ SensorDrawer.propTypes = {
   sensors: PropTypes.arrayOf(PropTypes.object).isRequired,
   setSensorID: PropTypes.func.isRequired,
   loadingSensors: PropTypes.bool.isRequired,
+  fetchSensorsFailed: PropTypes.bool.isRequired,
   // eslint-disable-next-line max-len
   header: PropTypes.shape({ current: PropTypes.shape({ getBoundingClientRect: PropTypes.func.isRequired }) }).isRequired,
 };

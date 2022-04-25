@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import PropTypes from 'prop-types';
 import { useContext, useState, useEffect } from 'react';
 import {
@@ -10,11 +11,13 @@ import Map from './Map';
 import { LanguageContext } from '../context/LanguageContext';
 import translations from '../translations/translations';
 import debounce from '../utils/debounce';
+import FetchSensorsError from './FetchSensorsError';
 
 export default function SensorSelect({
   loadingSensors,
   sensors,
   sensorID,
+  fetchSensorsFailed,
   setSensorID,
   setOpen,
   header,
@@ -56,6 +59,11 @@ export default function SensorSelect({
     setTab(newValue);
   };
 
+  if (fetchSensorsFailed) {
+    return (
+      <FetchSensorsError />
+    );
+  }
   return (
     <Paper sx={{
       border: '1px solid',
@@ -107,6 +115,7 @@ SensorSelect.propTypes = {
   loadingSensors: PropTypes.bool.isRequired,
   sensors: PropTypes.array.isRequired,
   sensorID: PropTypes.string, // undefined on page load
+  fetchSensorsFailed: PropTypes.bool.isRequired,
   setSensorID: PropTypes.func.isRequired,
   setOpen: PropTypes.func,
   header: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),

@@ -16,6 +16,8 @@ const fetchSensors = async (setSensors, setLoadingSensors, setFetchFailed) => {
       setLoadingSensors(false);
     }
   } catch (e) {
+    setFetchFailed(true);
+    setLoadingSensors(false);
     throw Error(`fetchSensors: Promise failed${ e}`);
   }
 };
