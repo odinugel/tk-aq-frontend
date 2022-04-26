@@ -38,15 +38,15 @@ export default function SensorList({
         console.log('sorting sensors by distance');
         setSortedSensors(byDistance);
         // set sensorID to closest by default
-        if (!params.id) { console.log('setting sensorID to closest'); setSensorID(byDistance[0].deviceID); }
+        if (!params.id && sensorID === '') { console.log('setting sensorID to closest'); setSensorID(byDistance[0].deviceID); }
       } else {
         const alphabetically = sortSensorsAlphabetically(sensors);
         setSortedSensors(alphabetically);
         // set sensorID to Trondheim torg by default
-        if (!params.id) { console.log('setting sensorID to Trondheim torg'); setSensorID('2f3a11687f7a2j'); }
+        if (!params.id && sensorID === '') { console.log('setting sensorID to Trondheim torg'); setSensorID('2f3a11687f7a2j'); }
       }
     }
-  }, [latitude, loadingSensors, longitude, params.id, sensors, setSensorID, userHasLocation]);
+  }, [latitude, loadingSensors, longitude, params.id, sensorID, sensors, setSensorID, userHasLocation]);
 
   return (
     loadingSensors ? [...Array(20)].map((val, index) => (
