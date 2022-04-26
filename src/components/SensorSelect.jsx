@@ -1,9 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import PropTypes from 'prop-types';
 import { useContext, useState, useEffect } from 'react';
-import {
-  Paper, Tab, Tabs,
-} from '@mui/material';
+import { Paper, Tab, Tabs } from '@mui/material';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SensorList from './SensorList';
@@ -35,9 +33,16 @@ export default function SensorSelect({
     const handleResize = debounce(() => {
       setWindowHeight(window.innerHeight);
     }, 100);
+
     window.addEventListener('resize', handleResize);
-    return () => { window.removeEventListener('resize', handleResize); };
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  useEffect(() => {
+    if (header) {
+      setMaximumHeight(`${windowHeight - header.current.getBoundingClientRect().height - tabHeight}px`);
+    }
+  }, [header, windowHeight]);
 
   useEffect(() => {
     if (navigator.geolocation && !userHasLocation) {
@@ -49,21 +54,7 @@ export default function SensorSelect({
     }
   }, [userHasLocation]);
 
-  useEffect(() => {
-    if (header) {
-      setMaximumHeight(`${windowHeight - header.current.getBoundingClientRect().height - tabHeight}px`);
-    }
-  }, [header, windowHeight]);
-
-  const handleChange = (event, newValue) => {
-    setTab(newValue);
-  };
-
-  if (fetchSensorsFailed) {
-    return (
-      <FetchSensorsError />
-    );
-  }
+  if (fetchSensorsFailed) { return (<FetchSensorsError />); }
   return (
     <Paper sx={{
       border: '1px solid',
@@ -73,10 +64,16 @@ export default function SensorSelect({
     >
       <Tabs
         value={tab}
-        onChange={handleChange}
+        onChange={(event, newValue) => setTab(newValue)}
         aria-label="Velg kart eller liste"
         sx={{
-          width: '100%', '& .MuiTabs-flexContainer': { justifyContent: 'center' }, marginBottom: '0rem', backgroundColor: 'background.paper', maxHeight: `${tabHeight}px`,
+          width: '100%',
+          '& .MuiTabs-flexContainer': {
+            justifyContent: 'center',
+          },
+          marginBottom: '0rem',
+          backgroundColor: 'background.paper',
+          maxHeight: `${tabHeight}px`,
         }}
       >
         <Tab label={translations.sensorSelect.list[language]} sx={{ maxWidth: '100%', width: '50%' }} icon={<FormatListBulletedIcon />} />

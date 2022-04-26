@@ -12,7 +12,7 @@ import { LanguageContext } from '../context/LanguageContext';
 import translations from '../translations/translations';
 
 export default function Donut({
-  value, // 20
+  value,
   size,
   category,
   thickness,
@@ -44,7 +44,7 @@ export default function Donut({
       </Box>
       <Box sx={{ position: 'absolute', zIndex: '99' }}>
         <Typography variant="h3" color="text.secondary" align="center" sx={{ fontSize: (maxWidth550px ? '2.3rem' : '3rem'), marginTop: '6px' }}>
-          {/* margin top is to center the text which was off by 6px for some  reason */}
+          {/* margin top is to center the text which is off by 6px for some  reason */}
           {text ? donutText : null}
         </Typography>
       </Box>

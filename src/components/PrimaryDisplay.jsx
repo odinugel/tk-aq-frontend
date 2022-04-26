@@ -25,12 +25,10 @@ export default function PrimaryDisplay({
   fetchFailed,
 }) {
   const { language } = useContext(LanguageContext);
-  if (fetchFailed) {
-    return (<FetchError />);
-  }
-  if (loading) {
-    return <PrimaryDisplayLoader />;
-  }
+
+  if (fetchFailed) { return (<FetchError />); }
+  if (loading) { return <PrimaryDisplayLoader />; }
+
   return (
     <Paper sx={{
       padding: '1rem',

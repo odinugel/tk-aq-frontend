@@ -23,10 +23,11 @@ export default function Header({
   setDarkMode,
 }) {
   const maxWidth1200px = useMediaQuery('(max-width:1200px)');
-  const minWidth450px = useMediaQuery('(min-width:450px)');
   const minWidth600px = useMediaQuery('(min-width:600px)');
+  const minWidth450px = useMediaQuery('(min-width:450px)');
   const { language } = useContext(LanguageContext);
-  const header = useRef(null); // get the header element to calculate height/padding of sensordrawer
+  // get the header/Appbar element to calculate height/padding of sensordrawer
+  const header = useRef(null);
 
   return (
     <AppBar

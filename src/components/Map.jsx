@@ -72,12 +72,10 @@ export default function Map({
           }}
         >
           <Popup>{`${!sensor.isOnline ? 'Offline:' : ''}${sensor.deviceName}`}</Popup>
-
         </Marker>
         )
       ))}
       {userHasLocation && (<Marker icon={yourPositionIcon} position={[latitude, longitude]} />)}
-
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

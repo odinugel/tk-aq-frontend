@@ -31,6 +31,7 @@ export default function SensorList({
   const params = useParams();
   const [sortedSensors, setSortedSensors] = useState([]);
 
+  // TODO: refactor this, way too many if statements/dependencies, some of this should be handled in parent component
   useEffect(() => {
     if (!loadingSensors) {
       if (userHasLocation) {

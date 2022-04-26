@@ -1,10 +1,6 @@
-/* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import {
-  IconButton,
-  Drawer,
-} from '@mui/material';
+import { IconButton, Drawer } from '@mui/material';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import SensorSelect from './SensorSelect';
@@ -21,7 +17,6 @@ export default function SensorDrawer({
   const [drawerPadding, setDrawerPadding] = useState(0);
 
   useEffect(() => {
-    console.log('SensorDrawer useEffect, setting drawerPadding to', header.current.getBoundingClientRect().height);
     setDrawerPadding(header.current.getBoundingClientRect().height);
   }, [header, open]);
 
@@ -49,6 +44,9 @@ SensorDrawer.propTypes = {
   setSensorID: PropTypes.func.isRequired,
   loadingSensors: PropTypes.bool.isRequired,
   fetchSensorsFailed: PropTypes.bool.isRequired,
-  // eslint-disable-next-line max-len
-  header: PropTypes.shape({ current: PropTypes.shape({ getBoundingClientRect: PropTypes.func.isRequired }) }).isRequired,
+  header: PropTypes.shape({
+    current: PropTypes.shape({
+      getBoundingClientRect: PropTypes.func.isRequired,
+    }),
+  }).isRequired,
 };
