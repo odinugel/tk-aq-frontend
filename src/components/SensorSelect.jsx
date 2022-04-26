@@ -36,7 +36,7 @@ export default function SensorSelect({
       setWindowHeight(window.innerHeight);
     }, 100);
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    return () => { window.removeEventListener('resize', handleResize); };
   }, []);
 
   useEffect(() => {
@@ -45,7 +45,7 @@ export default function SensorSelect({
         setLatitude(positionme.coords.latitude);
         setLongitude(positionme.coords.longitude);
         setUserHasLocation(true);
-      }, (error) => { console.log(error); setUserHasLocation(false); });
+      });
     }
   }, [userHasLocation]);
 
