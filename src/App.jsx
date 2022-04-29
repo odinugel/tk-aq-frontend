@@ -28,7 +28,7 @@ function App() {
   const [darkMode, setDarkMode] = useState(prefersDarkMode);
   const minWidth1200px = useMediaQuery('(min-width:1200px)');
   const params = useParams();
-  console.log('render');
+  console.log('render app');
 
   // When page loads, the media query for
   // prefers-color-scheme: dark initially returns false for some reason.
@@ -53,7 +53,7 @@ function App() {
   // fetch data if sensorID changes
   // dont fetch until sensors have loaded
   useEffect(() => {
-    if (sensorID && sensors.length !== 0) {
+    if (sensorID !== '' && sensors.length !== 0) {
       console.log(`Fetching data from ${sensorID}`);
       setFetchFailed(false);
       setLoading(true);
