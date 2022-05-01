@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import getTheme from './theme';
+import useLocalStorage from './hooks/useLocalStorage';
 import { LanguageProvider } from './context/LanguageContext';
 import fetchData from './api/fetchData';
 import fetchSensors from './api/fetchSensors';
@@ -25,7 +26,7 @@ function App() {
   const [fetchSensorsFailed, setFetchSensorsFailed] = useState(false);
   const [sensorID, setSensorID] = useState('');
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const [darkMode, setDarkMode] = useState(prefersDarkMode);
+  const [darkMode, setDarkMode] = useLocalStorage('darkMode', prefersDarkMode);
   const minWidth1200px = useMediaQuery('(min-width:1200px)');
   const params = useParams();
   console.log('render app');
@@ -34,8 +35,10 @@ function App() {
   // prefers-color-scheme: dark initially returns false for some reason.
   // This useEffect listens to see if it changes (which it does if browser prefers dark mode).
   useEffect(() => {
-    setDarkMode(prefersDarkMode);
-  }, [prefersDarkMode]);
+    if (localStorage.getItem('darkMode') === null) {
+      setDarkMode(prefersDarkMode);
+    }
+  }, [prefersDarkMode, setDarkMode]);
 
   // if sensorID is present in url, but not yet set by user, (e.g. after page refresh)
   // set sensorID to the one in the url
