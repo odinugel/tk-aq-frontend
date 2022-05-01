@@ -30,12 +30,18 @@ export default function SensorSelect({
   const tabHeight = 72; // to set maxheight for sensorlist and map
 
   useEffect(() => {
+    let cancel = false;
     const handleResize = debounce(() => {
-      setWindowHeight(window.innerHeight);
+      if (!cancel) {
+        setWindowHeight(window.innerHeight);
+      }
     }, 100);
 
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    return () => {
+      cancel = true;
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   useEffect(() => {
