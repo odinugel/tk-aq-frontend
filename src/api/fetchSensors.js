@@ -9,6 +9,7 @@ const fetchSensors = async (setSensors, setLoadingSensors, setFetchFailed) => {
 
     if (response.ok) {
       const sensors = await response.json();
+      // addSensorStatus adds the isOnline property to each sensor
       setSensors(addSensorStatus(sensors));
       setLoadingSensors(false);
     } else {

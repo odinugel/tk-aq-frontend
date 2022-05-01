@@ -19,13 +19,8 @@ import { LanguageContext } from '../context/LanguageContext';
 export default function AccordionAQ({ pollutants, loading, fetchFailed }) {
   const { language } = useContext(LanguageContext);
 
-  if (fetchFailed) {
-    return null;
-  }
-
-  if (loading) {
-    return <AccordionAQLoader />;
-  }
+  if (fetchFailed) { return null; }
+  if (loading) { return <AccordionAQLoader />; }
 
   return (
     <Box margin="0 auto" sx={{ maxWidth: '600px' }}>
@@ -35,7 +30,7 @@ export default function AccordionAQ({ pollutants, loading, fetchFailed }) {
             <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
               <Donut size={60} color="success" thickness={3.6} category={pollutant.category} value={pollutant.percentage} />
               {
-              /* The margin top (mt) here of 6px is to compensate for
+              /* The margin top here of 6px is to compensate for
               the same margin-top in donut, which is needed to center
               the text in the primary display  */
               }

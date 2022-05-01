@@ -23,6 +23,7 @@ export default function Donut({
   const { language } = useContext(LanguageContext);
   const maxWidth550px = useMediaQuery('(max-width:550px)');
 
+  // Timeout to trigger the animation of the donut
   useEffect(() => {
     const timer = setTimeout(() => {
       setDonuValue(value);

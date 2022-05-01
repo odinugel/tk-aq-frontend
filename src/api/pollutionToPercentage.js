@@ -7,13 +7,13 @@ omtales kun helseeffekter av NO2 i denne rapporten."
 ..hmmm ok.
 */
 
-// _MAX values from:
-// https://luftkvalitet.miljodirektoratet.no/artikkel/artikler/helserad_og_forurensningsklasser/#Forurensningsklasser
-
 export default function pollutionToPercentage(dust, gas) {
   const { PM10, 'PM2.5': PM25 } = dust[0];
+  // since miljødirektoratet has not defined max values for NO, it is omitted from the app entirely
   const { NO2, O3 } = gas[0];
 
+  // _MAX values from:
+  // https://luftkvalitet.miljodirektoratet.no/artikkel/artikler/helserad_og_forurensningsklasser/#Forurensningsklasser
   const PM10_MAX = 400;
   const PM25_MAX = 150;
   const NO2_MAX = 400;

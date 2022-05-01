@@ -28,7 +28,14 @@ const fetchData = async (sensorID, setData, setLoading, setFetchFailed, abortCon
     // dust, gas and weather data is ordered oldest to newest so we reverse it here.
     const dustReversed = data[0].slice().reverse();
     const gasReversed = data[1].slice().reverse();
+
+    // Calculate the percentage of each pollutant with respect to max values set by FHI
+    // Also calculates category (good, moderate, poor, very poor)
+    // with respect to threshholds set by FHI
     const pollutants = pollutionToPercentage(dustReversed, gasReversed);
+
+    // Sort the pollutants by their percentage and
+    // category (different pollutants have different thresholds)
     const sortedPollutants = sortPollutants(pollutants);
     setData({
       sensorID,
