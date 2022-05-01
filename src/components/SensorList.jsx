@@ -45,13 +45,17 @@ export default function SensorList({
     }
   }, [latitude, loadingSensors, longitude, sensors, userHasLocation]);
 
-  // if user has not selected sensor, set selected sensor to first sensor
-  // either alphabetically or closest to user
+  // if user has not selected sensor, set selected sensor to first/closest sensor if user has provided geoLocation
+  // if user has not provided geoLocation, set selected sensor to Trondheim torg
   useEffect(() => {
-    if (sortedSensors.length !== 0) {
-      if (!params.id && sensorID === '') { setSensorID(sortedSensors[0].deviceID); }
+    const sensorsSorted = sortedSensors.length !== 0;
+    const sensorSelected = (sensorID !== '' || params.id);
+    if (sensorsSorted && !sensorSelected && userHasLocation) {
+      setSensorID(sortedSensors[0].deviceID);
+    } else if (sensorsSorted && !sensorSelected) {
+      setSensorID('2f3a11687f7a2j'); // Trondheim torg
     }
-  }, [params.id, sensorID, setSensorID, sortedSensors]);
+  }, [params.id, sensorID, setSensorID, sortedSensors, userHasLocation]);
 
   return (
     loadingSensors ? [...Array(20)].map((val, index) => (
@@ -107,7 +111,7 @@ export default function SensorList({
 SensorList.propTypes = {
   sensors: PropTypes.arrayOf(PropTypes.object).isRequired,
   setSensorID: PropTypes.func.isRequired,
-  sensorID: PropTypes.string, // undefined/empty string on page load
+  sensorID: PropTypes.string.isRequired,
   loadingSensors: PropTypes.bool.isRequired,
   setOpen: PropTypes.func,
   latitude: PropTypes.number,

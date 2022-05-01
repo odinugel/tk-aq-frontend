@@ -10,6 +10,7 @@ export default function SensorDrawer({
   setSensorID,
   loadingSensors,
   fetchSensorsFailed,
+  sensorID,
   header,
 }) {
   const params = useParams();
@@ -32,6 +33,7 @@ export default function SensorDrawer({
           setSensorID={setSensorID}
           loadingSensors={loadingSensors}
           header={header}
+          sensorID={sensorID}
           fetchSensorsFailed={fetchSensorsFailed}
         />
       </Drawer>
@@ -44,6 +46,7 @@ SensorDrawer.propTypes = {
   setSensorID: PropTypes.func.isRequired,
   loadingSensors: PropTypes.bool.isRequired,
   fetchSensorsFailed: PropTypes.bool.isRequired,
+  sensorID: PropTypes.string.isRequired,
   header: PropTypes.shape({
     current: PropTypes.shape({
       getBoundingClientRect: PropTypes.func.isRequired,
