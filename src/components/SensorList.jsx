@@ -31,23 +31,27 @@ export default function SensorList({
   const params = useParams();
   const [sortedSensors, setSortedSensors] = useState([]);
 
-  // TODO: refactor this, way too many if statements/dependencies, some of this should be handled in parent component
+  // sort sensors by distance from user if user has provided
+  // geoLocation (userHasLocation), otherwise sort alphabetically
   useEffect(() => {
     if (!loadingSensors) {
       if (userHasLocation) {
         const byDistance = sortSensorsByDistance(sensors, latitude, longitude);
-        console.log('sorting sensors by distance');
         setSortedSensors(byDistance);
-        // set sensorID to closest by default
-        if (!params.id && sensorID === '') { console.log('setting sensorID to closest'); setSensorID(byDistance[0].deviceID); }
       } else {
         const alphabetically = sortSensorsAlphabetically(sensors);
         setSortedSensors(alphabetically);
-        // set sensorID to Trondheim torg by default
-        if (!params.id && sensorID === '') { console.log('setting sensorID to Trondheim torg'); setSensorID('2f3a11687f7a2j'); }
       }
     }
-  }, [latitude, loadingSensors, longitude, params.id, sensorID, sensors, setSensorID, userHasLocation]);
+  }, [latitude, loadingSensors, longitude, sensors, userHasLocation]);
+
+  // if user has not selected sensor, set selected sensor to first sensor
+  // either alphabetically or closest to user
+  useEffect(() => {
+    if (sortedSensors.length !== 0) {
+      if (!params.id && sensorID === '') { setSensorID(sortedSensors[0].deviceID); }
+    }
+  }, [params.id, sensorID, setSensorID, sortedSensors]);
 
   return (
     loadingSensors ? [...Array(20)].map((val, index) => (
@@ -103,7 +107,7 @@ export default function SensorList({
 SensorList.propTypes = {
   sensors: PropTypes.arrayOf(PropTypes.object).isRequired,
   setSensorID: PropTypes.func.isRequired,
-  sensorID: PropTypes.string, // undefined on page load
+  sensorID: PropTypes.string, // undefined/empty string on page load
   loadingSensors: PropTypes.bool.isRequired,
   setOpen: PropTypes.func,
   latitude: PropTypes.number,
