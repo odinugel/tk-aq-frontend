@@ -10,8 +10,10 @@ export default function Weather({ sensorID }) {
   const [weather, setWeather] = useState(null);
 
   useEffect(() => {
+    const abortController = new AbortController();
     setLoading(true);
-    fetchWeather(sensorID, setWeather, setLoading);
+    fetchWeather(sensorID, setWeather, setLoading, abortController);
+    return () => abortController.abort();
   }, [sensorID]);
 
   return (

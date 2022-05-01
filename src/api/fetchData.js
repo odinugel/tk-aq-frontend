@@ -1,19 +1,19 @@
 import pollutionToPercentage from './pollutionToPercentage';
 import sortPollutants from './sortPollutants';
 
-const fetchData = async (sensorID, setData, setLoading, setFetchFailed) => {
+const fetchData = async (sensorID, setData, setLoading, setFetchFailed, abortController) => {
   try {
     // fetch is run through proxy due to CORS on TK-servers, must be changed before production
     const url = 'https://tipqa.trondheim.kommune.no/luftkvalitet-api/v1/sensors/';
     const proxy = 'http://localhost:8080/';
     const timeNow = new Date();
     const twoHoursAgo = new Date();
-    twoHoursAgo.setHours(twoHoursAgo.getHours() - 2);
+    twoHoursAgo.setHours(twoHoursAgo.getHours() - 20000);
     const from = `from=${Date.parse(twoHoursAgo)}&to=${Date.parse(timeNow)}&dataPointSize=hour`;
 
     const response = await Promise.all([
-      fetch(`${proxy}${url}${sensorID}/dust?${from}`),
-      fetch(`${proxy}${url}${sensorID}/gases?${from}`),
+      fetch(`${proxy}${url}${sensorID}/dust?${from}`, { signal: abortController.signal }),
+      fetch(`${proxy}${url}${sensorID}/gases?${from}`, { signal: abortController.signal }),
     ]);
     // we return false in case of a bad response
     const responseJSON = await Promise.all(response.map((res) => (res.ok ? res.json() : false)));
@@ -39,7 +39,7 @@ const fetchData = async (sensorID, setData, setLoading, setFetchFailed) => {
     });
     setLoading(false);
   } catch (e) {
-    setFetchFailed(true);
+    if (e.name !== 'AbortError') { setFetchFailed(true); }
     throw Error(`Fetch failed ${e} `);
   }
 };

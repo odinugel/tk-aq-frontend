@@ -53,12 +53,14 @@ function App() {
   // fetch data if sensorID changes
   // dont fetch until sensors have loaded
   useEffect(() => {
+    const abortController = new AbortController();
     if (sensorID !== '' && sensors.length !== 0) {
       console.log(`Fetching data from ${sensorID}`);
       setFetchFailed(false);
       setLoading(true);
-      fetchData(sensorID, setData, setLoading, setFetchFailed);
+      fetchData(sensorID, setData, setLoading, setFetchFailed, abortController);
     }
+    return () => abortController.abort();
   }, [sensorID, sensors]);
 
   return (
