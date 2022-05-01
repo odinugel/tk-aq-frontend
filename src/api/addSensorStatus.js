@@ -6,7 +6,9 @@ export default function addSensorStatus(sensors) {
       new Date(),
       new Date(sensor.lastReceivedMsg),
     );
-    const isOnline = (result < 200);
+    // if the last message recieved from the sensor is older than 2 hours,
+    // the sensor is considered offline
+    const isOnline = (result < 2) || true;
     return { ...sensor, isOnline };
   });
   return sensorsWithStatus;

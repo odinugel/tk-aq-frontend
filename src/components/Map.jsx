@@ -6,6 +6,7 @@ import {
 } from 'react-leaflet';
 import PropTypes from 'prop-types';
 import L from 'leaflet';
+import { useNavigate } from 'react-router-dom';
 import disabledMarkerIcon from '../assets/images/disabled_marker_icon.png';
 import yourPositionMarkerIcon from '../assets/images/your_location.svg';
 
@@ -17,6 +18,7 @@ export default function Map({
   userHasLocation,
   setOpen,
 }) {
+  const navigate = useNavigate();
   // timeout for hover on mapicons
   let timeout;
 
@@ -62,6 +64,7 @@ export default function Map({
               if (sensor.isOnline) {
                 setSensorID(sensor.deviceID);
                 if (typeof setOpen === 'function') { setOpen(false); }
+                navigate(`/${sensor.deviceID}`);
               } else {
                 e.target.openPopup();
               }
@@ -69,12 +72,10 @@ export default function Map({
           }}
         >
           <Popup>{`${!sensor.isOnline ? 'Offline:' : ''}${sensor.deviceName}`}</Popup>
-
         </Marker>
         )
       ))}
       {userHasLocation && (<Marker icon={yourPositionIcon} position={[latitude, longitude]} />)}
-
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

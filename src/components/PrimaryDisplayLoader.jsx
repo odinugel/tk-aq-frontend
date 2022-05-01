@@ -47,7 +47,6 @@ export default function PrimaryDisplayLoader() {
           />
         </Stack>
       </Box>
-      {/* TODO: This needs to be redone, skeletons should wrap typography, circle is not round */}
       <Stack direction="row" width="90%" sx={{ margin: '0.5rem', marginTop: '2rem' }}>
         <Skeleton variant="circular" width={24} height={24}>
           <InfoOutlinedIcon />

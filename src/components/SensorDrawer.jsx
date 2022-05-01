@@ -1,10 +1,6 @@
-/* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import {
-  IconButton,
-  Drawer,
-} from '@mui/material';
+import { IconButton, Drawer } from '@mui/material';
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import SensorSelect from './SensorSelect';
@@ -13,9 +9,8 @@ export default function SensorDrawer({
   sensors,
   setSensorID,
   loadingSensors,
-  latitude,
-  longitude,
-  userHasLocation,
+  fetchSensorsFailed,
+  sensorID,
   header,
 }) {
   const params = useParams();
@@ -23,7 +18,6 @@ export default function SensorDrawer({
   const [drawerPadding, setDrawerPadding] = useState(0);
 
   useEffect(() => {
-    console.log('SensorDrawer useEffect, setting drawerPadding to', header.current.getBoundingClientRect().height);
     setDrawerPadding(header.current.getBoundingClientRect().height);
   }, [header, open]);
 
@@ -38,10 +32,9 @@ export default function SensorDrawer({
           setOpen={setOpen}
           setSensorID={setSensorID}
           loadingSensors={loadingSensors}
-          latitude={latitude}
-          longitude={longitude}
-          userHasLocation={userHasLocation}
           header={header}
+          sensorID={sensorID}
+          fetchSensorsFailed={fetchSensorsFailed}
         />
       </Drawer>
     </>
@@ -52,9 +45,11 @@ SensorDrawer.propTypes = {
   sensors: PropTypes.arrayOf(PropTypes.object).isRequired,
   setSensorID: PropTypes.func.isRequired,
   loadingSensors: PropTypes.bool.isRequired,
-  latitude: PropTypes.number,
-  longitude: PropTypes.number,
-  userHasLocation: PropTypes.bool,
-  // eslint-disable-next-line max-len
-  header: PropTypes.shape({ current: PropTypes.shape({ getBoundingClientRect: PropTypes.func.isRequired }) }).isRequired,
+  fetchSensorsFailed: PropTypes.bool.isRequired,
+  sensorID: PropTypes.string.isRequired,
+  header: PropTypes.shape({
+    current: PropTypes.shape({
+      getBoundingClientRect: PropTypes.func.isRequired,
+    }),
+  }).isRequired,
 };

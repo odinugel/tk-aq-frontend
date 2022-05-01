@@ -31,22 +31,31 @@ export default function SensorList({
   const params = useParams();
   const [sortedSensors, setSortedSensors] = useState([]);
 
+  // sort sensors by distance from user if user has provided
+  // geoLocation (userHasLocation), otherwise sort alphabetically
   useEffect(() => {
     if (!loadingSensors) {
       if (userHasLocation) {
         const byDistance = sortSensorsByDistance(sensors, latitude, longitude);
-        console.log('sorting sensors by distance');
         setSortedSensors(byDistance);
-        // set sensorID to closest by default
-        if (!params.id) { console.log('setting sensorID to closest'); setSensorID(byDistance[0].deviceID); }
       } else {
         const alphabetically = sortSensorsAlphabetically(sensors);
         setSortedSensors(alphabetically);
-        // set sensorID to Trondheim torg by default
-        if (!params.id) { console.log('setting sensorID to Trondheim torg'); setSensorID('2f3a11687f7a2j'); }
       }
     }
-  }, [latitude, loadingSensors, longitude, params.id, sensors, setSensorID, userHasLocation]);
+  }, [latitude, loadingSensors, longitude, sensors, userHasLocation]);
+
+  // if user has not selected sensor, set selected sensor to first/closest sensor if user has provided geoLocation
+  // if user has not provided geoLocation, set selected sensor to Trondheim torg
+  useEffect(() => {
+    const sensorsSorted = sortedSensors.length !== 0;
+    const sensorSelected = (sensorID !== '' || params.id);
+    if (sensorsSorted && !sensorSelected && userHasLocation) {
+      setSensorID(sortedSensors[0].deviceID);
+    } else if (sensorsSorted && !sensorSelected) {
+      setSensorID('2f3a11687f7a2j'); // Trondheim torg
+    }
+  }, [params.id, sensorID, setSensorID, sortedSensors, userHasLocation]);
 
   return (
     loadingSensors ? [...Array(20)].map((val, index) => (

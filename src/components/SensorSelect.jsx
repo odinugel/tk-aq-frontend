@@ -1,41 +1,66 @@
+/* eslint-disable react/no-array-index-key */
 import PropTypes from 'prop-types';
-import { useContext, useState } from 'react';
-import {
-  Paper, Tab, Tabs,
-} from '@mui/material';
+import { useContext, useState, useEffect } from 'react';
+import { Paper, Tab, Tabs } from '@mui/material';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SensorList from './SensorList';
 import Map from './Map';
 import { LanguageContext } from '../context/LanguageContext';
 import translations from '../translations/translations';
+import debounce from '../utils/debounce';
+import FetchSensorsError from './FetchSensorsError';
 
 export default function SensorSelect({
   loadingSensors,
   sensors,
   sensorID,
+  fetchSensorsFailed,
   setSensorID,
   setOpen,
-  latitude,
-  longitude,
-  userHasLocation,
   header,
 }) {
+  const [latitude, setLatitude] = useState(63.429799); // Trondheim sentrum
+  const [longitude, setLongitude] = useState(10.393418);
+  const [userHasLocation, setUserHasLocation] = useState(false);
   const [tab, setTab] = useState(0);
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const [maximumHeight, setMaximumHeight] = useState('75vh');
   const { language } = useContext(LanguageContext);
   const tabHeight = 72; // to set maxheight for sensorlist and map
-  useState(() => {
+
+  useEffect(() => {
+    let cancel = false;
+    const handleResize = debounce(() => {
+      if (!cancel) {
+        setWindowHeight(window.innerHeight);
+      }
+    }, 100);
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      cancel = true;
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
     if (header) {
-      console.log(`${header.current.getBoundingClientRect().height}px`);
-      setMaximumHeight(`${window.innerHeight - header.current.getBoundingClientRect().height - tabHeight}px`);
+      setMaximumHeight(`${windowHeight - header.current.getBoundingClientRect().height - tabHeight}px`);
     }
-  }, [header]);
+  }, [header, windowHeight]);
 
-  const handleChange = (event, newValue) => {
-    setTab(newValue);
-  };
+  useEffect(() => {
+    if (navigator.geolocation && !userHasLocation) {
+      navigator.geolocation.getCurrentPosition((positionme) => {
+        setLatitude(positionme.coords.latitude);
+        setLongitude(positionme.coords.longitude);
+        setUserHasLocation(true);
+      });
+    }
+  }, [userHasLocation]);
 
+  if (fetchSensorsFailed) { return (<FetchSensorsError />); }
   return (
     <Paper sx={{
       border: '1px solid',
@@ -45,10 +70,16 @@ export default function SensorSelect({
     >
       <Tabs
         value={tab}
-        onChange={handleChange}
+        onChange={(event, newValue) => setTab(newValue)}
         aria-label="Velg kart eller liste"
         sx={{
-          width: '100%', '& .MuiTabs-flexContainer': { justifyContent: 'center' }, marginBottom: '0rem', backgroundColor: 'background.paper', maxHeight: `${tabHeight}px`,
+          width: '100%',
+          '& .MuiTabs-flexContainer': {
+            justifyContent: 'center',
+          },
+          marginBottom: '0rem',
+          backgroundColor: 'background.paper',
+          maxHeight: `${tabHeight}px`,
         }}
       >
         <Tab label={translations.sensorSelect.list[language]} sx={{ maxWidth: '100%', width: '50%' }} icon={<FormatListBulletedIcon />} />
@@ -86,11 +117,9 @@ export default function SensorSelect({
 SensorSelect.propTypes = {
   loadingSensors: PropTypes.bool.isRequired,
   sensors: PropTypes.array.isRequired,
-  sensorID: PropTypes.string.isRequired,
+  sensorID: PropTypes.string, // undefined on page load
+  fetchSensorsFailed: PropTypes.bool.isRequired,
   setSensorID: PropTypes.func.isRequired,
   setOpen: PropTypes.func,
-  latitude: PropTypes.number,
-  longitude: PropTypes.number,
-  userHasLocation: PropTypes.bool,
   header: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
 };

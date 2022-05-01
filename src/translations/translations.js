@@ -143,6 +143,10 @@ const translations = {
     no: ['Ingen måling tilgjengelig.', 'Vennligst velg en annen lokasjon.'],
     en: ['No data available.', 'Please select another location.'],
   },
+  fetchSensorsError: {
+    no: ['Fikk ikke kontakt.', 'Vennligst prøv igjen senere.'],
+    en: ['Could not connect.', 'Please try again later.'],
+  },
   settings: {
     no: 'Innstillinger',
     en: 'Settings',

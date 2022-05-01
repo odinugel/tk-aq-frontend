@@ -28,7 +28,13 @@ export default function SettingsDrawer({
       <IconButton onClick={() => setOpen((currentOpen) => !currentOpen)} variant="outlined" color="primary">
         <SettingsIcon />
       </IconButton>
-      <Drawer open={open} onClose={() => setOpen((currentOpen) => !currentOpen)} anchor="right" sx={{ zIndex: (theme) => theme.zIndex.drawer + 2 }} PaperProps={{ sx: { width: (minWidth600px ? '360px' : '300px') } }}>
+      <Drawer
+        open={open}
+        onClose={() => setOpen((currentOpen) => !currentOpen)}
+        anchor="right"
+        sx={{ zIndex: (theme) => theme.zIndex.drawer + 2 }}
+        PaperProps={{ sx: { width: (minWidth600px ? '360px' : '300px') } }}
+      >
         <Box>
           <Stack direction="row" sx={{ justifyContent: 'space-between', alignItems: 'center', padding: '1rem' }}>
             <Typography>{translations.settings[language]}</Typography>

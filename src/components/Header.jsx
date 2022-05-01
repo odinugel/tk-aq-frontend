@@ -16,19 +16,18 @@ import SettingsDrawer from './SettingsDrawer';
 export default function Header({
   sensors,
   loadingSensors,
+  fetchSensorsFailed,
   sensorID,
   setSensorID,
-  latitude,
-  longitude,
-  userHasLocation,
   darkMode,
   setDarkMode,
 }) {
   const maxWidth1200px = useMediaQuery('(max-width:1200px)');
-  const minWidth450px = useMediaQuery('(min-width:450px)');
   const minWidth600px = useMediaQuery('(min-width:600px)');
+  const minWidth450px = useMediaQuery('(min-width:450px)');
   const { language } = useContext(LanguageContext);
-  const header = useRef(null); // get the header element to calculate height/padding of sensordrawer
+  // get the header/Appbar element to calculate height/padding of sensordrawer
+  const header = useRef(null);
 
   return (
     <AppBar
@@ -62,10 +61,8 @@ export default function Header({
             loadingSensors={loadingSensors}
             setSensorID={setSensorID}
             sensorID={sensorID}
-            latitude={latitude}
-            longitude={longitude}
-            userHasLocation={userHasLocation}
             header={header}
+            fetchSensorsFailed={fetchSensorsFailed}
           />
           )}
           <Stack direction="row" sx={{ placeItems: 'center' }} spacing={1}>
@@ -95,10 +92,8 @@ Header.propTypes = {
   sensors: PropTypes.arrayOf(PropTypes.object).isRequired,
   loadingSensors: PropTypes.bool.isRequired,
   setSensorID: PropTypes.func.isRequired,
+  fetchSensorsFailed: PropTypes.bool.isRequired,
   darkMode: PropTypes.bool.isRequired,
   setDarkMode: PropTypes.func.isRequired,
   sensorID: PropTypes.string.isRequired,
-  latitude: PropTypes.number.isRequired,
-  longitude: PropTypes.number.isRequired,
-  userHasLocation: PropTypes.bool.isRequired,
 };
