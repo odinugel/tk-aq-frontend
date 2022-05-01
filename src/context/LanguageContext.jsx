@@ -1,4 +1,4 @@
-import { createContext, useMemo } from 'react';
+import { createContext, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import useLocalStorage from '../hooks/useLocalStorage';
 
@@ -10,6 +10,10 @@ export function LanguageProvider({ children }) {
   const value = useMemo(() => ({
     language, setLanguage,
   }), [language, setLanguage]);
+
+  useEffect(() => {
+    document.documentElement.lang = (language === 'no' ? 'nb' : 'en');
+  }, [language]);
 
   return (
     <LanguageContext.Provider value={value}>
