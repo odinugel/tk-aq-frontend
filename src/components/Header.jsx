@@ -21,6 +21,7 @@ export default function Header({
   setSensorID,
   darkMode,
   setDarkMode,
+  userPosition,
 }) {
   const maxWidth1200px = useMediaQuery('(max-width:1200px)');
   const minWidth600px = useMediaQuery('(min-width:600px)');
@@ -63,6 +64,7 @@ export default function Header({
             sensorID={sensorID}
             header={header}
             fetchSensorsFailed={fetchSensorsFailed}
+            userPosition={userPosition}
           />
           )}
           <Stack direction="row" sx={{ placeItems: 'center' }} spacing={1}>
@@ -96,4 +98,5 @@ Header.propTypes = {
   darkMode: PropTypes.bool.isRequired,
   setDarkMode: PropTypes.func.isRequired,
   sensorID: PropTypes.string.isRequired,
+  userPosition: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]).isRequired,
 };

@@ -13,15 +13,15 @@ import yourPositionMarkerIcon from '../assets/images/your_location.svg';
 export default function Map({
   sensors,
   setSensorID,
-  latitude,
-  longitude,
-  userHasLocation,
   setOpen,
+  userPosition,
 }) {
   const navigate = useNavigate();
   // timeout for hover on mapicons
   let timeout;
-
+  // default position for map, trondheim sentrum
+  const defaultLat = (1.1070697 * 180) / Math.PI;
+  const defaultLong = (0.18140209 * 180) / Math.PI;
   const disabledIcon = L.icon({
     iconUrl: disabledMarkerIcon,
     iconSize: [25, 41],
@@ -38,7 +38,11 @@ export default function Map({
 
   return (
     <MapContainer
-      center={[latitude, longitude]}
+      center={
+        userPosition
+          ? [userPosition.latitude, userPosition.longitude]
+          : [defaultLat, defaultLong]
+      }
       zoom={13}
       scrollWheelZoom
       style={{ height: '100%' }}
@@ -75,7 +79,12 @@ export default function Map({
         </Marker>
         )
       ))}
-      {userHasLocation && (<Marker icon={yourPositionIcon} position={[latitude, longitude]} />)}
+      {userPosition && (
+      <Marker
+        icon={yourPositionIcon}
+        position={[userPosition.latitude, userPosition.longitude]}
+      />
+      )}
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -87,8 +96,6 @@ export default function Map({
 Map.propTypes = {
   sensors: PropTypes.arrayOf(PropTypes.object).isRequired,
   setSensorID: PropTypes.func.isRequired,
-  latitude: PropTypes.number,
-  longitude: PropTypes.number,
-  userHasLocation: PropTypes.bool.isRequired,
   setOpen: PropTypes.func,
+  userPosition: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]).isRequired,
 };

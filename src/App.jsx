@@ -25,6 +25,7 @@ function App() {
   const [fetchFailed, setFetchFailed] = useState(false);
   const [fetchSensorsFailed, setFetchSensorsFailed] = useState(false);
   const [sensorID, setSensorID] = useState('');
+  const [userPosition, setUserPosition] = useState(false);
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const [darkMode, setDarkMode] = useLocalStorage('darkMode', prefersDarkMode);
   const minWidth1200px = useMediaQuery('(min-width:1200px)');
@@ -53,6 +54,16 @@ function App() {
     fetchSensors(setSensors, setLoadingSensors, setFetchSensorsFailed);
   }, []);
 
+  useEffect(() => {
+    if (navigator.geolocation && !userPosition) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setUserPosition({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        });
+      });
+    }
+  }, [userPosition]);
   // fetch data if sensorID changes
   // dont fetch until sensors have loaded
   useEffect(() => {
@@ -79,6 +90,7 @@ function App() {
               darkMode={darkMode}
               setDarkMode={setDarkMode}
               fetchSensorsFailed={fetchSensorsFailed}
+              userPosition={userPosition}
             />
             <Stack
               direction="row"
@@ -101,6 +113,7 @@ function App() {
                     sensorID={sensorID}
                     setSensorID={setSensorID}
                     fetchSensorsFailed={fetchSensorsFailed}
+                    userPosition={userPosition}
                   />
                 </Box>
               )}

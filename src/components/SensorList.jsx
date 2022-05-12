@@ -22,9 +22,7 @@ export default function SensorList({
   setSensorID,
   setOpen,
   loadingSensors,
-  latitude,
-  longitude,
-  userHasLocation,
+  userPosition,
 }) {
   const location = useLocation();
   const navigate = useNavigate();
@@ -35,27 +33,27 @@ export default function SensorList({
   // geoLocation (userHasLocation), otherwise sort alphabetically
   useEffect(() => {
     if (!loadingSensors) {
-      if (userHasLocation) {
-        const byDistance = sortSensorsByDistance(sensors, latitude, longitude);
+      if (userPosition) {
+        const byDistance = sortSensorsByDistance(sensors, userPosition.latitude, userPosition.longitude);
         setSortedSensors(byDistance);
       } else {
         const alphabetically = sortSensorsAlphabetically(sensors);
         setSortedSensors(alphabetically);
       }
     }
-  }, [latitude, loadingSensors, longitude, sensors, userHasLocation]);
+  }, [loadingSensors, sensors, userPosition]);
 
   // if user has not selected sensor, set selected sensor to first/closest sensor if user has provided geoLocation
   // if user has not provided geoLocation, set selected sensor to Trondheim torg
   useEffect(() => {
     const sensorsSorted = sortedSensors.length !== 0;
     const sensorSelected = (sensorID !== '' || params.id);
-    if (sensorsSorted && !sensorSelected && userHasLocation) {
+    if (sensorsSorted && !sensorSelected && userPosition) {
       setSensorID(sortedSensors[0].deviceID);
     } else if (sensorsSorted && !sensorSelected) {
       setSensorID('2f3a11687f7a2j'); // Trondheim torg
     }
-  }, [params.id, sensorID, setSensorID, sortedSensors, userHasLocation]);
+  }, [params.id, sensorID, setSensorID, sortedSensors, userPosition]);
 
   return (
     loadingSensors ? [...Array(20)].map((val, index) => (
@@ -83,14 +81,14 @@ export default function SensorList({
                 >
                   <ListItemText primaryTypographyProps={{ sx: { fontSize: '1.25rem', margin: '1rem' } }} primary={sensor.deviceName} />
 
-                  {(userHasLocation && sensor.isOnline) && (
+                  {(userPosition && sensor.isOnline) && (
                   <ListItemText
                     primaryTypographyProps={{
                       sx: {
                         fontSize: '1rem', margin: '1rem', textAlign: 'right',
                       },
                     }}
-                    primary={getSensorDistanceFromUser(sensor.lat, sensor.lon, latitude, longitude)}
+                    primary={getSensorDistanceFromUser(sensor.lat, sensor.lon, userPosition.latitude, userPosition.longitude)}
                   />
                   )}
 
@@ -116,5 +114,5 @@ SensorList.propTypes = {
   setOpen: PropTypes.func,
   latitude: PropTypes.number,
   longitude: PropTypes.number,
-  userHasLocation: PropTypes.bool.isRequired,
+  userPosition: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]).isRequired,
 };
