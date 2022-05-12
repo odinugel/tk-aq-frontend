@@ -85,6 +85,7 @@ async function cacheKeyWillBeUsed({request, mode}) {
   // Any search params or hash will be left out.
 }
 
+// change url.origin/pathname in production, localhost:8080 is the development proxy
 registerRoute(
   ({url}) => url.origin === 'http://localhost:8080' &&
              url.pathname.includes('/https://tipqa.trondheim.kommune.no/luftkvalitet-api/v1/sensors/'),
