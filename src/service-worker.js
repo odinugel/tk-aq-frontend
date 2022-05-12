@@ -49,33 +49,18 @@ registerRoute(
 
 // An example runtime caching route for requests that aren't handled by the
 // precache, in this case same-origin .png requests like those from in public/
-registerRoute(
-  // Add in any other file extensions or routing criteria as needed.
-  ({ url }) => url.origin === self.location.origin && url.pathname.endsWith('.png'), // Customize this strategy as needed, e.g., by changing to CacheFirst.
-  new StaleWhileRevalidate({
-    cacheName: 'images',
-    plugins: [
-      // Ensure that once this runtime cache reaches a maximum size the
-      // least-recently used images are removed.
-      new ExpirationPlugin({ maxEntries: 50 }),
-    ],
-  })
-);
-
-
-registerRoute(
-  // cache all requests from https://tipqa.trondheim.kommune.no
-  ({ url }) => url.origin === 'https://tipqa.trondheim.kommune.no', 
-  new StaleWhileRevalidate({
-    cacheName: 'apiCalls',
-    plugins: [
-      new ExpirationPlugin({ 
-        maxEntries: 90,
-        maxAgeSeconds: 60 * 60 * 12, 
-      }),
-    ],
-  })
-);
+// registerRoute(
+//   // Add in any other file extensions or routing criteria as needed.
+//   ({ url }) => url.origin === self.location.origin && url.pathname.endsWith('.png'), // Customize this strategy as needed, e.g., by changing to CacheFirst.
+//   new StaleWhileRevalidate({
+//     cacheName: 'images',
+//     plugins: [
+//       // Ensure that once this runtime cache reaches a maximum size the
+//       // least-recently used images are removed.
+//       new ExpirationPlugin({ maxEntries: 50 }),
+//     ],
+//   })
+// );
 
 // This allows the web app to trigger skipWaiting via
 // registration.waiting.postMessage({type: 'SKIP_WAITING'})
@@ -86,3 +71,31 @@ self.addEventListener('message', (event) => {
 });
 
 // Any other custom service worker logic can go here.
+
+// Since every pollutant request includes 'to' and 'from' parameters, 
+// the serviceworker will never be able to return a cached response because 'to' is always set
+// to the current time, which updates constantly.
+
+// The function cacheKeyWillBeUsed below overwrites the name of the cached url to ignore these parameters
+// From https://github.com/GoogleChrome/workbox/issues/2512
+
+async function cacheKeyWillBeUsed({request, mode}) {
+  const url = new URL(request.url);
+  return url.origin + url.pathname;
+  // Any search params or hash will be left out.
+}
+
+registerRoute(
+  ({url}) => url.origin === 'http://localhost:8080' &&
+             url.pathname.includes('/https://tipqa.trondheim.kommune.no/luftkvalitet-api/v1/sensors/'),
+  new StaleWhileRevalidate({
+    cacheName: 'apiCalls',
+    plugins: [
+      {cacheKeyWillBeUsed},
+      new ExpirationPlugin({ 
+        maxEntries: 50,
+        maxAgeSeconds: 12 * 60 * 60,
+      })
+    ],
+  }),
+)
