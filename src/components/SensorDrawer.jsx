@@ -12,6 +12,7 @@ export default function SensorDrawer({
   fetchSensorsFailed,
   sensorID,
   header,
+  userPosition,
 }) {
   const params = useParams();
   const [open, setOpen] = useState(!params.id);
@@ -35,6 +36,7 @@ export default function SensorDrawer({
           header={header}
           sensorID={sensorID}
           fetchSensorsFailed={fetchSensorsFailed}
+          userPosition={userPosition}
         />
       </Drawer>
     </>
@@ -52,4 +54,5 @@ SensorDrawer.propTypes = {
       getBoundingClientRect: PropTypes.func.isRequired,
     }),
   }).isRequired,
+  userPosition: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]).isRequired,
 };

@@ -19,10 +19,8 @@ export default function SensorSelect({
   setSensorID,
   setOpen,
   header,
+  userPosition,
 }) {
-  const [latitude, setLatitude] = useState(63.429799); // Trondheim sentrum
-  const [longitude, setLongitude] = useState(10.393418);
-  const [userHasLocation, setUserHasLocation] = useState(false);
   const [tab, setTab] = useState(0);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const [maximumHeight, setMaximumHeight] = useState('75vh');
@@ -49,16 +47,6 @@ export default function SensorSelect({
       setMaximumHeight(`${windowHeight - header.current.getBoundingClientRect().height - tabHeight}px`);
     }
   }, [header, windowHeight]);
-
-  useEffect(() => {
-    if (navigator.geolocation && !userHasLocation) {
-      navigator.geolocation.getCurrentPosition((positionme) => {
-        setLatitude(positionme.coords.latitude);
-        setLongitude(positionme.coords.longitude);
-        setUserHasLocation(true);
-      });
-    }
-  }, [userHasLocation]);
 
   if (fetchSensorsFailed) { return (<FetchSensorsError />); }
   return (
@@ -89,9 +77,7 @@ export default function SensorSelect({
         {tab === 0
           ? (
             <SensorList
-              userHasLocation={userHasLocation}
-              latitude={latitude}
-              longitude={longitude}
+              userPosition={userPosition}
               setOpen={setOpen}
               loadingSensors={loadingSensors}
               sensors={sensors}
@@ -101,9 +87,7 @@ export default function SensorSelect({
           )
           : (
             <Map
-              userHasLocation={userHasLocation}
-              latitude={latitude}
-              longitude={longitude}
+              userPosition={userPosition}
               setOpen={setOpen}
               sensors={sensors}
               setSensorID={setSensorID}
@@ -122,4 +106,5 @@ SensorSelect.propTypes = {
   setSensorID: PropTypes.func.isRequired,
   setOpen: PropTypes.func,
   header: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  userPosition: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]).isRequired,
 };
