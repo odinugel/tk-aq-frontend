@@ -34,7 +34,7 @@ export default function Weather({ sensorID }) {
         </Stack>
         <Typography>{translations.temperature[language]}</Typography>
       </Stack>
-      <Stack direction="column">
+      <Stack direction="column" sx={{ alignItems: 'center' }}>
         <Stack direction="row" sx={{ alignItems: 'flex-end' }}>
           <OpacityIcon fontSize="large" />
           {!loading && (
