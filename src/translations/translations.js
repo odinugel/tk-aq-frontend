@@ -167,5 +167,13 @@ const translations = {
     no: 'Mørk',
     en: 'Dark',
   },
+  temperature: {
+    no: 'Temperatur',
+    en: 'Temperature',
+  },
+  humidity: {
+    no: 'Luftfuktighet',
+    en: 'Humidity',
+  },
 };
 export default translations;
