@@ -22,13 +22,13 @@ export default function DarkModeSwitch({ darkMode, setDarkMode }) {
         value={darkMode}
         exclusive
         onChange={handleSelection}
-        aria-label="Choose display mode"
+        aria-label={translations.chooseDisplayMode[language]}
       >
-        <ToggleButton value={false} aria-label="Light mode" sx={{ width: '50%' }}>
+        <ToggleButton value={false} sx={{ width: '50%' }}>
           <LightModeIcon sx={{ marginRight: '0.5rem' }} />
           <Typography>{translations.themeModeLight[language]}</Typography>
         </ToggleButton>
-        <ToggleButton value={true} aria-label="Dark mode" sx={{ width: '50%' }}>
+        <ToggleButton value={true} sx={{ width: '50%' }}>
           <DarkModeIcon sx={{ marginRight: '0.5rem' }} />
           <Typography>{translations.themeModeDark[language]}</Typography>
         </ToggleButton>
