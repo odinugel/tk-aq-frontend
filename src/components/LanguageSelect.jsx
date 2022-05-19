@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import {
   List,
   ListItemButton,
-  Stack,
+  ListItemIcon,
   Typography,
   Divider,
 } from '@mui/material';
@@ -18,17 +18,17 @@ export default function LanguageSelect() {
     <List>
       <Typography margin="1rem 0">{translations.langBtn[language]}</Typography>
       <ListItemButton selected={(language === 'no')} onClick={() => setLanguage('no')}>
-        <Stack direction="row" spacing={1}>
-          <img src={noflag} width="30px" alt="Norwegian flag" />
-          <span>Norsk</span>
-        </Stack>
+        <ListItemIcon>
+          <img width="30px" src={noflag} alt="Norwegian flag" />
+        </ListItemIcon>
+        <Typography>Norsk</Typography>
       </ListItemButton>
       <Divider />
       <ListItemButton selected={(language === 'en')} onClick={() => setLanguage('en')}>
-        <Stack direction="row" spacing={1}>
-          <img src={britflag} width="30px" alt="British flag" />
-          <span>English</span>
-        </Stack>
+        <ListItemIcon>
+          <img width="30px" src={britflag} alt="British flag" />
+        </ListItemIcon>
+        <Typography>English</Typography>
       </ListItemButton>
       <Divider />
     </List>
