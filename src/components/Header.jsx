@@ -68,7 +68,7 @@ export default function Header({
           />
           )}
           <Stack direction="row" sx={{ placeItems: 'center' }} spacing={1}>
-            <img src={Logo} alt="logo" width={(minWidth600px ? '50px' : '40px')} />
+            <img src={Logo} alt="logo" width={(minWidth600px ? '50px' : '40px')} height={(minWidth600px ? '61px' : '48.5px')} />
             {minWidth450px
           && (
           <Stack>
