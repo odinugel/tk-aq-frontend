@@ -40,10 +40,10 @@ export default function PrimaryDisplay({
       <Fade in>
         <Box>
           <Stack sx={{ alignItems: 'center' }}>
-            <Typography variant="h4" textAlign="center">
+            <Typography variant="h2" textAlign="center" fontSize="2.125rem">
               {sensors.find((sensor) => sensor.deviceID === data.sensorID).deviceName}
             </Typography>
-            <Typography variant="h6" mb="1rem">
+            <Typography fontSize="1.25rem" mb="1rem">
               {`${translations.lastUpdate[language]} ${formatDistanceStrict(data.timestamp, new Date(), { addSuffix: true, locale: language === 'no' ? nb : enGB })}`}
             </Typography>
           </Stack>

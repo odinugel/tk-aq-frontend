@@ -167,5 +167,21 @@ const translations = {
     no: 'Mørk',
     en: 'Dark',
   },
+  temperature: {
+    no: 'Temperatur',
+    en: 'Temperature',
+  },
+  humidity: {
+    no: 'Luftfuktighet',
+    en: 'Humidity',
+  },
+  close: {
+    no: 'Lukk',
+    en: 'Close',
+  },
+  chooseDisplayMode: {
+    no: 'Velg fargemodus',
+    en: 'Choose display mode',
+  },
 };
 export default translations;

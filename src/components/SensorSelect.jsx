@@ -59,7 +59,6 @@ export default function SensorSelect({
       <Tabs
         value={tab}
         onChange={(event, newValue) => setTab(newValue)}
-        aria-label="Velg kart eller liste"
         sx={{
           width: '100%',
           '& .MuiTabs-flexContainer': {

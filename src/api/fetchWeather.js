@@ -9,6 +9,11 @@ const fetchWeather = async (sensorID, setWeather, setLoading, abortController) =
 
   if (response.ok) {
     const weather = await response.json();
+    // if temperature and humidity are both 0, this indicates a lack of data
+    // and so we return to avoid displaying bad data
+    if (weather.data[0].temperature === 0 && weather.data[0].humidity === 0) {
+      return;
+    }
     if (weather.data.length !== 0) {
       setWeather(weather.data.slice().reverse()[0]);
       setLoading(false);

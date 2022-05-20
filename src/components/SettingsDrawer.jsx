@@ -25,7 +25,7 @@ export default function SettingsDrawer({
   const { language } = useContext(LanguageContext);
   return (
     <>
-      <IconButton onClick={() => setOpen((currentOpen) => !currentOpen)} variant="outlined" color="primary">
+      <IconButton aria-label={translations.settings[language]} onClick={() => setOpen((currentOpen) => !currentOpen)} variant="outlined" color="primary">
         <SettingsIcon />
       </IconButton>
       <Drawer
@@ -38,7 +38,7 @@ export default function SettingsDrawer({
         <Box>
           <Stack direction="row" sx={{ justifyContent: 'space-between', alignItems: 'center', padding: '1rem' }}>
             <Typography>{translations.settings[language]}</Typography>
-            <IconButton onClick={() => setOpen((currentOpen) => !currentOpen)} variant="outlined" color="primary">
+            <IconButton aria-label={translations.close[language]} onClick={() => setOpen((currentOpen) => !currentOpen)} variant="outlined" color="primary">
               <CloseIcon />
             </IconButton>
           </Stack>
