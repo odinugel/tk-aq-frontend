@@ -26,7 +26,7 @@ export default function Weather({ sensorID }) {
           <ThermostatIcon fontSize="large" />
           {!loading && (
             <Fade in>
-              <Typography variant="h5">
+              <Typography fontSize="1.5rem">
                 {`${weather.temperature.toFixed()}°`}
               </Typography>
             </Fade>
@@ -39,7 +39,7 @@ export default function Weather({ sensorID }) {
           <OpacityIcon fontSize="large" />
           {!loading && (
             <Fade in>
-              <Typography variant="h5">
+              <Typography fontSize="1.5rem">
                 {`${weather.humidity}%`}
               </Typography>
             </Fade>
