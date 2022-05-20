@@ -55,6 +55,9 @@ export default function SensorList({
     }
   }, [params.id, sensorID, setSensorID, sortedSensors, userPosition]);
 
+  // The ListItemButtons in this List do not render as li elements, which according to lighthouse is an accessibility issue.
+  // https://github.com/mui/material-ui/issues/19469
+
   return (
     loadingSensors ? [...Array(20)].map((val, index) => (
       <ListItemButton key={index} divider>
