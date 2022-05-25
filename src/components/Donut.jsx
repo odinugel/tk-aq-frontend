@@ -41,10 +41,11 @@ export default function Donut({
           size="100%"
           color={donutColor(category)}
           thickness={thickness}
+          role="presentation"
         />
       </Box>
       <Box sx={{ position: 'absolute', zIndex: '99' }}>
-        <Typography variant="h3" color="text.secondary" align="center" sx={{ fontSize: (maxWidth550px ? '2.3rem' : '3rem'), marginTop: '6px' }}>
+        <Typography variant="h3" aria-label={translations.tkHeaderSubtitle[language]} role="status" color="text.secondary" align="center" sx={{ fontSize: (maxWidth550px ? '2.3rem' : '3rem'), marginTop: '6px' }}>
           {/* margin top is to center the text which is off by 6px for some  reason */}
           {text ? donutText : null}
         </Typography>
@@ -56,6 +57,7 @@ export default function Donut({
           size="100%"
           color="background"
           thickness={thickness}
+          aria-hidden
         />
       </Box>
     </Stack>
