@@ -18,6 +18,7 @@ export default function SensorDrawer({
   const [open, setOpen] = useState(!params.id);
   const [drawerPadding, setDrawerPadding] = useState(0);
 
+  // Pad the drawer below header.
   useEffect(() => {
     setDrawerPadding(header.current.getBoundingClientRect().height);
   }, [header, open]);

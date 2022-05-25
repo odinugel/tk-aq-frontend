@@ -11,6 +11,7 @@ export function LanguageProvider({ children }) {
     language, setLanguage,
   }), [language, setLanguage]);
 
+  // Change document language when language changes
   useEffect(() => {
     document.documentElement.lang = (language === 'no' ? 'nb' : 'en');
   }, [language]);

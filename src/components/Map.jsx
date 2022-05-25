@@ -19,9 +19,11 @@ export default function Map({
   const navigate = useNavigate();
   // timeout for hover on mapicons
   let timeout;
+
   // default position for map, trondheim sentrum
   const defaultLat = (1.1070697 * 180) / Math.PI;
   const defaultLong = (0.18140209 * 180) / Math.PI;
+
   const disabledIcon = L.icon({
     iconUrl: disabledMarkerIcon,
     iconSize: [25, 41],
@@ -29,6 +31,7 @@ export default function Map({
     popupAnchor: [1, -34],
     tooltipAnchor: [16, -28],
   });
+
   const yourPositionIcon = L.icon({
     iconUrl: yourPositionMarkerIcon,
     iconSize: [15, 15],
@@ -67,6 +70,8 @@ export default function Map({
             click: (e) => {
               if (sensor.isOnline) {
                 setSensorID(sensor.deviceID);
+                // If setOpen was passed as prop
+                // (is function and not null), set it to true to close the drawer
                 if (typeof setOpen === 'function') { setOpen(false); }
                 navigate(`/${sensor.deviceID}`);
               } else {
