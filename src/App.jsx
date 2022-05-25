@@ -32,15 +32,6 @@ function App() {
   const params = useParams();
   console.log('render app');
 
-  // When page loads, the media query for
-  // prefers-color-scheme: dark initially returns false for some reason.
-  // This useEffect listens to see if it changes (which it does if browser prefers dark mode).
-  useEffect(() => {
-    if (localStorage.getItem('darkMode') === null) {
-      setDarkMode(prefersDarkMode);
-    }
-  }, [prefersDarkMode, setDarkMode]);
-
   // if sensorID is present in url, but not yet set by user, (e.g. after page refresh)
   // set sensorID to the one in the url
   if (sensorID === '' && params.id) {

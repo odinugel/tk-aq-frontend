@@ -31,7 +31,7 @@ const fetchData = async (sensorID, setData, setLoading, setFetchFailed, abortCon
 
     // Calculate the percentage of each pollutant with respect to max values set by FHI
     // Also calculates category (good, moderate, poor, very poor)
-    // with respect to threshholds set by FHI
+    // with respect to thresholds set by FHI
     const pollutants = pollutionToPercentage(dustReversed, gasReversed);
 
     // Sort the pollutants by their percentage and
@@ -46,6 +46,7 @@ const fetchData = async (sensorID, setData, setLoading, setFetchFailed, abortCon
     });
     setLoading(false);
   } catch (e) {
+    // If the error is an AbortError, user switched sensor before response loaded
     if (e.name !== 'AbortError') { setFetchFailed(true); }
     throw Error(`Fetch failed ${e} `);
   }

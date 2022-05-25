@@ -27,7 +27,7 @@ export default function Header({
   const minWidth600px = useMediaQuery('(min-width:600px)');
   const minWidth450px = useMediaQuery('(min-width:450px)');
   const { language } = useContext(LanguageContext);
-  // get the header/Appbar element to calculate height/padding of sensordrawer
+  // get the AppBar element to calculate height/padding of sensordrawer
   const header = useRef(null);
 
   return (

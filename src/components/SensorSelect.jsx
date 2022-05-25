@@ -27,8 +27,12 @@ export default function SensorSelect({
   const { language } = useContext(LanguageContext);
   const tabHeight = 72; // to set maxheight for sensorlist and map
 
+  // Stretch the sensorlist and map to fill the available space in mobile view
+  // needed due to safari changing location of address bar
   useEffect(() => {
+    // If the component has unnmounted, cancel is true, therefore do nothing
     let cancel = false;
+    // Debounce the resize event to avoid performance issues
     const handleResize = debounce(() => {
       if (!cancel) {
         setWindowHeight(window.innerHeight);
@@ -37,11 +41,14 @@ export default function SensorSelect({
 
     window.addEventListener('resize', handleResize);
     return () => {
+      // Cancel the resize event and remove the listener when the component unmounts
       cancel = true;
       window.removeEventListener('resize', handleResize);
     };
   }, []);
 
+  // If header is available (mobile-view),
+  // set the maximum height to the window height minus the header height and the tab height
   useEffect(() => {
     if (header) {
       setMaximumHeight(`${windowHeight - header.current.getBoundingClientRect().height - tabHeight}px`);

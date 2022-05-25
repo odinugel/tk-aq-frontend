@@ -25,7 +25,11 @@ export default function aqCategory(pollutant, pollutantValue) {
     },
 
   };
-
+  // 1: Good/God
+  // 2: Moderate/Moderat
+  // 3: Poor/Dårlig
+  // 4: Very Poor/Veldig dårlig
+  // Numerical values are used in order to sort
   if (pollutantValue < aqConstants[pollutant].good) { return 1; }
   if (pollutantValue < aqConstants[pollutant].moderate) { return 2; }
   if (pollutantValue < aqConstants[pollutant].poor) { return 3; }
