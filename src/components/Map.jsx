@@ -55,10 +55,16 @@ export default function Map({
         <Marker
           key={sensor.deviceName}
           icon={!sensor.isOnline ? disabledIcon : defaultIcon}
+          // Marker renders as <img>, alt text is used in place of aria-label
+          // Announces the name of the marker when it gains focus
+          // https://leafletjs.com/examples/accessibility/#markers-must-be-labelled
+          alt={sensor.deviceName}
           position={[
             (sensor.lat * 180) / Math.PI,
             (sensor.lon * 180) / Math.PI,
           ]} // ganger med 180/pi. Er for å få MERIDIAN riktig
+          // Support for focus-events is not available through the eventHandlers prop,
+          // ideally, the popup would open on focus during keyboard navigation to aid the user.
           eventHandlers={{
             mouseover: (e) => {
               timeout = setTimeout(() => { e.target.openPopup(); }, 500);
