@@ -21,7 +21,7 @@ export default function SensorDrawer({
   // Pad the drawer below header.
   useEffect(() => {
     setDrawerPadding(header.current.getBoundingClientRect().height);
-  }, [header, open]);
+  }, [header]);
 
   return (
     <>
