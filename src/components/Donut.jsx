@@ -41,7 +41,7 @@ export default function Donut({
           size="100%"
           color={donutColor(category)}
           thickness={thickness}
-          role="presentation"
+          aria-hidden
         />
       </Box>
       <Box sx={{ position: 'absolute', zIndex: '99' }}>

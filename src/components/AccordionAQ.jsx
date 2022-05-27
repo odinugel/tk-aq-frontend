@@ -39,7 +39,7 @@ export default function AccordionAQ({ pollutants, loading, fetchFailed }) {
                   {`${pollutant.name} (${translations[pollutant.name].name[language]})`}
                 </Typography>
                 <Typography>
-                  {`${translations.lastHour[language]} ${pollutant.realValue}μg/m³`}
+                  {`${translations.lastHour[language]} ${pollutant.realValue}μg/m³ - ${translations.donutCategory[pollutant.category][language]}`}
                 </Typography>
               </Stack>
             </Box>
