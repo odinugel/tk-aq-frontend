@@ -75,7 +75,6 @@ export default function SensorList({
                   sx={{ padding: 0 }}
                   selected={(location.pathname === `/${sensor.deviceID}`) || (sensor.deviceID === sensorID)}
                   disabled={!sensor.isOnline}
-                  href={`/${sensor.deviceID}`}
                   onClick={() => {
                     setSensorID(sensor.deviceID);
                     if (typeof setOpen === 'function') { setOpen(false); }
