@@ -30,18 +30,15 @@ function App() {
   const [darkMode, setDarkMode] = useLocalStorage('darkMode', prefersDarkMode);
   const minWidth1200px = useMediaQuery('(min-width:1200px)');
   const params = useParams();
-  console.log('render app');
 
   // if sensorID is present in url, but not yet set by user, (e.g. after page refresh)
   // set sensorID to the one in the url
   if (sensorID === '' && params.id) {
     setSensorID(params.id);
-    console.log(`sensorID not set, found params: ${params.id} in url, set sensorID`);
   }
 
   // sensors only need to be fetched once (on page load)
   useEffect(() => {
-    console.log('Fetching sensors');
     fetchSensors(setSensors, setLoadingSensors, setFetchSensorsFailed);
   }, []);
 
@@ -55,12 +52,12 @@ function App() {
       });
     }
   }, [userPosition]);
+
   // fetch data if sensorID changes
   // dont fetch until sensors have loaded
   useEffect(() => {
     const abortController = new AbortController();
     if (sensorID !== '' && sensors.length !== 0) {
-      console.log(`Fetching data from ${sensorID}`);
       setFetchFailed(false);
       setLoading(true);
       fetchData(sensorID, setData, setLoading, setFetchFailed, abortController);
