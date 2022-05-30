@@ -86,6 +86,7 @@ async function cacheKeyWillBeUsed({request, mode}) {
 }
 
 // change url.origin/pathname in production, localhost:8080 is the development proxy
+// actual route should look like the comment on line 50 and not use includes()
 registerRoute(
   ({url}) => url.origin === 'http://localhost:8080' &&
              url.pathname.includes('/https://tipqa.trondheim.kommune.no/luftkvalitet-api/v1/sensors/'),

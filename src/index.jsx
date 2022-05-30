@@ -20,4 +20,5 @@ ReactDOM.render(
   document.getElementById('root'),
 );
 
+// Change this to register(); in production
 serviceWorkerRegistration.unregister();

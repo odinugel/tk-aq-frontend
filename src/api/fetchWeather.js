@@ -1,4 +1,5 @@
 const fetchWeather = async (sensorID, setWeather, setLoading, abortController) => {
+  // fetch is run through proxy due to CORS on TK-servers, must be changed before production
   const proxy = 'http://localhost:8080/';
   const url = 'https://tipqa.trondheim.kommune.no/luftkvalitet-api/v1/sensors/';
   const timeNow = new Date();

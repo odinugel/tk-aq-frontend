@@ -3,13 +3,13 @@ import aqCategory from '../utils/aqCategory';
 /* "Ettersom NO bare synes å kunne utløse effekter ved meget høye konsentrasjoner,
 som den generelle befolkning sjelden eller aldri blir utsatt for,
 omtales kun helseeffekter av NO2 i denne rapporten."
-
-..hmmm ok.
+https://www.fhi.no/nettpub/luftkvalitet/temakapitler/nitrogendioksid2/#helseeffekter-av-nitrogendioksid-no2
 */
+
+// since miljødirektoratet has not defined max values for NO, it is omitted from the app entirely
 
 export default function pollutionToPercentage(dust, gas) {
   const { PM10, 'PM2.5': PM25 } = dust[0];
-  // since miljødirektoratet has not defined max values for NO, it is omitted from the app entirely
   const { NO2, O3 } = gas[0];
 
   // _MAX values from:
